@@ -1,3 +1,7 @@
+/**
+ * Enumeration of command words for game.
+ * @author Chase Scott 101092194
+ */
 public enum CommandWord {
 
     STATE("state"), BUY("buy"), PASS("pass"), HELP("help"), QUIT("quit"), UNKNOWN("?");

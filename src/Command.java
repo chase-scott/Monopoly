@@ -1,6 +1,10 @@
+/**
+ * A class for creating a command
+ * @author Chase Scott 101092194
+ */
 public class Command {
 
-    private CommandWord commandWord;
+    private final CommandWord commandWord;
 
     public Command(CommandWord commandWord) {
         this.commandWord = commandWord;
