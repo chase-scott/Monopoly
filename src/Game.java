@@ -15,8 +15,6 @@ public class Game {
             finished = processCommand(command);
         }
 
-
-
     }
 
     /**
@@ -48,7 +46,7 @@ public class Game {
                 break;
 
             case HELP:
-                //get the list of commands
+                showHelp();
                 break;
 
             case QUIT:
@@ -59,6 +57,13 @@ public class Game {
 
         return wantToQuit;
     }
+
+    private void showHelp() {
+        System.out.println("LIST OF COMMANDS");
+        parser.showCommands();
+    }
+
+
 
 
     public static void main(String[] args) {
