@@ -1,5 +1,9 @@
 import java.util.Scanner;
 
+/**
+ * Parser for reading command line input
+ * @author Chase Scott 10192194
+ */
 public class Parser {
 
     private CommandWords commands;

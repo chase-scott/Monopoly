@@ -1,5 +1,9 @@
 import java.util.*;
 
+/**
+ * Map of command words with their corresponding string
+ * @author Chase Scott 101092194
+ */
 public class CommandWords {
 
     private HashMap<String, CommandWord> commands;
