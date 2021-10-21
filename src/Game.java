@@ -9,7 +9,17 @@ public class Game {
     private Parser parser;
     private int turnNumber = 0;
     Dice dice = new Dice();
-    private double rentRate = 0.2;
+    private double rentRate = 0;
+    private double blueRentRate = 0.2;
+    private double redRentRate = 0.1;
+    private double pinkRentRate = 0.2;
+    private double brownRentRate = 0.3;
+
+    private String noColor= "NO COLOR";
+    private String red= "RED";
+    private String blue= "BLUE";
+    private String pink= "PINK";
+    private String brown= "BROWN";
 
     public Game() {
         createBoard();
@@ -17,28 +27,29 @@ public class Game {
 
     }
 
+
     /**
      * Initialize the board for the game
      */
     private void createBoard() {
         properties = new Square[12];
-        properties[0] = new Property("Go", 0, rentRate);
-        properties[1] = new Property("Mediterranean Avenue", 60, rentRate);
-        properties[2] = new Property("Baltic Avenue", 60, rentRate);
+        properties[0] = new Property("Go", 0, rentRate, noColor);
+        properties[1] = new Property("Mediterranean Avenue", 60, blueRentRate, blue);
+        properties[2] = new Property("Baltic Avenue", 60, redRentRate, red);
 
-        properties[3] = new Property("Oriental Avenue", 100, rentRate);
-        properties[4] = new Property("Vermont Avenue", 100, rentRate);
-        properties[5] = new Property("Connecticut Avenue", 120, rentRate);
+        properties[3] = new Property("Oriental Avenue", 100, pinkRentRate, pink);
+        properties[4] = new Property("Vermont Avenue", 100, brownRentRate, brown);
+        properties[5] = new Property("Connecticut Avenue", 120, pinkRentRate, pink);
 
-        properties[6] = new Property("St. Charles Place", 140, rentRate);
+        properties[6] = new Property("St. Charles Place", 140, redRentRate, red);
 
-        properties[7] = new Property("Income Tax", 0, rentRate);
+        properties[7] = new Property("Income Tax", 0, rentRate, noColor);
 
-        properties[8] = new Property("States Avenue", 140, rentRate);
-        properties[9] = new Property("Virginia Avenue", 160, rentRate);
+        properties[8] = new Property("States Avenue", 140, brownRentRate, brown);
+        properties[9] = new Property("Virginia Avenue", 160, blueRentRate, blue);
 
-        properties[10] = new Property("Park Place", 350, rentRate);
-        properties[11] = new Property("Boardwalk", 400, rentRate);
+        properties[10] = new Property("Park Place", 350, redRentRate, red);
+        properties[11] = new Property("Boardwalk", 400, brownRentRate, brown);
 
     }
 
