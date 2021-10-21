@@ -21,14 +21,21 @@ public class Parser {
      */
     public Player[] getPlayers() {
 
-        String commandInput;
         System.out.println("Enter how many players will be playing.");
-        System.out.print(">> ");
-        int n = Integer.parseInt(reader.nextLine());
+        int numberOfPlayers;
 
+        while(true) {
+            try {
+                System.out.print(">> ");
+                numberOfPlayers = Integer.parseInt(reader.nextLine());
+                break;
+            } catch(NumberFormatException e) {
+                System.out.println("PLease input a valid integer!");
+            }
+        }
 
-        Player[] players = new Player[n];
-        for(int i = 0; i < n; i++) {
+        Player[] players = new Player[numberOfPlayers];
+        for(int i = 0; i < numberOfPlayers; i++) {
             System.out.print("Enter player " + (i + 1) + "'s name: ");
             players[i] = new Player(reader.nextLine());
         }
