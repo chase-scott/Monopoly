@@ -2,7 +2,8 @@ public class Game {
 
     private Square[] properties;
     private Player[] players;
-    public Parser parser;
+    private Parser parser;
+    private int turnNumber = 0;
 
     public Game() {
         createBoard();
@@ -36,7 +37,10 @@ public class Game {
 
     public void play() {
 
+        players = parser.getPlayers();
         boolean finished = false;
+        System.out.println(players[turnNumber % players.length].getName() + "'s turn.");
+
         while (!finished) {
             Command command = parser.getCommand();
             finished = processCommand(command);
@@ -69,9 +73,8 @@ public class Game {
                 break;
 
             case PASS:
-
-
-                System.out.println();
+                turnNumber++;
+                System.out.println(players[turnNumber % players.length].getName() + "'s turn.");
                 break;
 
             case HELP:

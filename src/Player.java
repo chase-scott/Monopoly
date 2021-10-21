@@ -1,5 +1,5 @@
 /**
- * Player abstract class
+ * Player class
  * @author Chase Scott 101092194
  */
 public class Player {
