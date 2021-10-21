@@ -4,10 +4,12 @@ public class Game {
     private Player[] players;
     private Parser parser;
     private int turnNumber = 0;
+    Dice dice = new Dice();
 
     public Game() {
         createBoard();
         parser = new Parser();
+
     }
 
     /**
@@ -85,9 +87,19 @@ public class Game {
                 wantToQuit = true;
                 break;
 
+            case ROLL:
+                dice.roll();
+                dice.rollValue();
+                break;
         }
 
         return wantToQuit;
+    }
+
+    private void rollAgain(){
+        if(dice.isDouble()){
+            dice.roll();
+        }
     }
 
     private void showHelp() {

@@ -34,11 +34,12 @@ public class Dice {
     /**
      * Check if the dice rolls triples
      */
-    public boolean isTriple(){
-        if(dice1 == dice2 && isDouble()) {
+    /**  public boolean isTriple(){
+       if(dice1 == dice2 && isDouble()) {
             return true;
         }
         return false;
     }
+     */
 
 }
