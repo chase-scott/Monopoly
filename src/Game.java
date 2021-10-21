@@ -1,10 +1,37 @@
 public class Game {
 
+    private Square[] properties;
+    private Player[] players;
     public Parser parser;
 
     public Game() {
-        //createBoard();
+        createBoard();
         parser = new Parser();
+    }
+
+    /**
+     * Initialize the board for the game
+     */
+    private void createBoard() {
+        properties = new Square[12];
+        properties[0] = new Property("Go", 0);
+        properties[1] = new Property("Mediterranean Avenue", 60);
+        properties[2] = new Property("Baltic Avenue", 60);
+
+        properties[3] = new Property("Oriental Avenue", 100);
+        properties[4] = new Property("Vermont Avenue", 100);
+        properties[5] = new Property("Connecticut Avenue", 120);
+
+        properties[6] = new Property("St. Charles Place", 140);
+
+        properties[7] = new Property("Income Tax", 0);
+
+        properties[8] = new Property("States Avenue", 140);
+        properties[9] = new Property("Virginia Avenue", 160);
+
+        properties[10] = new Property("Park Place", 350);
+        properties[11] = new Property("Boardwalk", 400);
+
     }
 
     public void play() {
@@ -34,7 +61,7 @@ public class Game {
                 break;
 
             case STATE:
-                //get the current state of the board
+                showState();
                 break;
 
             case BUY:
@@ -42,7 +69,9 @@ public class Game {
                 break;
 
             case PASS:
-                //pass a players turn
+
+
+                System.out.println();
                 break;
 
             case HELP:
@@ -61,6 +90,10 @@ public class Game {
     private void showHelp() {
         System.out.println("LIST OF COMMANDS");
         parser.showCommands();
+    }
+
+    private void showState() {
+
     }
 
 

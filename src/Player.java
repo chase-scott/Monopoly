@@ -1,22 +1,22 @@
 /**
- * Player class
+ * Player abstract class
  * @author Chase Scott 101092194
  */
-public abstract class Player {
+public class Player {
 
     private final String name;
-    private int money;
+    private double money;
 
     public Player(String name) {
         this.name = name;
-        this.money = 0;
+        this.money = 1500;
     }
 
     public String getName() {
         return name;
     }
 
-    public int getMoney() {
+    public double getMoney() {
         return money;
     }
 
