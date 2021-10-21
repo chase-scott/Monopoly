@@ -1,3 +1,7 @@
+/**
+ * Game class
+ * @author Amith Kumar Das Orko 101126245
+ */
 public class Game {
 
     private Square[] properties;

@@ -1,3 +1,7 @@
+/**
+ * Square class
+ * @author Amith Kumar Das Orko 101126245
+ */
 public abstract class Square implements Comparable<Square>{
 
     private final String name;

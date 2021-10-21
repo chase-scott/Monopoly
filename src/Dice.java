@@ -1,5 +1,6 @@
 /**
  * Roll and return value of the two dice
+ * @author Amith Kumar Das Orko 101126245
  */
 public class Dice {
     private int dice1;

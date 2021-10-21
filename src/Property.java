@@ -1,3 +1,7 @@
+/**
+ * Property class
+ * @author Amith Kumar Das Orko 101126245
+ */
 public class Property extends Square {
 
     private double price;
