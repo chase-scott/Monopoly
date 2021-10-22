@@ -14,19 +14,11 @@ public class Game {
     Dice dice = new Dice();
 
 
-    private String noColor= "NO COLOR";
-    private String red= "RED";
-    private String blue= "BLUE";
-    private String pink= "PINK";
-    private String brown= "BROWN";
-
     public Game() {
         gameBoard.createBoard();
         parser = new Parser();
 
     }
-
-
 
 
     public void play() {
