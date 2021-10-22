@@ -45,16 +45,15 @@ public class GameBoard {
         properties[16] = new Property("Ventnor Avenue", 260, 22, yellow);
         properties[17] = new Property("Marvin Gardens", 280, 24, yellow);
 
-        properties[18] = new Property("Atlantic Avenue", 300,26, green);
-        properties[19] = new Property("Ventnor Avenue", 300,26, green);
-        properties[20] = new Property("Marvin Gardens", 320, 28, green);
+        properties[18] = new Property("Pacific Avenue", 300,26, green);
+        properties[19] = new Property("North Carolina Avenue", 300,26, green);
+        properties[20] = new Property("Pennsylvania Avenue", 320, 28, green);
 
-        properties[21] = new Property("Atlantic Avenue", 350, 35, blue);
-        properties[22] = new Property("Ventnor Avenue", 400, 50, blue );
+        properties[21] = new Property("Park Place", 350, 35, blue);
+        properties[22] = new Property("Boardwalk", 400, 50, blue );
 
 
     }
-
 
 
 }
