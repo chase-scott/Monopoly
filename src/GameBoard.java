@@ -17,7 +17,7 @@ public class GameBoard {
 
 
 
-    private void createBoard() {
+    public void createBoard() {
         properties = new Square[21];
 
         properties[0] = new Property("Go", 0, 0, "No Color");
