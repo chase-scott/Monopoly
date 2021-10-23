@@ -34,6 +34,7 @@ public class Property extends Square {
 
     public void setOwner(Player currentPlayer){
         ownedBy = currentPlayer;
+        System.out.println(currentPlayer + " now owns this property ");
     }
 
     public boolean checkIfAvailable(){

@@ -49,4 +49,17 @@ public class Player {
             System.out.println(property);
         }
     }
+    public void addRent(int rentReceivig){
+        money += rentReceivig;
+        System.out.println("Received rent $"+rentReceivig);
+    }
+    public void giveRent(int rent, Player rentToPlayer){
+        if(money>rent){
+            money-=rent;
+            rentToPlayer.addRent(rent);
+            System.out.println("Pay rent $"+rent+" to "+ rentToPlayer);
+        }
+
+    }
+
 }
