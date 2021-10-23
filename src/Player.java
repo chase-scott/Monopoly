@@ -10,6 +10,7 @@ public class Player {
     private final String name;
     private double money;
     private int position;
+    private ArrayList<Property> properties = new ArrayList<Property>();
 
 
     public Player(String name) {
@@ -41,6 +42,11 @@ public class Player {
         }
     }
     public void propertiesOwned(){
-
+        if(properties.isEmpty()){
+            System.out.println("Player owns nothing");
+        }
+        for(Property property : properties){
+            System.out.println(property);
+        }
     }
 }
