@@ -4,7 +4,8 @@
  */
 public enum CommandWord {
 
-    ROLL("roll"), STATE("state"), BUY("buy"), PASS("pass"), HELP("help"), QUIT("quit"), UNKNOWN("?");
+    ROLL("roll"), STATE("state"), BUY("buy"), PASS("pass"),
+    HELP("help"), QUIT("quit"), BUILD("build"), UNKNOWN("?");
 
     private final String commandString;
 

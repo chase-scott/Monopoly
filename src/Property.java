@@ -35,7 +35,14 @@ public class Property extends Square {
     }
 
     @Override
-    public void squareAction() {
+    public void squareAction(Player player) {
         System.out.println("Property Action"); //TODO
+        if(ownedBy != null) {
+            System.out.println(player.getName() + " pays $"  + rentRate * price);
+            player.setMoney(player.getMoney() - rentRate * price);
+            ownedBy.setMoney(ownedBy.getMoney() + rentRate * price);
+        }
+
+
     }
 }

@@ -28,7 +28,7 @@ public class Player {
     }
     public int getPosition() { return position; }
 
-    public void setMoney(int money) {
+    public void setMoney(double money) {
         this.money = money;
     }
 
@@ -44,14 +44,32 @@ public class Player {
 
     //TODO buy method
 
-    public void propertiesOwned(){
+    public void buy(Property property) {
+        if(property.checkIfAvailable()) {
+            System.out.println(name + " has just bought " + property.getName());
+            money -= property.getPrice();
+            propertyList.add(property);
+            property.setOwner(this);
+            return;
+        }
 
+        System.out.println("This property is already owned by " + property.getOwner());
+
+    }
+
+
+
+    private String propertiesOwned(){
+        if(propertyList.isEmpty()){
+            return "Player owns nothing";
+        }
+        StringBuilder info = new StringBuilder();
+        for (Property p : propertyList) {info.append(p.getName()).append(", ");}
+        return info.toString();
     }
 
     @Override
     public String toString() {
-        StringBuilder info = new StringBuilder();
-        for (Property p : propertyList) {info.append(p.getName()).append(", ");}
-        return "Name = " + name + "\nMoney: $" + money + "\nProperties owned: " + info;
+        return "Name = " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
     }
 }

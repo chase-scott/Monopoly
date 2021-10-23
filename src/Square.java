@@ -8,6 +8,6 @@ public abstract class Square {
 
     public String getName() {return name;}
 
-    public abstract void squareAction();
+    public abstract void squareAction(Player player);
 
 }
