@@ -4,7 +4,7 @@ public class Game {
     Dice dice = new Dice();
     private Parser parser;
     private int turnNumber = 0;
-    private GameBoard gameBoard;
+    private final GameBoard gameBoard;
 
     public Game() {
         gameBoard = new GameBoard();
@@ -61,7 +61,8 @@ public class Game {
 
             case ROLL:
                 if(!dice.isRolled()) {
-                    dice.roll();
+                    players[turnNumber % players.length].playerMove(dice.roll());
+                    System.out.println("You are on " + gameBoard.getName(players[turnNumber % players.length].getPosition()));
                 } else {
                     System.out.println("You already rolled this turn");
                 }
@@ -83,6 +84,7 @@ public class Game {
 
     private void showState() {
         System.out.println(players[turnNumber % players.length].toString());
+        System.out.println("You are on " + gameBoard.getName(players[turnNumber % players.length].getPosition()));
     }
 
 

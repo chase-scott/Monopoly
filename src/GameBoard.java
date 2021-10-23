@@ -44,6 +44,7 @@ public class GameBoard {
 
     }
 
+    public String getName(int position) {return squares[position].getName();}
 
 
 
