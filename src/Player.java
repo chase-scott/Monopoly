@@ -42,7 +42,7 @@ public class Player {
         }
     }
 
-
+    //TODO buy method
 
     public void propertiesOwned(){
 

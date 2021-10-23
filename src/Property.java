@@ -31,10 +31,11 @@ public class Property extends Square {
     }
 
     public boolean checkIfAvailable(){
-        if(getOwner() == null){
-            return true;
-        }
-        return false;
+        return getOwner() == null;
     }
 
+    @Override
+    public void squareAction() {
+        System.out.println("Property Action"); //TODO
+    }
 }

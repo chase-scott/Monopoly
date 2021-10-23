@@ -11,7 +11,9 @@ public class Game {
         parser = new Parser();
     }
 
-
+    /**
+     * Starts the gameplay loop.
+     */
     public void play() {
 
         players = parser.getPlayers();
@@ -46,13 +48,14 @@ public class Game {
                 break;
 
             case BUY:
-                //players[turnNumber % players.length].buy(); //TODO
+                //players[turnNumber].buy(some input); //TODO
                 break;
 
             case PASS:
                 dice.setRolled(false);
                 turnNumber++;
                 if(turnNumber >= players.length) turnNumber = 0;
+                if(players[turnNumber].getMoney() == 0) break; //If player is bankrupt, skip turn
                 System.out.println(players[turnNumber].getName() + "'s turn.");
                 break;
 
@@ -63,7 +66,8 @@ public class Game {
             case ROLL:
                 if(!dice.isRolled()) {
                     players[turnNumber].playerMove(dice.roll());
-                    System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
+                    System.out.println("You landed on " + gameBoard.getName(players[turnNumber].getPosition()));
+                    gameBoard.getSquare(players[turnNumber].getPosition()).squareAction(); //Executes the action of the square that is landed on
                 } else {
                     System.out.println("You already rolled this turn");
                 }
@@ -96,6 +100,5 @@ public class Game {
         game.play();
 
     }
-
 
 }
