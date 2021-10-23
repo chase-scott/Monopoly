@@ -14,7 +14,7 @@ public class Player {
 
     public Player(String name) {
         this.name = name;
-        this.money = 1500;
+        this.money = 200;
         this.position = 0;
         this.propertyList = new ArrayList<>();
     }
@@ -26,6 +26,7 @@ public class Player {
     public double getMoney() {
         return money;
     }
+
     public int getPosition() { return position; }
 
     public void setMoney(double money) {
@@ -42,19 +43,20 @@ public class Player {
         }
     }
 
-    //TODO buy method
 
     public void buy(Property property) {
         if(property.checkIfAvailable()) {
+            if(money < property.getPrice()) {
+                System.out.println("You can not afford this property!");
+                return;
+            }
             System.out.println(name + " has just bought " + property.getName());
             money -= property.getPrice();
             propertyList.add(property);
             property.setOwner(this);
             return;
         }
-
-        System.out.println("This property is already owned by " + property.getOwner());
-
+        System.out.println("This property is already owned by " + property.getOwner().getName());
     }
 
 
@@ -70,6 +72,6 @@ public class Player {
 
     @Override
     public String toString() {
-        return "Name = " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
+        return "Name: " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
     }
 }

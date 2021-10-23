@@ -1,9 +1,9 @@
 public class Property extends Square {
 
-    private double price;
-    private double rentRate;
+    private final double price;
+    private final double rentRate;
     private Player ownedBy = null;
-    private String colour;
+    private final String colour;
 
     public Property(String name, double price, Colours colour) {
         super(name);
@@ -34,15 +34,13 @@ public class Property extends Square {
         return getOwner() == null;
     }
 
-    @Override
+    @Override //TODO bankruptcy handling
     public void squareAction(Player player) {
-        System.out.println("Property Action"); //TODO
         if(ownedBy != null) {
-            System.out.println(player.getName() + " pays $"  + rentRate * price);
+            System.out.println(player.getName() + " pays $"  + rentRate * price + " to " + ownedBy.getName());
             player.setMoney(player.getMoney() - rentRate * price);
             ownedBy.setMoney(ownedBy.getMoney() + rentRate * price);
         }
-
-
     }
+
 }

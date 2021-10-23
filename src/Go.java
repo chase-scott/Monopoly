@@ -6,6 +6,6 @@ public class Go extends Square {
 
     @Override
     public void squareAction(Player player) {
-        System.out.println("Landed on GO! +$200");
+        //do nothing
     }
 }
