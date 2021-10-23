@@ -1,39 +1,16 @@
 public class Game {
 
-    private Square[] properties;
     private Player[] players;
+    Dice dice = new Dice();
     private Parser parser;
     private int turnNumber = 0;
+    private GameBoard gameBoard;
 
     public Game() {
-        createBoard();
+        gameBoard = new GameBoard();
         parser = new Parser();
     }
 
-    /**
-     * Initialize the board for the game
-     */
-    private void createBoard() {
-        properties = new Square[12];
-        properties[0] = new Property("Go", 0);
-        properties[1] = new Property("Mediterranean Avenue", 60);
-        properties[2] = new Property("Baltic Avenue", 60);
-
-        properties[3] = new Property("Oriental Avenue", 100);
-        properties[4] = new Property("Vermont Avenue", 100);
-        properties[5] = new Property("Connecticut Avenue", 120);
-
-        properties[6] = new Property("St. Charles Place", 140);
-
-        properties[7] = new Property("Income Tax", 0);
-
-        properties[8] = new Property("States Avenue", 140);
-        properties[9] = new Property("Virginia Avenue", 160);
-
-        properties[10] = new Property("Park Place", 350);
-        properties[11] = new Property("Boardwalk", 400);
-
-    }
 
     public void play() {
 
@@ -69,16 +46,25 @@ public class Game {
                 break;
 
             case BUY:
-                //buy a property
+                //players[turnNumber % players.length].buy(); //TODO
                 break;
 
             case PASS:
+                dice.setRolled(false);
                 turnNumber++;
                 System.out.println(players[turnNumber % players.length].getName() + "'s turn.");
                 break;
 
             case HELP:
                 showHelp();
+                break;
+
+            case ROLL:
+                if(!dice.isRolled()) {
+                    dice.roll();
+                } else {
+                    System.out.println("You already rolled this turn");
+                }
                 break;
 
             case QUIT:
@@ -96,7 +82,7 @@ public class Game {
     }
 
     private void showState() {
-
+        System.out.println(players[turnNumber % players.length].toString());
     }
 
 

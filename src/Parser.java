@@ -28,6 +28,10 @@ public class Parser {
             try {
                 System.out.print(">> ");
                 numberOfPlayers = Integer.parseInt(reader.nextLine());
+                if(numberOfPlayers <= 1) {
+                    System.out.println("Must be more than one player");
+                    continue;
+                }
                 break;
             } catch(NumberFormatException e) {
                 System.out.println("PLease input a valid integer!");
