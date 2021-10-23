@@ -10,7 +10,7 @@ public class GameBoard {
     private void createBoard() {
         squares = new Square[23];
 
-        squares[0] = new Property("Go", 200, Colours.NONE);
+        squares[0] = new Property("Go", 0, Colours.NONE);
 
         squares[1] = new Property("Mediterranean Avenue", 60, Colours.BROWN);
         squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);

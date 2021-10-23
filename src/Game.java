@@ -16,7 +16,7 @@ public class Game {
 
         players = parser.getPlayers();
         boolean finished = false;
-        System.out.println(players[turnNumber % players.length].getName() + "'s turn.");
+        System.out.println(players[turnNumber].getName() + "'s turn.");
 
         while (!finished) {
             Command command = parser.getCommand();
@@ -52,7 +52,8 @@ public class Game {
             case PASS:
                 dice.setRolled(false);
                 turnNumber++;
-                System.out.println(players[turnNumber % players.length].getName() + "'s turn.");
+                if(turnNumber >= players.length) turnNumber = 0;
+                System.out.println(players[turnNumber].getName() + "'s turn.");
                 break;
 
             case HELP:
@@ -61,8 +62,8 @@ public class Game {
 
             case ROLL:
                 if(!dice.isRolled()) {
-                    players[turnNumber % players.length].playerMove(dice.roll());
-                    System.out.println("You are on " + gameBoard.getName(players[turnNumber % players.length].getPosition()));
+                    players[turnNumber].playerMove(dice.roll());
+                    System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
                 } else {
                     System.out.println("You already rolled this turn");
                 }
@@ -83,8 +84,8 @@ public class Game {
     }
 
     private void showState() {
-        System.out.println(players[turnNumber % players.length].toString());
-        System.out.println("You are on " + gameBoard.getName(players[turnNumber % players.length].getPosition()));
+        System.out.println(players[turnNumber].toString());
+        System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
     }
 
 

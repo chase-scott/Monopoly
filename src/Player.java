@@ -33,9 +33,17 @@ public class Player {
     }
 
     public void playerMove(int rollResult){
+        int BOARD_SIZE = 23;
         position += rollResult;
-
+        if(position >= BOARD_SIZE) {
+            position -= BOARD_SIZE;
+            money += 200;
+            System.out.println("+$200 for passing GO");
+        }
     }
+
+
+
     public void propertiesOwned(){
 
     }
@@ -44,7 +52,6 @@ public class Player {
     public String toString() {
         StringBuilder info = new StringBuilder();
         for (Property p : propertyList) {info.append(p.getName()).append(", ");}
-
         return "Name = " + name + "\nMoney: $" + money + "\nProperties owned: " + info;
     }
 }
