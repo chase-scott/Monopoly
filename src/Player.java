@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Player class
  * @author Chase Scott 101092194
@@ -8,6 +10,7 @@ public class Player {
     private final String name;
     private double money;
     private int position;
+
 
     public Player(String name) {
         this.name = name;
@@ -28,8 +31,14 @@ public class Player {
         this.money = money;
     }
 
-    public void playerMove(){
+    public void playerMove(int diceRoll){
+        position += diceRoll;
 
+        //given that the board has 12 squares
+        if(position>=12){ //reaches starting point
+            money += 200;
+            position = position % 12;
+        }
     }
     public void propertiesOwned(){
 
