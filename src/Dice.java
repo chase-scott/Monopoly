@@ -18,8 +18,7 @@ public class Dice {
         } else {
             rolled = true;
         }
-        //return (dice[0] + dice[1]);
-        return 1;
+        return (dice[0] + dice[1]);
 
     }
 
