@@ -49,7 +49,7 @@ public class Game {
 
             case BUY:
                 try {
-                    players[turnNumber].buy((Property) gameBoard.getSquare(players[turnNumber].getPosition())); //TODO
+                    players[turnNumber].buy((Property) gameBoard.getSquare(players[turnNumber].getPosition()));
                 } catch(ClassCastException e) {
                     System.out.println("You are not on a property square!");
                 }
@@ -57,9 +57,12 @@ public class Game {
 
             case PASS:
                 dice.setRolled(false);
-                turnNumber++;
-                if(turnNumber >= players.length) turnNumber = 0;
-                if(players[turnNumber].getMoney() == 0) turnNumber++; //If player is bankrupt, skip turn
+
+                do {
+                    turnNumber++;
+                    if(turnNumber >= players.length) turnNumber = 0;
+                } while (players[turnNumber].isBankrupt());
+
                 System.out.println(players[turnNumber].getName() + "'s turn.");
                 break;
 
@@ -72,6 +75,23 @@ public class Game {
                     players[turnNumber].playerMove(dice.roll());
                     System.out.println("You landed on " + gameBoard.getName(players[turnNumber].getPosition()));
                     gameBoard.getSquare(players[turnNumber].getPosition()).squareAction(players[turnNumber]); //Executes the action of the square that is landed on
+
+                    //check for win state
+                    int playersLost = 0;
+                    for(Player p : players) {
+                        if(p.isBankrupt()){
+                            playersLost++;
+                        }
+                    }
+                    if(playersLost == (players.length - 1)) {
+                        for(Player p : players) {
+                            if(!p.isBankrupt()) System.out.println(p.getName() + " wins the game!!!");
+                            wantToQuit = true;
+                            break;
+                        }
+                    }
+                    //end check for win state
+
                 } else {
                     System.out.println("You already rolled this turn");
                 }

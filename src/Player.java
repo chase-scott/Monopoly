@@ -11,11 +11,14 @@ public class Player {
     private double money;
     private int position;
     private List<Property> propertyList;
+    private boolean isBankrupt;
+
 
     public Player(String name) {
         this.name = name;
-        this.money = 200;
+        this.money = 1500;
         this.position = 0;
+        this.isBankrupt = false;
         this.propertyList = new ArrayList<>();
     }
 
@@ -31,6 +34,14 @@ public class Player {
 
     public void setMoney(double money) {
         this.money = money;
+    }
+
+    public boolean isBankrupt() {
+        return isBankrupt;
+    }
+
+    public void setBankrupt(boolean bankrupt) {
+        isBankrupt = bankrupt;
     }
 
     public void playerMove(int rollResult){
