@@ -20,7 +20,7 @@ public class Game {
      */
     public void play() {
 
-        players = parser.getPlayers();
+        printWelcome();
         boolean finished = false;
         System.out.println(players[turnNumber].getName() + "'s turn.");
 
@@ -126,6 +126,17 @@ public class Game {
         System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
     }
 
+    /**
+     * Prints the welcome information for the game
+     */
+    private void printWelcome() {
+        System.out.println("\t\t\t--WELCOME TO MONOPOLY--");
+        System.out.println("Monopoly is a multi-player economic-themed board game.");
+        System.out.println("Be the last player not bankrupt to win! Good luck!");
+        System.out.println("If you need help, type " + CommandWord.HELP + " for a list of commands!\n");
+        players = parser.getPlayers();
+        System.out.println();
+    }
     public static void main(String[] args) {
         Game game = new Game();
         game.play();

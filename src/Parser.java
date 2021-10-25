@@ -31,8 +31,8 @@ public class Parser {
             try {
                 System.out.print(">> ");
                 numberOfPlayers = Integer.parseInt(reader.nextLine());
-                if(numberOfPlayers <= 1) {
-                    System.out.println("Must be more than one player");
+                if(numberOfPlayers <= 1 || numberOfPlayers > 8) {
+                    System.out.println("Must be between 1 and 8 players!");
                     continue;
                 }
                 break;
