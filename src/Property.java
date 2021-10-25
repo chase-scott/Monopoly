@@ -14,6 +14,7 @@ public class Property extends Square {
     public int getPrice(){
         return (int)price;
     }
+
     public String getColour(){
         return colour;
     }

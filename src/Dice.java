@@ -4,8 +4,14 @@
  */
 public class Dice {
 
-    private int[] dice = new int[2];
-    private boolean rolled = false;
+    private int[] dice;
+    private boolean rolled;
+
+    public Dice() {
+        this.dice = new int[2];
+        this.rolled = false;
+    }
+
 
     public int roll(){
 

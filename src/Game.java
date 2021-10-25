@@ -1,7 +1,7 @@
 public class Game {
 
     private Player[] players;
-    Dice dice = new Dice();
+    private Dice dice;
     private Parser parser;
     private int turnNumber = 0;
     private final GameBoard gameBoard;
@@ -9,6 +9,7 @@ public class Game {
     public Game() {
         gameBoard = new GameBoard();
         parser = new Parser();
+        dice = new Dice();
     }
 
     /**

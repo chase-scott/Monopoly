@@ -5,7 +5,7 @@
 public enum CommandWord {
 
     ROLL("roll"), STATE("state"), BUY("buy"), PASS("pass"),
-    HELP("help"), QUIT("quit"), BUILD("build"), UNKNOWN("?");
+    HELP("help"), QUIT("quit"), UNKNOWN("?");
 
     private final String commandString;
 
