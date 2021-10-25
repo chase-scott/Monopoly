@@ -10,6 +10,7 @@ public enum CommandWord {
     ROLL("roll"), STATE("state"), BUY("buy"), PASS("pass"),
     HELP("help"), QUIT("quit"), UNKNOWN("?");
 
+
     private final String commandString; //the string associated with the command
 
     CommandWord(String commandString) {
