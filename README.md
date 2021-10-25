@@ -31,7 +31,7 @@ None
 
 ### Roadmap ahead:
 
-Implementing a GUI-based version of the game, this includes the view and controller. Update UML and data structures corresponding to the source code and provide unit tests. Improve code based on the TA's feedback.
+Implementing a GUI-based version of the game, this includes the view and controller. Update UML and data structures corresponding to the source code. and provide unit tests. Improve code based on the TA's feedback.
 
 ### Decisions Made:
 
@@ -45,14 +45,16 @@ Implementing a GUI-based version of the game, this includes the view and control
 
 ### User Manual:
 
--  Double click the jar file and select the number of players
+-  Double click the jar file and select the number of players, along with their names
 
 - Type in "roll" to roll the dice and start the game
+
+- Type in "buy" to buy the property you are currently on
+
+- Type in "state" to view your name, money, list of properties, and current position
+
+- Type in "pass" to pass the turn
 
 - Type in "help" for the list of commands
 
 - Type in "quit" to quit the game
-
-  
-
-  
