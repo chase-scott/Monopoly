@@ -1,59 +1,74 @@
 /**
- * Class to Symbolize Game Board
- * @author Mohammad Gaffori | 101082318
+ * Creates and initializes the game board.
+ *
+ * @author Mohammad Gaffori 101082318
+ * @author Chase Scott 101092194
  */
 public class GameBoard {
 
-    private Square[] properties;
+    private Square[] squares; //Array of squares that comprise the board
 
-    private String teal = "teal";
-    private String brown = "brown";
-    private String pink = "pink";
-    private String orange = "orange";
-    private String blue = "blue";
-    private String red = "red";
-    private String yellow = "yellow";
-    private String green = "green";
+    /**
+     * Default constructor
+     */
+    public GameBoard() {
+        createBoard();
+    }
 
+    /**
+     * Initializes the game board.
+     */
+    private void createBoard() {
+        squares = new Square[23];
 
+        squares[0] = new Go("GO");
 
-    public void createBoard() {
-        properties = new Square[21];
+        squares[1] = new Property("Mediterranean Avenue", 60, Colours.BROWN);
+        squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);
 
-        properties[0] = new Property("Go", 0, 0, "No Color");
+        squares[3] = new Property("Oriental Avenue", 100, Colours.TEAL);
+        squares[4] = new Property("Vermont Avenue", 100, Colours.TEAL);
+        squares[5] = new Property("Connecticut Avenue", 120, Colours.TEAL);
 
-        properties[1] = new Property("Mediterranean Avenue", 60,2, brown);
-        properties[2] = new Property("Baltic Avenue", 60,4, brown);
+        squares[6] = new Property("St. Charles Place", 140, Colours.PINK);
+        squares[7] = new Property("States Avenue", 140, Colours.PINK);
+        squares[8] = new Property("Virginia Avenue", 160, Colours.PINK);
 
-        properties[3] = new Property("Oriental Avenue", 100,6, teal);
-        properties[4] = new Property("Vermont Avenue", 100, 6, teal);
-        properties[5] = new Property("Connecticut Avenue", 120, 8, teal);
+        squares[9] = new Property("St. James Place", 180, Colours.ORANGE);
+        squares[10] = new Property("Tennessee Avenue", 180, Colours.ORANGE);
+        squares[11] = new Property("New York Avenue", 200, Colours.ORANGE);
 
-        properties[6] = new Property("St. Charles Place", 140, 10, pink);
-        properties[7] = new Property("States Avenue", 140, 10, pink );
-        properties[8] = new Property("Virginia Avenue", 160, 12, pink);
+        squares[12] = new Property("Kentucky Avenue", 220, Colours.RED);
+        squares[13] = new Property("Indiana Avenue", 220, Colours.RED);
+        squares[14] = new Property("Illinois Avenue", 240, Colours.RED);
 
-        properties[9] = new Property("St. James Place", 180,14, orange);
-        properties[10] = new Property("Tennessee Avenue", 180, 14, orange);
-        properties[11] = new Property("New York Avenue", 200,16, orange);
+        squares[15] = new Property("Atlantic Avenue", 260, Colours.YELLOW);
+        squares[16] = new Property("Ventnor Avenue", 260, Colours.YELLOW);
+        squares[17] = new Property("Marvin Gardens", 280, Colours.YELLOW);
 
-        properties[12] = new Property("Kentucky Avenue", 220,18, red);
-        properties[13] = new Property("Indiana Avenue", 220, 18, red);
-        properties[14] = new Property("Illinois Avenue", 240,20, red);
+        squares[18] = new Property("Pacific Avenue", 300, Colours.GREEN);
+        squares[19] = new Property("North Carolina Avenue", 300, Colours.GREEN);
+        squares[20] = new Property("Pennsylvania Avenue", 320, Colours.GREEN);
 
-        properties[15] = new Property("Atlantic Avenue", 260,22, yellow);
-        properties[16] = new Property("Ventnor Avenue", 260, 22, yellow);
-        properties[17] = new Property("Marvin Gardens", 280, 24, yellow);
-
-        properties[18] = new Property("Pacific Avenue", 300,26, green);
-        properties[19] = new Property("North Carolina Avenue", 300,26, green);
-        properties[20] = new Property("Pennsylvania Avenue", 320, 28, green);
-
-        properties[21] = new Property("Park Place", 350, 35, blue);
-        properties[22] = new Property("Boardwalk", 400, 50, blue );
-
+        squares[21] = new Property("Park Place", 350, Colours.BLUE);
+        squares[22] = new Property("Boardwalk", 400, Colours.BLUE);
 
     }
 
+    /**
+     * Acquires the name of a square given a position
+     *
+     * @param position  int, the position of the square
+     * @return  String, the name of the square
+     */
+    public String getName(int position) {return squares[position].getName();}
+
+    /**
+     * Acquires the square in a given position
+     *
+     * @param position  int, the position of the square
+     * @return  Square, the square
+     */
+    public Square getSquare(int position) {return squares[position];}
 
 }

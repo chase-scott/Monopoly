@@ -1,46 +1,43 @@
 /**
  * Roll and return value of the two dice
  * @author Amith Kumar Das Orko 101126245
+ * @author Chase Scott 101092194
  */
 public class Dice {
-    private int dice1;
-    private int dice2;
 
+    private int[] dice;     //the game dice
+    private boolean rolled; //whether the dice has been rolled this turn
+
+    public Dice() {
+        this.dice = new int[2];
+        this.rolled = false;
+    }
+
+    /**
+     * Rolls the dice once and returns the result
+     *
+     * @return  int, the result of the roll
+     */
     public int roll(){
-        System.out.println("Press space bar to roll");
 
-        dice1 = (int) (Math.random() * 6 + 1);
-        dice2 = (int) (Math.random() * 6 + 1);
+        dice[0] = (int) (Math.random() * 6 + 1);
+        dice[1] = (int) (Math.random() * 6 + 1);
+        System.out.println("Rolled a " + dice[0] + " and " + dice[1]);
 
-        System.out.println("Rolled a " + dice1 + " and " + dice2);
-        return dice1 + dice2;
-    }
-
-    /**
-     * @return the value of the dice
-     */
-    public int rollValue(){
-        return dice1 + dice2;
-    }
-
-    /**
-     * Check if the dice rolls doubles
-     */
-    public boolean isDouble(){
-        if(dice1 == dice2) {
-            return true;
+        if(dice[0] == dice[1]) {
+            System.out.println("You rolled DOUBLE!");
+        } else {
+            rolled = true;
         }
-        return false;
+        return (dice[0] + dice[1]);
+
     }
-    /**
-     * Check if the dice rolls triples
-     */
-    /**  public boolean isTriple(){
-       if(dice1 == dice2 && isDouble()) {
-            return true;
-        }
-        return false;
-    }
-     */
+
+    public int[] getDice() {return dice;}
+
+    public boolean isRolled() {return rolled;}
+
+    public void setRolled(boolean isRolled) {this.rolled = isRolled;}
+
 
 }

@@ -6,9 +6,12 @@ import java.util.Scanner;
  */
 public class Parser {
 
-    private CommandWords commands;
-    private Scanner reader;
+    private CommandWords commands;  //map of all valid commands
+    private Scanner reader;         //user input reader
 
+    /**
+     * Default constructor
+     */
     public Parser()
     {
         commands = new CommandWords();
@@ -28,6 +31,10 @@ public class Parser {
             try {
                 System.out.print(">> ");
                 numberOfPlayers = Integer.parseInt(reader.nextLine());
+                if(numberOfPlayers <= 1 || numberOfPlayers > 8) {
+                    System.out.println("Must be between 1 and 8 players!");
+                    continue;
+                }
                 break;
             } catch(NumberFormatException e) {
                 System.out.println("PLease input a valid integer!");
@@ -59,6 +66,9 @@ public class Parser {
 
     }
 
+    /**
+     * Prints a list of all commands.
+     */
     public void showCommands()
     {
         commands.showAll();
