@@ -1,12 +1,23 @@
+/**
+ * Creates and initializes the game board.
+ *
+ * @author Mohammad Gaffori 101082318
+ * @author Chase Scott 101092194
+ */
 public class GameBoard {
 
+    private Square[] squares; //Array of squares that comprise the board
 
-    private Square[] squares;
-
+    /**
+     * Default constructor
+     */
     public GameBoard() {
         createBoard();
     }
 
+    /**
+     * Initializes the game board.
+     */
     private void createBoard() {
         squares = new Square[23];
 
@@ -44,8 +55,20 @@ public class GameBoard {
 
     }
 
+    /**
+     * Acquires the name of a square given a position
+     *
+     * @param position  int, the position of the square
+     * @return  String, the name of the square
+     */
     public String getName(int position) {return squares[position].getName();}
 
+    /**
+     * Acquires the square in a given position
+     *
+     * @param position  int, the position of the square
+     * @return  Square, the square
+     */
     public Square getSquare(int position) {return squares[position];}
 
 }

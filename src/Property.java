@@ -1,3 +1,9 @@
+/**
+ * A property square
+ *
+ * @author Chase Scott 101092194
+ * @author Amith Kumar Das Orko 101126245
+ */
 public class Property extends Square {
 
     private final double price;
@@ -5,6 +11,13 @@ public class Property extends Square {
     private Player ownedBy = null;
     private final String colour;
 
+    /**
+     * Constructor for initializing a property square
+     *
+     * @param name      String, the name of the property
+     * @param price     double, the price of the property
+     * @param colour    Colour, the colour of the property
+     */
     public Property(String name, double price, Colours colour) {
         super(name);
         this.price = price;
@@ -31,10 +44,20 @@ public class Property extends Square {
         ownedBy = currentPlayer;
     }
 
+    /**
+     * Checks if the property is currently owned by a player
+     *
+     * @return  boolean, if the property is owned
+     */
     public boolean checkIfAvailable(){
         return getOwner() == null;
     }
 
+    /**
+     * Implements the square action for a property
+     *
+     * @param player    Player, the player on this square
+     */
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {

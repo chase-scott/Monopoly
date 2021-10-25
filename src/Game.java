@@ -1,11 +1,14 @@
 public class Game {
 
-    private Player[] players;
-    private Dice dice;
-    private Parser parser;
-    private int turnNumber = 0;
-    private final GameBoard gameBoard;
+    private Player[] players;           //array of players in the game
+    private Dice dice;                  //the dice being used
+    private Parser parser;              //the input parser
+    private int turnNumber = 0;         //the current turn
+    private final GameBoard gameBoard;  //the game's board
 
+    /**
+     * Default constructor
+     */
     public Game() {
         gameBoard = new GameBoard();
         parser = new Parser();
@@ -107,18 +110,21 @@ public class Game {
         return wantToQuit;
     }
 
+    /**
+     * Prints the help information
+     */
     private void showHelp() {
         System.out.println("LIST OF COMMANDS");
         parser.showCommands();
     }
 
+    /**
+     * prints the state of the current player
+     */
     private void showState() {
         System.out.println(players[turnNumber].toString());
         System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
     }
-
-
-
 
     public static void main(String[] args) {
         Game game = new Game();

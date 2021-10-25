@@ -6,9 +6,12 @@ import java.util.Scanner;
  */
 public class Parser {
 
-    private CommandWords commands;
-    private Scanner reader;
+    private CommandWords commands;  //map of all valid commands
+    private Scanner reader;         //user input reader
 
+    /**
+     * Default constructor
+     */
     public Parser()
     {
         commands = new CommandWords();
@@ -63,6 +66,9 @@ public class Parser {
 
     }
 
+    /**
+     * Prints a list of all commands.
+     */
     public void showCommands()
     {
         commands.showAll();
