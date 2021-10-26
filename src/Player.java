@@ -33,13 +33,14 @@ public class Player {
     public double getMoney() {
         return money;
     }
+    public int getPosition() { return position; }
 
     public int getPosition() { return position; }
 
     public void setMoney(double money) {
         this.money = money;
     }
-
+    
     public boolean isBankrupt() {
         return isBankrupt;
     }
@@ -101,4 +102,5 @@ public class Player {
     public String toString() {
         return "Name: " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
     }
+
 }

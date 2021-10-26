@@ -20,10 +20,12 @@ public class Property extends Square {
      */
     public Property(String name, double price, Colours colour) {
         super(name);
+        this.rentRate = rentRate;
         this.price = price;
         this.rentRate = colour.getRentRate();
         this.colour = colour.name();
     }
+  
     public int getPrice(){
         return (int)price;
     }

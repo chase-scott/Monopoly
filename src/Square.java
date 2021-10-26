@@ -6,6 +6,7 @@
 public abstract class Square {
 
     private final String name;
+    private int index;
 
     /**
      * Super constructor for a square
@@ -16,7 +17,7 @@ public abstract class Square {
         this.name = name;
     }
 
-    public String getName() {return name;}
+    public String getName(Player currentPlayer) {return name;}
 
     /**
      * Abstract method for a square, to be implemented in child classes

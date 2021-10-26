@@ -12,7 +12,7 @@ public class Game {
     private Parser parser;              //the input parser
     private int turnNumber = 0;         //the current turn
     private final GameBoard gameBoard;  //the game's board
-
+  
     /**
      * Default constructor
      */
@@ -114,10 +114,15 @@ public class Game {
                 wantToQuit = true;
                 break;
 
+            case ROLL:
+                dice.roll();
+                dice.rollValue();
+                break;
         }
 
         return wantToQuit;
     }
+
 
     /**
      * Prints the help information
