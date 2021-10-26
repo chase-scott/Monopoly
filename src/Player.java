@@ -33,7 +33,6 @@ public class Player {
     public double getMoney() {
         return money;
     }
-    public int getPosition() { return position; }
 
     public int getPosition() { return position; }
 

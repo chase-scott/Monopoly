@@ -17,7 +17,7 @@ public abstract class Square {
         this.name = name;
     }
 
-    public String getName(Player currentPlayer) {return name;}
+    public String getName() {return name;}
 
     /**
      * Abstract method for a square, to be implemented in child classes

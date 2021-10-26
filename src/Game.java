@@ -114,10 +114,6 @@ public class Game {
                 wantToQuit = true;
                 break;
 
-            case ROLL:
-                dice.roll();
-                dice.rollValue();
-                break;
         }
 
         return wantToQuit;
