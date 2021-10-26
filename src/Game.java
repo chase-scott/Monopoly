@@ -67,16 +67,18 @@ public class Game {
                 break;
 
             case PASS:
-                dice.setRolled(false);
+                if(dice.isRolled()) {
+                    dice.setRolled(false);
+                    do {
+                        turnNumber++;
+                        if (turnNumber >= players.length) turnNumber = 0;
+                    } while (players[turnNumber].isBankrupt());
 
-                do {
-                    turnNumber++;
-                    if(turnNumber >= players.length) turnNumber = 0;
-                } while (players[turnNumber].isBankrupt());
-
-                System.out.println(players[turnNumber].getName() + "'s turn.");
+                    System.out.println(players[turnNumber].getName() + "'s turn.");
+                    break;
+                }
+                System.out.println("You must roll before you can pass your turn!");
                 break;
-
             case HELP:
                 showHelp();
                 break;
