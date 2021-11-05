@@ -1,3 +1,5 @@
+package Monopoly;
+
 /**
  * Creates and initializes the game board.
  *
@@ -67,7 +69,7 @@ public class GameBoard {
      * Acquires the square in a given position
      *
      * @param position  int, the position of the square
-     * @return  Square, the square
+     * @return  Monopoly.Square, the square
      */
     public Square getSquare(int position) {return squares[position];}
 

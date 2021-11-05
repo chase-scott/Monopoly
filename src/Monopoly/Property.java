@@ -1,3 +1,5 @@
+package Monopoly;
+
 /**
  * A property square
  *
@@ -57,7 +59,7 @@ public class Property extends Square {
     /**
      * Implements the square action for a property
      *
-     * @param player    Player, the player on this square
+     * @param player    Monopoly.Player, the player on this square
      */
     @Override
     public void squareAction(Player player) {

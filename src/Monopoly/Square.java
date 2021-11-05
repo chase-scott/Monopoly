@@ -1,3 +1,5 @@
+package Monopoly;
+
 /**
  * Abstract class for a game board square
  *
@@ -22,7 +24,7 @@ public abstract class Square {
     /**
      * Abstract method for a square, to be implemented in child classes
      *
-     * @param player    Player, the player on this square
+     * @param player    Monopoly.Player, the player on this square
      */
     public abstract void squareAction(Player player);
 
