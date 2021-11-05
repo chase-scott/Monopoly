@@ -1,5 +1,7 @@
 package Monopoly;
 
+import GUI.MonopolyView;
+
 import java.util.*;
 
 /**
@@ -14,6 +16,7 @@ public class Player {
     private int position;                   //the player's current position
     private List<Property> propertyList;    //the list of properties owned by the player
     private boolean isBankrupt;             //the bankruptcy status of the player
+    private List<MonopolyView> views;
 
     /**
      * Constructor for a player
@@ -26,6 +29,7 @@ public class Player {
         this.position = 0;
         this.isBankrupt = false;
         this.propertyList = new ArrayList<>();
+        this.views = new ArrayList<>();
     }
 
     public String getName() {
@@ -98,6 +102,25 @@ public class Player {
         for (Property p : propertyList) {info.append(p.getName()).append(", ");}
         return info.toString();
     }
+
+    /**
+     * Adds a monopoly view
+     * @param view  MonopolyView, the view
+     */
+    public void addMonopolyView(MonopolyView view) {
+        views.add(view);
+    }
+
+    /**
+     * Updates each view.
+     */
+    private void updateViews() {
+        for(MonopolyView v : views) {
+            v.updateView();
+        }
+    }
+
+
 
     @Override
     public String toString() {
