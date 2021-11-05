@@ -1,7 +1,9 @@
+package Monopoly;
+
 import java.util.*;
 
 /**
- * Player class
+ * Monopoly.Player class
  * @author Chase Scott 101092194
  * @author Amith Kumar Das Orko 101126245
  */
@@ -66,7 +68,7 @@ public class Player {
     /**
      * Buys a property
      *
-     * @param property  Property, the property to buy
+     * @param property  Monopoly.Property, the property to buy
      */
     public void buy(Property property) {
         if(property.checkIfAvailable()) {
@@ -90,7 +92,7 @@ public class Player {
      */
     private String propertiesOwned(){
         if(propertyList.isEmpty()){
-            return "Player owns nothing";
+            return "Monopoly.Player owns nothing";
         }
         StringBuilder info = new StringBuilder();
         for (Property p : propertyList) {info.append(p.getName()).append(", ");}

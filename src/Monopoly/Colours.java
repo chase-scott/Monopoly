@@ -1,3 +1,5 @@
+package Monopoly;
+
 /**
  * enum for property colours
  * @author Chase Scott 101092194

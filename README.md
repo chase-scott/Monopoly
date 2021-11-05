@@ -41,7 +41,7 @@ Implementing a GUI-based version of the game, this includes the view and control
 
 - Once the player is unable to pay rent, he is eliminated since we have decided not to include the concept of mortages
 
-- Square was made an abstract class to allow for custom methods and attributes within each of the specific squares. The abstract method squareAction allows the Game class to call it on each sqaure and have it perform the square specific action.
+- Monopoly.Square was made an abstract class to allow for custom methods and attributes within each of the specific squares. The abstract method squareAction allows the Monopoly.Game class to call it on each sqaure and have it perform the square specific action.
 
 ### User Manual:
 

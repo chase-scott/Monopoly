@@ -1,5 +1,7 @@
+package Monopoly;
+
 /**
- * Game class for Monopoly
+ * Monopoly.Game class for Monopoly
  *
  * @author Chase Scott 101092194
  * @author Mohammad Gaffori 101082318
@@ -41,7 +43,7 @@ public class Game {
     /**
      * Process the commands of the player
      *
-     * @param command   Command, the players command
+     * @param command   Monopoly.Command, the players command
      * @return  boolean, if the player wants to quit
      */
     private boolean processCommand(Command command) {

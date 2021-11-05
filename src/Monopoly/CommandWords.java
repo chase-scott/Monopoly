@@ -1,3 +1,5 @@
+package Monopoly;
+
 import java.util.*;
 
 /**
@@ -6,7 +8,7 @@ import java.util.*;
  */
 public class CommandWords {
 
-    private HashMap<String, CommandWord> commands; //hashmap of CommandWord and their string equivalents
+    private HashMap<String, CommandWord> commands; //hashmap of Monopoly.CommandWord and their string equivalents
 
     /**
      * Default constructor
@@ -24,7 +26,7 @@ public class CommandWords {
      * Gets the command word given a command word string
      *
      * @param commandWord   String, the command word
-     * @return  CommandWord, the command word
+     * @return  Monopoly.CommandWord, the command word
      */
     public CommandWord getCommandWord(String commandWord) {
         CommandWord command = commands.get(commandWord);

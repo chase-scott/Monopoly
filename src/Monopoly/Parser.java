@@ -1,7 +1,9 @@
+package Monopoly;
+
 import java.util.Scanner;
 
 /**
- * Parser for reading command line input
+ * Monopoly.Parser for reading command line input
  * @author Chase Scott 10192194
  */
 public class Parser {
@@ -20,7 +22,7 @@ public class Parser {
 
     /**
      * Get the players in the game.
-     * @return  Player[], the array of players
+     * @return  Monopoly.Player[], the array of players
      */
     public Player[] getPlayers() {
 
@@ -52,8 +54,8 @@ public class Parser {
 
 
     /**
-     * Command loop for the game's basic commands
-     * @return  Command, the command inputted
+     * Monopoly.Command loop for the game's basic commands
+     * @return  Monopoly.Command, the command inputted
      */
     public Command getCommand() {
 

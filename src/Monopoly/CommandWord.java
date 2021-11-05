@@ -1,3 +1,5 @@
+package Monopoly;
+
 /**
  * Enumeration of command words for game.
  * @author Chase Scott 101092194
