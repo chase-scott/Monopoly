@@ -5,4 +5,7 @@ package GUI;
  * @author Chase Scott 101092194
  */
 public interface MonopolyView {
+
+    void updateView();
+
 }

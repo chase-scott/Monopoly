@@ -9,8 +9,8 @@ import javax.swing.*;
 public class SquareView extends JPanel implements MonopolyView {
 
 
+    @Override
+    public void updateView() {
 
-
-
-
+    }
 }
