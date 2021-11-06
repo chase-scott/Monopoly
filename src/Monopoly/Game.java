@@ -9,7 +9,7 @@ package Monopoly;
  */
 public class Game {
 
-    private Player[] players;           //array of players in the game
+    private Player[] players;     //array of players in the game
     private Dice dice;                  //the dice being used
     private Parser parser;              //the input parser
     private int turnNumber = 0;         //the current turn
