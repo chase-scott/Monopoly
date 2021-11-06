@@ -22,6 +22,14 @@ public class Game {
         gameBoard = new GameBoard();
         parser = new Parser();
         dice = new Dice();
+        //TEMP
+        players = new Player[3];
+        players[0] = new Player("Johnny");
+        players[1] = new Player("Billy");
+        players[2] = new Player("Joe");
+
+
+        //TEMP
     }
 
     /**
@@ -39,6 +47,10 @@ public class Game {
         }
 
     }
+
+    public int getNumberPlayers() {return players.length;}
+
+    public Player getPlayer(int i ) {return players[i];}
 
     /**
      * Process the commands of the player
@@ -148,11 +160,6 @@ public class Game {
         System.out.println("If you need help, type " + CommandWord.HELP + " for a list of commands!\n");
         players = parser.getPlayers();
         System.out.println();
-    }
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.play();
-
     }
 
 }

@@ -3,6 +3,7 @@ package Monopoly;
 import GUI.MonopolyView;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Monopoly.Player class
@@ -41,6 +42,14 @@ public class Player {
     }
 
     public int getPosition() { return position; }
+
+    /**
+     * Creates a vector of the names of each property in the property list
+     * @return  Vector<String>, vector of the names of properties
+     */
+    public Vector<String> getPropertyList() {
+        return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
+    }
 
     public void setMoney(double money) {
         this.money = money;
