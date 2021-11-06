@@ -2,11 +2,7 @@ package GUI;
 
 import Monopoly.Player;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.TitledBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * @version 1.0
@@ -25,7 +21,7 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.model = player;
 
         this.layoutView();
-        //CREATE LISTENERS
+        //CREATE TEST LISTENERS //TODO make these their own controller classes
         buyProperty.addActionListener(e -> {
             model.setMoney(model.getMoney() - 100);
             updateView();
