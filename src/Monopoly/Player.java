@@ -46,6 +46,10 @@ public class Player {
         return money;
     }
 
+    public Color getTokenColour() {
+        return tokenColour;
+    }
+
     /**
      * Creates a vector of the names of each property in the property list
      * @return  Vector<String>, vector of the names of properties
@@ -58,39 +62,6 @@ public class Player {
         this.money = money;
     }
 
-    /**
-     * Buys a property
-     *
-     * @param property  Property, the property to buy
-     */
-    public void buy(Property property) {
-        if(property.checkIfAvailable()) {
-            if(money < property.getPrice()) {
-                System.out.println("You can not afford this property!");
-                return;
-            }
-            System.out.println(name + " has just bought " + property.getName());
-            money -= property.getPrice();
-            propertyList.add(property);
-            property.setOwner(this);
-            return;
-        }
-        System.out.println("This property is already owned by " + property.getOwner().getName());
-    }
-
-    /**
-     * Creates a string containing the properties owned by the player
-     *
-     * @return  String, the string of properties
-     */
-    private String propertiesOwned(){
-        if(propertyList.isEmpty()){
-            return "Player owns nothing";
-        }
-        StringBuilder info = new StringBuilder();
-        for (Property p : propertyList) {info.append(p.getName()).append(", ");}
-        return info.toString();
-    }
 
     /**
      * Adds a monopoly view
@@ -109,36 +80,26 @@ public class Player {
     }
 
 
+    private void rollDice() {
+        System.out.println(name + " is taking their turn");
+        do {
+            position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
+            System.out.println(name + " is on tile " + position + "\n");
+        } while(!dice.isRolled());
+        dice.setRolled(false);
 
-    @Override
-    public String toString() {
-        return "Name: " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
     }
 
+    //TODO make this buy the property this player is on
+    public void buySquare() {
+        System.out.println("Player buys + " + Game.getSquare(position).getName());
 
-
-
-
-    public Color getTokenColour() {
-        return tokenColour;
     }
-
-
-    private void takeTurn() {
-        position =  (position + dice.roll()) % GameBoard.BOARD_SIZE;
-
-
-
-        System.out.println(name + " is taking turn");
-        System.out.println(name + " is on tile " + position);
-    }
-
-
 
     public synchronized void makeMove() {
         this.takingTurn = true;
         updateViews();
-        this.takeTurn();
+        this.rollDice();
 
         try {
             this.wait();

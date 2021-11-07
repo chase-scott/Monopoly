@@ -52,7 +52,7 @@ public class MonopolyFrame extends JFrame {
         for (int i = 0, j = 1; i < numPlayers; i++, j+=2) {
             if(inputs[j] instanceof JTextField) {
                 if(((JTextField) inputs[j]).getText().isEmpty()) {
-                    players[i] = new Player("No name given.", PLAYER_COLOURS[i]);
+                    players[i] = new Player("No Name Given", PLAYER_COLOURS[i]);
                 } else {
                     players[i] = new Player(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i]);
                 }

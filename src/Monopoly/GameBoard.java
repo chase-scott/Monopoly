@@ -24,7 +24,7 @@ public class GameBoard {
     private void createBoard() {
         squares = new Square[BOARD_SIZE];
 
-        squares[0] = new Go("GO");
+        squares[0] = new Property("GO", 0, Colours.GREEN);
 
         squares[1] = new Property("Mediterranean Avenue", 60, Colours.BROWN);
         squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);

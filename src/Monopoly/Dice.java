@@ -35,8 +35,6 @@ public class Dice {
 
     }
 
-    public int[] getDice() {return dice;}
-
     public boolean isRolled() {return rolled;}
 
     public void setRolled(boolean isRolled) {this.rolled = isRolled;}

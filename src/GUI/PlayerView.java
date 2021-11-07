@@ -27,8 +27,7 @@ public class PlayerView extends JPanel implements MonopolyView {
         //trying to get pass turn to work
 
         this.passTurn.addActionListener(new passTurnController());
-
-
+        this.buyProperty.addActionListener(new BuyPropertyController());
 
 
 
@@ -97,16 +96,18 @@ public class PlayerView extends JPanel implements MonopolyView {
 
 
     private class passTurnController implements ActionListener {
+        @Override
         public void actionPerformed(ActionEvent e) {
             model.passTurn();
         }
     }
 
-
-
-
-
-
+    private class BuyPropertyController implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            model.buySquare();
+        }
+    }
 
 
 

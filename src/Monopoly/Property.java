@@ -26,7 +26,7 @@ public class Property extends Square {
         this.rentRate = colour.getRentRate();
         this.colour = colour.name();
     }
-  
+
     public int getPrice(){
         return (int)price;
     }
