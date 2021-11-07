@@ -19,7 +19,9 @@ public class Player {
     private List<Property> propertyList;    //the list of properties owned by the player
     private boolean takingTurn;
     private List<MonopolyView> views;
-    private Color tokenColour;
+    private final Color tokenColour;
+    private int position = 0;
+    private static Dice dice = new Dice();
 
 
     /**
@@ -123,7 +125,12 @@ public class Player {
 
 
     private void takeTurn() {
+        position =  (position + dice.roll()) % GameBoard.BOARD_SIZE;
+
+
+
         System.out.println(name + " is taking turn");
+        System.out.println(name + " is on tile " + position);
     }
 
 
@@ -141,7 +148,7 @@ public class Player {
         updateViews();
     }
 
-    public synchronized void finishMove() {
+    public synchronized void passTurn() {
         this.notify();
     }
     public boolean isTakingTurn() {

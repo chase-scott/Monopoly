@@ -9,11 +9,11 @@ import java.awt.*;
  * @version 1.0
  * @author Chase Scott 101092194
  */
-public class MonopolyWindow extends JFrame {
+public class MonopolyFrame extends JFrame {
 
     public final static Color[] PLAYER_COLOURS = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.CYAN, Color.PINK, Color.MAGENTA};
 
-    public MonopolyWindow(Game model) {
+    public MonopolyFrame(Game model) {
         super("Monopoly");
 
         model.setPlayers(generateWelcome());
@@ -22,9 +22,8 @@ public class MonopolyWindow extends JFrame {
         this.setContentPane(contents);
         this.setSize(1500, 1200);
         this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-
-        this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
     }
 

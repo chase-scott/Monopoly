@@ -24,9 +24,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         money = new JLabel(String.valueOf(player.getMoney()));
         this.createLayout();
 
-        //trying to get pass turn to work >:(
+        //trying to get pass turn to work
 
-        this.passTurn.addActionListener(new passTurnListener());
+        this.passTurn.addActionListener(new passTurnController());
 
 
 
@@ -95,13 +95,14 @@ public class PlayerView extends JPanel implements MonopolyView {
 
     }
 
-    /** The listener for the Finished button. */
-    private class passTurnListener implements ActionListener
-    {
-        public void actionPerformed(ActionEvent evt) {
-            if (model != null) model.finishMove();
+
+    private class passTurnController implements ActionListener {
+        public void actionPerformed(ActionEvent e) {
+            model.passTurn();
         }
     }
+
+
 
 
 

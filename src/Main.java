@@ -1,10 +1,10 @@
-import GUI.MonopolyWindow;
+import GUI.MonopolyFrame;
 import Monopoly.Game;
 
 public class Main {
     public static void main(String[] args) {
         Game game = new Game();
-        MonopolyWindow monopolyWindow = new MonopolyWindow(game);
+        MonopolyFrame monopolyWindow = new MonopolyFrame(game);
 
     }
 
