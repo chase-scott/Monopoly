@@ -3,6 +3,8 @@ package GUI;
 import Monopoly.Player;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @version 1.0
@@ -10,7 +12,7 @@ import java.awt.*;
  */
 public class PlayerView extends JPanel implements MonopolyView {
 
-    private JLabel money = new JLabel("$1500");
+    private JLabel money;
     private JButton buyProperty = new JButton("Buy Property");
     private JButton passTurn = new JButton("Pass");
     private JList<String> ownedProperties = new JList<>();
@@ -19,30 +21,31 @@ public class PlayerView extends JPanel implements MonopolyView {
     public PlayerView(Player player) {
         super();
         this.model = player;
+        money = new JLabel(String.valueOf(player.getMoney()));
+        this.createLayout();
 
-        this.layoutView();
-        //CREATE TEST LISTENERS //TODO make these their own controller classes
-        buyProperty.addActionListener(e -> {
-            model.setMoney(model.getMoney() - 100);
-            updateView();
-        });
+        //trying to get pass turn to work >:(
 
+        this.passTurn.addActionListener(new passTurnListener());
 
 
 
-        //CREATE LISTENERS
+
+
+
+
         this.model.addMonopolyView(this);
     }
 
-    private void layoutView()
-    {
+    private void createLayout() {
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createTitledBorder(this.model.getName()));
 
-        this.money.setFont(new Font("Arial", Font.BOLD, 12));
-        this.buyProperty.setFont(new Font("Arial", Font.BOLD, 12));
-        this.passTurn.setFont(new Font("Arial", Font.BOLD, 12));
-        this.ownedProperties.setFont(new Font("Arial", Font.BOLD, 12));
+        Font font = new Font("Arial", Font.BOLD, 12);
+        this.money.setFont(font);
+        this.buyProperty.setFont(font);
+        this.passTurn.setFont(font);
+        this.ownedProperties.setFont(font);
 
         this.ownedProperties.setVisible(true);
         JScrollPane propertyScrollList = new JScrollPane(this.ownedProperties);
@@ -71,13 +74,40 @@ public class PlayerView extends JPanel implements MonopolyView {
 
     }
 
+    @Override
+    protected void paintComponent(Graphics g) {
+        g.setColor(this.getBackground());
+        g.fillRect(0,0,this.getWidth(),this.getHeight());
+        g.setColor(model.getTokenColour());
+        Insets insets = this.getInsets();
+        g.fillOval(this.getWidth() - insets.right - 20, insets.top - 8, 20, 20);
 
+        this.paintComponents(g);
+    }
 
     @Override
     public void updateView() {
         this.money.setText("$" + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
+        passTurn.setEnabled(model.isTakingTurn());
+        buyProperty.setEnabled(model.isTakingTurn());
 
     }
+
+    /** The listener for the Finished button. */
+    private class passTurnListener implements ActionListener
+    {
+        public void actionPerformed(ActionEvent evt) {
+            if (model != null) model.finishMove();
+        }
+    }
+
+
+
+
+
+
+
+
 }

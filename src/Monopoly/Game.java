@@ -11,7 +11,6 @@ public class Game {
 
     private Player[] players;           //array of players in the game
     private Dice dice;                  //the dice being used
-    private Parser parser;              //the input parser
     private int turnNumber = 0;         //the current turn
     private final GameBoard gameBoard;  //the game's board
   
@@ -20,50 +19,33 @@ public class Game {
      */
     public Game() {
         gameBoard = new GameBoard();
-        parser = new Parser();
         dice = new Dice();
-        //TEMP
-        players = new Player[3];
-        players[0] = new Player("Johnny");
-        players[1] = new Player("Billy");
-        players[2] = new Player("Joe");
-
-
-        //TEMP
-    }
-
-    /**
-     * Starts the gameplay loop.
-     */
-    public void play() {
-
-        printWelcome();
-        boolean finished = false;
-        System.out.println(players[turnNumber].getName() + "'s turn.");
-
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
-
     }
 
     public int getNumberPlayers() {return players.length;}
 
-    public Player getPlayer(int i ) {return players[i];}
+    public Player getPlayer(int i) {return players[i];}
+
+    public void setPlayers(Player[] players){this.players = players;}
+
+
+
+
+    public void play() {
+        for(int i = 0; i < 20; i++) {
+            players[i % players.length].makeMove();
+        }
+    }
+
+
 
     /**
      * Process the commands of the player
-     *
-     * @param command   Monopoly.Command, the players command
-     * @return  boolean, if the player wants to quit
      */
-    private boolean processCommand(Command command) {
+    private void processCommand() {
         boolean wantToQuit = false;
 
-        CommandWord commandword = command.getCommandWord();
-
-        switch(commandword) {
+        /*
             case UNKNOWN:
                 System.out.println("Unknown command.");
                 break;
@@ -92,9 +74,6 @@ public class Game {
                     break;
                 }
                 System.out.println("You must roll before you can pass your turn!");
-                break;
-            case HELP:
-                showHelp();
                 break;
 
             case ROLL:
@@ -131,35 +110,13 @@ public class Game {
         }
 
         return wantToQuit;
+        */
     }
 
 
-    /**
-     * Prints the help information
-     */
-    private void showHelp() {
-        System.out.println("LIST OF COMMANDS");
-        parser.showCommands();
+    public Square getSquare(int i) {
+        return gameBoard.getSquare(i);
     }
 
-    /**
-     * prints the state of the current player
-     */
-    private void showState() {
-        System.out.println(players[turnNumber].toString());
-        System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
-    }
-
-    /**
-     * Prints the welcome information for the game
-     */
-    private void printWelcome() {
-        System.out.println("\t\t\t--WELCOME TO MONOPOLY--");
-        System.out.println("Monopoly is a multi-player economic-themed board game.");
-        System.out.println("Be the last player not bankrupt to win! Good luck!");
-        System.out.println("If you need help, type " + CommandWord.HELP + " for a list of commands!\n");
-        players = parser.getPlayers();
-        System.out.println();
-    }
 
 }

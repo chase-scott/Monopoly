@@ -2,7 +2,9 @@ package Monopoly;
 
 import GUI.MonopolyView;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 /**
@@ -14,21 +16,22 @@ public class Player {
 
     private final String name;              //the name of the players
     private double money;                   //the player's money
-    private int position;                   //the player's current position
     private List<Property> propertyList;    //the list of properties owned by the player
-    private boolean isBankrupt;             //the bankruptcy status of the player
+    private boolean takingTurn;
     private List<MonopolyView> views;
+    private Color tokenColour;
+
 
     /**
      * Constructor for a player
      *
      * @param name  String, the name of the player
      */
-    public Player(String name) {
+    public Player(String name, Color color) {
         this.name = name;
+        this.tokenColour = color;
         this.money = 1500;
-        this.position = 0;
-        this.isBankrupt = false;
+        this.takingTurn = false;
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
     }
@@ -41,8 +44,6 @@ public class Player {
         return money;
     }
 
-    public int getPosition() { return position; }
-
     /**
      * Creates a vector of the names of each property in the property list
      * @return  Vector<String>, vector of the names of properties
@@ -54,34 +55,11 @@ public class Player {
     public void setMoney(double money) {
         this.money = money;
     }
-    
-    public boolean isBankrupt() {
-        return isBankrupt;
-    }
-
-    public void setBankrupt(boolean bankrupt) {
-        isBankrupt = bankrupt;
-    }
-
-    /**
-     * Moves the player by the given roll result
-     *
-     * @param rollResult    int, the result of the roll
-     */
-    public void playerMove(int rollResult){
-        int BOARD_SIZE = 23;
-        position += rollResult;
-        if(position >= BOARD_SIZE) {
-            position -= BOARD_SIZE;
-            money += 200;
-            System.out.println("+$200 for passing GO");
-        }
-    }
 
     /**
      * Buys a property
      *
-     * @param property  Monopoly.Property, the property to buy
+     * @param property  Property, the property to buy
      */
     public void buy(Property property) {
         if(property.checkIfAvailable()) {
@@ -105,7 +83,7 @@ public class Player {
      */
     private String propertiesOwned(){
         if(propertyList.isEmpty()){
-            return "Monopoly.Player owns nothing";
+            return "Player owns nothing";
         }
         StringBuilder info = new StringBuilder();
         for (Property p : propertyList) {info.append(p.getName()).append(", ");}
@@ -118,15 +96,14 @@ public class Player {
      */
     public void addMonopolyView(MonopolyView view) {
         views.add(view);
+        this.updateViews();
     }
 
     /**
      * Updates each view.
      */
     private void updateViews() {
-        for(MonopolyView v : views) {
-            v.updateView();
-        }
+        views.forEach(MonopolyView::updateView);
     }
 
 
@@ -135,5 +112,43 @@ public class Player {
     public String toString() {
         return "Name: " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
     }
+
+
+
+
+
+    public Color getTokenColour() {
+        return tokenColour;
+    }
+
+
+    private void takeTurn() {
+        System.out.println(name + " is taking turn");
+    }
+
+
+
+    public synchronized void makeMove() {
+        this.takingTurn = true;
+        updateViews();
+        this.takeTurn();
+
+        try {
+            this.wait();
+        } catch (InterruptedException ignored) {}
+
+        this.takingTurn = false;
+        updateViews();
+    }
+
+    public synchronized void finishMove() {
+        this.notify();
+    }
+    public boolean isTakingTurn() {
+        return takingTurn;
+    }
+
+
+
 
 }

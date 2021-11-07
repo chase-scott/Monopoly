@@ -12,7 +12,6 @@ public abstract class Square {
 
     private List<MonopolyView> views;
     private final String name;
-    private int index;
 
     /**
      * Super constructor for a square
@@ -44,10 +43,8 @@ public abstract class Square {
     /**
      * Updates each view.
      */
-    private void updateViews() {
-        for(MonopolyView v : views) {
-            v.updateView();
-        }
+    protected void updateViews() {
+        views.forEach(MonopolyView::updateView);
     }
 
 }
