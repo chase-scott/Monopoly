@@ -11,8 +11,8 @@ public class MonopolyWindow extends JFrame {
 
     public MonopolyWindow(Game model) {
         super("Monopoly");
-        JPanel contents = new MonopolyGUI(model);
-        this.setContentPane(contents);
+        //JPanel contents = new MonopolyGUI(model);
+       // this.setContentPane(contents);
         this.setSize(800, 700);
         this.setVisible(true);
 
