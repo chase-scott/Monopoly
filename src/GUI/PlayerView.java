@@ -34,10 +34,6 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.buyProperty.addActionListener(new BuyPropertyController());
         this.rollDice.addActionListener(new rollDiceController());
 
-
-
-
-
         this.model.addMonopolyView(this);
     }
 

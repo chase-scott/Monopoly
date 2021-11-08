@@ -22,6 +22,7 @@ public class Player {
     private final Color tokenColour;
     private int position = 0;
     private static Dice dice = new Dice();
+    private boolean isBankrupt = false;
 
 
     /**
@@ -57,6 +58,16 @@ public class Player {
     public boolean getDiceRolledStatus() {
         return dice.isRolled();
     }
+
+    public void becomeBankrupt() {
+        for (Property p : propertyList) {
+            p.setOwner(null);
+        }
+        this.isBankrupt = true;
+        propertyList.clear();
+    }
+
+    public boolean getBankruptcyStatus() {return isBankrupt;}
 
     /**
      * Creates a vector of the names of each property in the property list

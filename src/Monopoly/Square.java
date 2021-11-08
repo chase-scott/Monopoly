@@ -1,7 +1,11 @@
 package Monopoly;
 
+import GUI.MonopolyFrame;
 import GUI.MonopolyView;
+
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Abstract class for a game board square
@@ -23,6 +27,14 @@ public abstract class Square {
         this.name = name;
         views = new ArrayList<>();
         players = new Player[8];
+
+        //TEMP TEST DELETE
+        for(int i = 0 ; i < players.length; i++) {
+            players[i] = new Player("Joe", MonopolyFrame.PLAYER_COLOURS[i]);
+        }
+
+
+
     }
 
     public String getName() {return name;}
@@ -52,12 +64,5 @@ public abstract class Square {
     public Player[] getPlayers() {
         return players;
     }
-
-
-
-
-
-
-
 
 }

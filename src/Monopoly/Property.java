@@ -76,6 +76,7 @@ public class Property extends Square {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
                 player.setMoney(0);
                 System.out.println(player.getName() + " is bankrupt!");
+                player.becomeBankrupt();
             } else {
                 player.setMoney(player.getMoney() - amountOwed);
                 ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
@@ -84,4 +85,15 @@ public class Property extends Square {
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nRent: $").append(rentRate * price).append("\nOwned by: ");
+        if(ownedBy == null) {
+            sb.append("Nobody");
+        } else{
+            sb.append(ownedBy.getName());
+        }
+        return sb.toString();
+    }
 }

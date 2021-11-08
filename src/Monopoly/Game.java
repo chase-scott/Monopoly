@@ -1,5 +1,7 @@
 package Monopoly;
 
+import javax.swing.*;
+
 /**
  * Monopoly.Game class for Monopoly
  *
@@ -10,7 +12,7 @@ package Monopoly;
 public class Game {
 
     private Player[] players;           //array of players in the game
-    private int turnNumber = 0;         //the current turn
+    private int turnNumber = -1;         //the current turn
     private static final GameBoard gameBoard = new GameBoard();  //the game's board
 
     /**
@@ -30,8 +32,29 @@ public class Game {
 
 
     public void play() {
-        for(int i = 0; i < 20; i++) {
-            players[i % players.length].makeMove();
+
+        int bankruptPlayers = 0;
+
+        while(true) {
+            turnNumber++;
+            if(players[turnNumber % players.length].getBankruptcyStatus()) {turnNumber++; continue;}
+            players[turnNumber % players.length].makeMove();
+
+            //CHECK WIN STATE
+            for(Player p : players) {
+                if(p.getBankruptcyStatus()) bankruptPlayers++;
+            }
+            if(bankruptPlayers == players.length - 1) {
+
+                for(Player p : players){
+                    if (!p.getBankruptcyStatus()) {
+                        JOptionPane.showMessageDialog(null, p.getName() + " has won the game!!!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                }
+                System.exit(0);
+            }
+
+            bankruptPlayers = 0;
         }
     }
 

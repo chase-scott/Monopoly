@@ -26,22 +26,30 @@ public class SquareView extends JPanel implements MonopolyView {
     private void createLayout() {
         this.setLayout(new GridLayout());
         this.add(textArea);
+        this.setPreferredSize(new Dimension( 400, 400)); //DELETE
 
         Font font = new Font("Arial", Font.BOLD, 12);
         this.textArea.setFont(font);
         this.textArea.setOpaque(false);
         this.textArea.setEditable(false);
+        updateView();
     }
 
     @Override
     public void updateView() {
-        this.textArea.setText(this.model.getName());
+        this.textArea.setText(this.model.toString());
         this.repaint();
     }
 
     //TODO should paint the players that are on this square
     @Override
     protected void paintComponent(Graphics g) {
-
+        g.setColor(this.getBackground());
+        g.fillRect(0,0,this.getWidth(),this.getHeight());
+        Player[] playersHere = this.model.getPlayers();
+        for (int i = 0; i < playersHere.length; i++) {
+            g.setColor(playersHere[i].getTokenColour());
+            g.fillOval(i * 20, 0, 20, 20);
+        }
     }
 }
