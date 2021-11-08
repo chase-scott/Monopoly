@@ -1,5 +1,8 @@
 package Monopoly;
 
+import javax.swing.*;
+import java.awt.*;
+
 /**
  * A property square
  *
@@ -11,7 +14,7 @@ public class Property extends Square {
     private final double price;
     private final double rentRate;
     private Player ownedBy = null;
-    private final String colour;
+    private final Color colour;
 
     /**
      * Constructor for initializing a property square
@@ -24,14 +27,14 @@ public class Property extends Square {
         super(name);
         this.price = price;
         this.rentRate = colour.getRentRate();
-        this.colour = colour.name();
+        this.colour = colour.getColour();
     }
-  
+
     public int getPrice(){
         return (int)price;
     }
 
-    public String getColour(){
+    public Color getColour(){
         return colour;
     }
 
@@ -64,20 +67,34 @@ public class Property extends Square {
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
-            System.out.println(player.getName() + " pays $"  + rentRate * price + " to " + ownedBy.getName());
+            //System.out.println(player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName());
+            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
 
             double amountOwed = rentRate * price;
 
             //If player can't afford rent, give all of their money to player and make them bankrupt.
-            if(player.getMoney() - amountOwed < 0) {
+            if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
-                player.setMoney(0);player.setBankrupt(true);
+                player.setMoney(0);
                 System.out.println(player.getName() + " is bankrupt!");
+                player.becomeBankrupt();
             } else {
                 player.setMoney(player.getMoney() - amountOwed);
                 ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
             }
+            ownedBy.updateViews();
         }
     }
 
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nRent: $").append(rentRate * price).append("\nOwned by: ");
+        if(ownedBy == null) {
+            sb.append("Nobody");
+        } else{
+            sb.append(ownedBy.getName());
+        }
+        return sb.toString();
+    }
 }

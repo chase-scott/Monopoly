@@ -1,5 +1,7 @@
 package Monopoly;
 
+import javax.swing.*;
+
 /**
  * Monopoly.Game class for Monopoly
  *
@@ -10,149 +12,56 @@ package Monopoly;
 public class Game {
 
     private Player[] players;           //array of players in the game
-    private Dice dice;                  //the dice being used
-    private Parser parser;              //the input parser
-    private int turnNumber = 0;         //the current turn
-    private final GameBoard gameBoard;  //the game's board
-  
+    private int turnNumber = -1;         //the current turn, start at turn -1
+    private static final GameBoard gameBoard = new GameBoard();  //the game's board
+
     /**
      * Default constructor
      */
     public Game() {
-        gameBoard = new GameBoard();
-        parser = new Parser();
-        dice = new Dice();
+
     }
 
-    /**
-     * Starts the gameplay loop.
-     */
+    public int getNumberPlayers() {return players.length;}
+
+    public Player getPlayer(int i) {return players[i];}
+
+    public void setPlayers(Player[] players){this.players = players;}
+
+
+
+
     public void play() {
 
-        printWelcome();
-        boolean finished = false;
-        System.out.println(players[turnNumber].getName() + "'s turn.");
+        int bankruptPlayers = 0;
 
-        while (!finished) {
-            Command command = parser.getCommand();
-            finished = processCommand(command);
-        }
+        while(true) {
+            turnNumber++;
+            if(players[turnNumber % players.length].getBankruptcyStatus()) {turnNumber++; continue;}
+            players[turnNumber % players.length].makeMove();
 
-    }
+            //CHECK WIN STATE
+            for(Player p : players) {
+                if(p.getBankruptcyStatus()) bankruptPlayers++;
+            }
+            if(bankruptPlayers == players.length - 1) {
 
-    /**
-     * Process the commands of the player
-     *
-     * @param command   Monopoly.Command, the players command
-     * @return  boolean, if the player wants to quit
-     */
-    private boolean processCommand(Command command) {
-        boolean wantToQuit = false;
-
-        CommandWord commandword = command.getCommandWord();
-
-        switch(commandword) {
-            case UNKNOWN:
-                System.out.println("Unknown command.");
-                break;
-
-            case STATE:
-                showState();
-                break;
-
-            case BUY:
-                try {
-                    players[turnNumber].buy((Property) gameBoard.getSquare(players[turnNumber].getPosition()));
-                } catch(ClassCastException e) {
-                    System.out.println("You are not on a property square!");
-                }
-                break;
-
-            case PASS:
-                if(dice.isRolled()) {
-                    dice.setRolled(false);
-                    do {
-                        turnNumber++;
-                        if (turnNumber >= players.length) turnNumber = 0;
-                    } while (players[turnNumber].isBankrupt());
-
-                    System.out.println(players[turnNumber].getName() + "'s turn.");
-                    break;
-                }
-                System.out.println("You must roll before you can pass your turn!");
-                break;
-            case HELP:
-                showHelp();
-                break;
-
-            case ROLL:
-                if(!dice.isRolled()) {
-                    players[turnNumber].playerMove(dice.roll());
-                    System.out.println("You landed on " + gameBoard.getName(players[turnNumber].getPosition()));
-                    gameBoard.getSquare(players[turnNumber].getPosition()).squareAction(players[turnNumber]); //Executes the action of the square that is landed on
-
-                    //check for win state
-                    int playersLost = 0;
-                    for(Player p : players) {
-                        if(p.isBankrupt()){
-                            playersLost++;
-                        }
+                for(Player p : players){
+                    if (!p.getBankruptcyStatus()) {
+                        JOptionPane.showMessageDialog(null, p.getName() + " has won the game!!!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
                     }
-                    if(playersLost == (players.length - 1)) {
-                        for(Player p : players) {
-                            if(!p.isBankrupt()) System.out.println(p.getName() + " wins the game!!!");
-                            wantToQuit = true;
-                            break;
-                        }
-                    }
-                    //end check for win state
-
-                } else {
-                    System.out.println("You already rolled this turn");
                 }
-                break;
+                System.exit(0);
+            }
 
-            case QUIT:
-                wantToQuit = true;
-                break;
-
+            bankruptPlayers = 0;
         }
-
-        return wantToQuit;
     }
 
 
-    /**
-     * Prints the help information
-     */
-    private void showHelp() {
-        System.out.println("LIST OF COMMANDS");
-        parser.showCommands();
+    public static Square getSquare(int i) {
+        return gameBoard.getSquare(i);
     }
 
-    /**
-     * prints the state of the current player
-     */
-    private void showState() {
-        System.out.println(players[turnNumber].toString());
-        System.out.println("You are on " + gameBoard.getName(players[turnNumber].getPosition()));
-    }
-
-    /**
-     * Prints the welcome information for the game
-     */
-    private void printWelcome() {
-        System.out.println("\t\t\t--WELCOME TO MONOPOLY--");
-        System.out.println("Monopoly is a multi-player economic-themed board game.");
-        System.out.println("Be the last player not bankrupt to win! Good luck!");
-        System.out.println("If you need help, type " + CommandWord.HELP + " for a list of commands!\n");
-        players = parser.getPlayers();
-        System.out.println();
-    }
-    public static void main(String[] args) {
-        Game game = new Game();
-        game.play();
-
-    }
 
 }

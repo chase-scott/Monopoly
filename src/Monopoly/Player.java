@@ -2,7 +2,10 @@ package Monopoly;
 
 import GUI.MonopolyView;
 
+import java.awt.*;
 import java.util.*;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Monopoly.Player class
@@ -13,23 +16,28 @@ public class Player {
 
     private final String name;              //the name of the players
     private double money;                   //the player's money
-    private int position;                   //the player's current position
     private List<Property> propertyList;    //the list of properties owned by the player
-    private boolean isBankrupt;             //the bankruptcy status of the player
+    private boolean takingTurn;
     private List<MonopolyView> views;
+    private final Color tokenColour;
+    private int position = 0;
+    private static Dice dice = new Dice();
+    private boolean isBankrupt = false;
+
 
     /**
      * Constructor for a player
      *
      * @param name  String, the name of the player
      */
-    public Player(String name) {
+    public Player(String name, Color color) {
         this.name = name;
+        this.tokenColour = color;
         this.money = 1500;
-        this.position = 0;
-        this.isBankrupt = false;
+        this.takingTurn = false;
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
+        Game.getSquare(0).addPlayer(this);
     }
 
     public String getName() {
@@ -40,68 +48,40 @@ public class Player {
         return money;
     }
 
-    public int getPosition() { return position; }
+    public Color getTokenColour() {
+        return tokenColour;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean getDiceRolledStatus() {
+        return dice.isRolled();
+    }
+
+    public void becomeBankrupt() {
+        for (Property p : propertyList) {
+            p.setOwner(null);
+        }
+        this.isBankrupt = true;
+        propertyList.clear();
+    }
+
+    public boolean getBankruptcyStatus() {return isBankrupt;}
+
+    /**
+     * Creates a vector of the names of each property in the property list
+     * @return  Vector<String>, vector of the names of properties
+     */
+    public Vector<String> getPropertyList() {
+        return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
+    }
 
     public void setMoney(double money) {
         this.money = money;
     }
-    
-    public boolean isBankrupt() {
-        return isBankrupt;
-    }
 
-    public void setBankrupt(boolean bankrupt) {
-        isBankrupt = bankrupt;
-    }
-
-    /**
-     * Moves the player by the given roll result
-     *
-     * @param rollResult    int, the result of the roll
-     */
-    public void playerMove(int rollResult){
-        int BOARD_SIZE = 23;
-        position += rollResult;
-        if(position >= BOARD_SIZE) {
-            position -= BOARD_SIZE;
-            money += 200;
-            System.out.println("+$200 for passing GO");
-        }
-    }
-
-    /**
-     * Buys a property
-     *
-     * @param property  Monopoly.Property, the property to buy
-     */
-    public void buy(Property property) {
-        if(property.checkIfAvailable()) {
-            if(money < property.getPrice()) {
-                System.out.println("You can not afford this property!");
-                return;
-            }
-            System.out.println(name + " has just bought " + property.getName());
-            money -= property.getPrice();
-            propertyList.add(property);
-            property.setOwner(this);
-            return;
-        }
-        System.out.println("This property is already owned by " + property.getOwner().getName());
-    }
-
-    /**
-     * Creates a string containing the properties owned by the player
-     *
-     * @return  String, the string of properties
-     */
-    private String propertiesOwned(){
-        if(propertyList.isEmpty()){
-            return "Monopoly.Player owns nothing";
-        }
-        StringBuilder info = new StringBuilder();
-        for (Property p : propertyList) {info.append(p.getName()).append(", ");}
-        return info.toString();
-    }
 
     /**
      * Adds a monopoly view
@@ -109,22 +89,70 @@ public class Player {
      */
     public void addMonopolyView(MonopolyView view) {
         views.add(view);
+        this.updateViews();
     }
 
     /**
      * Updates each view.
      */
-    private void updateViews() {
-        for(MonopolyView v : views) {
-            v.updateView();
+    public void updateViews() {
+        views.forEach(MonopolyView::updateView);
+    }
+
+
+    public void rollDice() {
+        Game.getSquare(position).removePlayer(this);
+        Game.getSquare(position).updateViews();
+        position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
+        System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+        Game.getSquare(position).squareAction(this);
+        Game.getSquare(position).addPlayer(this);
+
+        updateViews();
+        Game.getSquare(position).updateViews();
+    }
+
+    //TODO make this buy the property this player is on
+    public void buySquare() {
+
+        Property propertyToBuy = (Property) Game.getSquare(position);
+
+        if(money < propertyToBuy.getPrice()) {
+            System.out.println("You can not afford this property!");
+            return;
         }
+        System.out.println(name + " has just bought " + propertyToBuy.getName());
+        money -= propertyToBuy.getPrice();
+
+
+        propertyList.add(propertyToBuy);
+        propertyToBuy.setOwner(this);
+
+        updateViews();
+        Game.getSquare(position).updateViews();
+    }
+
+    public synchronized void makeMove() {
+        this.takingTurn = true;
+        updateViews();
+
+        try {
+            this.wait();
+        } catch (InterruptedException ignored) {}
+
+        this.takingTurn = false;
+        dice.setRolled(false);
+        updateViews();
+    }
+
+    public synchronized void passTurn() {
+        this.notify();
+    }
+    public boolean isTakingTurn() {
+        return takingTurn;
     }
 
 
 
-    @Override
-    public String toString() {
-        return "Name: " + name + "\nMoney: $" + money + "\nProperties owned: " + propertiesOwned();
-    }
 
 }

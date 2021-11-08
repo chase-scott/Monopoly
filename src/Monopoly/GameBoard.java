@@ -9,6 +9,7 @@ package Monopoly;
 public class GameBoard {
 
     private Square[] squares; //Array of squares that comprise the board
+    public final static int BOARD_SIZE = 23;
 
     /**
      * Default constructor
@@ -21,7 +22,7 @@ public class GameBoard {
      * Initializes the game board.
      */
     private void createBoard() {
-        squares = new Square[23];
+        squares = new Square[BOARD_SIZE];
 
         squares[0] = new Go("GO");
 
