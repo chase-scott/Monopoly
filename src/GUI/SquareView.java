@@ -18,11 +18,11 @@ public class SquareView extends JPanel implements MonopolyView {
     /**
      * Constructor for a SquareView
      *
-     * @param square    Square, the model
+     * @param model    Square, the model
      */
-    public SquareView(Square square) {
+    public SquareView(Square model) {
         super();
-        this.model = square;
+        this.model = model;
         this.createLayout();
         this.model.addView(this);
 

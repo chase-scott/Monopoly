@@ -66,14 +66,6 @@ public class GameBoard {
     }
 
     /**
-     * Acquires the name of a square given a position
-     *
-     * @param position  int, the position of the square
-     * @return  String, the name of the square
-     */
-    public String getName(int position) {return squares[position].getName();}
-
-    /**
      * Acquires the square in a given position
      *
      * @param position  int, the position of the square

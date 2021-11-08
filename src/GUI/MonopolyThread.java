@@ -10,9 +10,9 @@ import Monopoly.Game;
 public class MonopolyThread implements Runnable {
     private Game model;
 
-    public MonopolyThread(Game game) {
+    public MonopolyThread(Game model) {
         super();
-        this.model = game;
+        this.model = model;
     }
 
     /**

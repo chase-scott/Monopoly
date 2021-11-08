@@ -1,7 +1,7 @@
 package Monopoly;
 
-import GUI.MonopolyView;
-
+import GUI.PlayerView;
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Player {
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
     private boolean takingTurn;             //indicates if this player is taking their turn
-    private List<MonopolyView> views;       //the views associated with this player
+    private List<PlayerView> views;       //the views associated with this player
     private final Color tokenColour;        //this players token Colour
     private int position = 0;               //this players position
     private static Dice dice = new Dice();  //this players dice
@@ -30,9 +30,9 @@ public class Player {
      *
      * @param name  String, the name of the player
      */
-    public Player(String name, Color color) {
+    public Player(String name, Color colour) {
         this.name = name;
-        this.tokenColour = color;
+        this.tokenColour = colour;
         this.money = 1500;
         this.takingTurn = false;
         this.propertyList = new ArrayList<>();
@@ -46,6 +46,10 @@ public class Player {
 
     public double getMoney() {
         return money;
+    }
+
+    public void setMoney(double money) {
+        this.money = money;
     }
 
     public Color getTokenColour() {
@@ -85,16 +89,11 @@ public class Player {
         return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
     }
 
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-
     /**
      * Adds a monopoly view
      * @param view  MonopolyView, the view
      */
-    public void addMonopolyView(MonopolyView view) {
+    public void addMonopolyView(PlayerView view) {
         views.add(view);
         this.updateViews();
     }
@@ -103,7 +102,7 @@ public class Player {
      * Updates each view.
      */
     public void updateViews() {
-        views.forEach(MonopolyView::updateView);
+        views.forEach(PlayerView::updateView);
     }
 
     public void rollDice() {
@@ -112,10 +111,9 @@ public class Player {
         position = position + dice.roll();
         if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = position % GameBoard.BOARD_SIZE;
-        System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+        //System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
         Game.getSquare(position).squareAction(this);
         Game.getSquare(position).addPlayer(this);
-
         updateViews();
         Game.getSquare(position).updateViews();
     }
@@ -129,6 +127,8 @@ public class Player {
 
         if(money < propertyToBuy.getPrice()) {
             //System.out.println("You can not afford this property!");
+            JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
         //System.out.println(name + " has just bought " + propertyToBuy.getName());
