@@ -34,7 +34,7 @@ Implementing a GUI-based version of the game, this includes the view and control
 
 ### Known issues:
 
-Tile display is not entirely perfect, sometimes information is clipped depending on display. Will polish this in next milestone.
+Tile display is not entirely perfect, where the vertical and horizontal tile size isn't uniform. Will polish this in next milestone.
 
 ### Roadmap ahead:
 
