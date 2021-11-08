@@ -65,16 +65,13 @@ public class Property extends Square {
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
-            //System.out.println(player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName());
             JOptionPane.showMessageDialog(null, player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
 
             double amountOwed = rentRate * price;
 
-            //If player can't afford rent, give all of their money to player and make them bankrupt.
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
                 player.setMoney(0);
-                //System.out.println(player.getName() + " is bankrupt!");
                 player.becomeBankrupt();
             } else {
                 player.setMoney(player.getMoney() - amountOwed);
