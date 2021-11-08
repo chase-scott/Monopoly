@@ -57,7 +57,9 @@ empty.
 
 - The controllers were included as private classes inside PlayerView, since they do not contain much implementation beyond calling one method.
 
--Empty squares use the Go class for now since it is a do nothing square. These are placeholders for the upcoming milestone squares.
+- Empty squares use the Go class for now since it is a do nothing square. These are placeholders for the upcoming milestone squares.
+
+- Model and View/Controllers were moved to seperate packages to differentiate them
 
 ### User Manual:
 
