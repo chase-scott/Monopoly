@@ -50,7 +50,7 @@ public class MonopolyGUI extends JPanel {
     private JPanel generateBoardPanel(Game model) {
         JPanel panel = new JPanel();
 
-        panel.add(new SquareView(model.getSquare(0)));
+        panel.add(new SquareView(Game.getSquare(0)));
 
 
         return panel;

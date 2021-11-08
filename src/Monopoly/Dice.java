@@ -1,5 +1,7 @@
 package Monopoly;
 
+import javax.swing.*;
+
 /**
  * Roll and return value of the two dice
  * @author Amith Kumar Das Orko 101126245
@@ -24,10 +26,11 @@ public class Dice {
 
         dice[0] = (int) (Math.random() * 6 + 1);
         dice[1] = (int) (Math.random() * 6 + 1);
-        System.out.println("Rolled a " + dice[0] + " and " + dice[1]);
+        //System.out.println("Rolled a " + dice[0] + " and " + dice[1]);
+        JOptionPane.showMessageDialog(null, "Rolled a " + dice[0] + " and " + dice[1], "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
         if(dice[0] == dice[1]) {
-            System.out.println("You rolled DOUBLE!");
+            //System.out.println("You rolled DOUBLE!");
         } else {
             rolled = true;
         }
