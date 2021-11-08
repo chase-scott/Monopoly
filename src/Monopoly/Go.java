@@ -1,7 +1,9 @@
 package Monopoly;
 
+import java.awt.*;
+
 /**
- * A Monopoly.Go square
+ * A Go square
  *
  * @author Chase Scott 101092194
  */
@@ -9,6 +11,11 @@ public class Go extends Square {
 
     public Go(String name) {
         super(name);
+    }
+
+    @Override
+    public Color getColour() {
+        return Color.WHITE;
     }
 
     /**
@@ -19,5 +26,10 @@ public class Go extends Square {
     @Override
     public void squareAction(Player player) {
         //do nothing
+    }
+
+    @Override
+    public String toString() {
+        return "\n\n" + super.getName();
     }
 }

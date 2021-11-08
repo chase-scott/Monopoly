@@ -1,7 +1,9 @@
 package Monopoly;
 
 import GUI.MonopolyView;
+import java.awt.*;
 import java.util.*;
+import java.util.List;
 
 /**
  * Abstract class for a game board square
@@ -12,7 +14,7 @@ public abstract class Square {
 
     private List<MonopolyView> views;
     private final String name;
-    private int index;
+    ArrayList<Player> players;
 
     /**
      * Super constructor for a square
@@ -22,6 +24,8 @@ public abstract class Square {
     public Square(String name) {
         this.name = name;
         views = new ArrayList<>();
+        players = new ArrayList<>();
+
     }
 
     public String getName() {return name;}
@@ -44,10 +48,23 @@ public abstract class Square {
     /**
      * Updates each view.
      */
-    private void updateViews() {
-        for(MonopolyView v : views) {
-            v.updateView();
-        }
+    protected synchronized void updateViews() {
+        views.forEach(MonopolyView::updateView);
     }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public void addPlayer(Player player) { players.add(player);}
+
+    public void removePlayer(Player player) {
+        players.remove(player);
+    }
+
+    public abstract Color getColour();
+
+
+
 
 }
