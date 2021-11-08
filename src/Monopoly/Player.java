@@ -80,6 +80,7 @@ public class Player {
         JOptionPane.showMessageDialog(null, name + " has gone bankrupt! :(", "Bankrupt", JOptionPane.INFORMATION_MESSAGE);
         this.isBankrupt = true;
         propertyList.clear();
+        passTurn();
     }
 
     /**
