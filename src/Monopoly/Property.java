@@ -1,5 +1,7 @@
 package Monopoly;
 
+import javax.swing.*;
+
 /**
  * A property square
  *
@@ -64,7 +66,8 @@ public class Property extends Square {
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
-            System.out.println(player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName());
+            //System.out.println(player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName());
+            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
 
             double amountOwed = rentRate * price;
 
@@ -77,6 +80,7 @@ public class Property extends Square {
                 player.setMoney(player.getMoney() - amountOwed);
                 ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
             }
+            ownedBy.updateViews();
         }
     }
 

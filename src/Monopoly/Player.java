@@ -83,7 +83,7 @@ public class Player {
     /**
      * Updates each view.
      */
-    private void updateViews() {
+    public void updateViews() {
         views.forEach(MonopolyView::updateView);
     }
 
@@ -91,6 +91,7 @@ public class Player {
     public void rollDice() {
         position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
         System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+        Game.getSquare(position).squareAction(this);
         updateViews();
 
     }

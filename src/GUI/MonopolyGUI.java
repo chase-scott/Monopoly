@@ -53,6 +53,36 @@ public class MonopolyGUI extends JPanel {
         panel.add(new SquareView(Game.getSquare(0)));
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         return panel;
     }
 
