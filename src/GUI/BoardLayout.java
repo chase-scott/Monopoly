@@ -3,6 +3,7 @@ package GUI;
 import Monopoly.Game;
 
 import java.awt.*;
+import java.util.Objects;
 import javax.swing.*;
 
 
@@ -47,6 +48,12 @@ public class BoardLayout extends JPanel {
             leftPanel.add(new SquareView(Game.getSquare(i)));
         }
 
+        //Add monopolyLogo
+        ImageIcon monopolyLogo = new ImageIcon(Objects.requireNonNull(getClass().getResource("monopolyLogo.png")));
+        JLabel centerPanel = new JLabel(monopolyLogo, JLabel.CENTER);
+        centerPanel.setPreferredSize(new Dimension(750,750));
+
+        this.add(centerPanel, BorderLayout.CENTER);
         this.add(topPanel, BorderLayout.NORTH);
         this.add(rightPanel, BorderLayout.LINE_END);
         this.add(bottomPanel, BorderLayout.SOUTH);

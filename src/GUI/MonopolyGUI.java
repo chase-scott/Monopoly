@@ -15,12 +15,11 @@ public class MonopolyGUI extends JPanel {
         super();
 
         JPanel playerPanel = this.generatePlayerPanel(model);
-        JPanel propertyPanel = this.generateBoardPanel();
+        JPanel propertyPanel = new BoardLayout().getBoardLayout();
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        //this.add(propertyPanel);
-        this.add(new BoardLayout().getBoardLayout());
+        this.add(propertyPanel);
         this.add(playerPanel);
 
 

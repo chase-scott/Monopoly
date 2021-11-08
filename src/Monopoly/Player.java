@@ -102,8 +102,9 @@ public class Player {
     public void rollDice() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
+        position = position + dice.roll();
         if(position >= GameBoard.BOARD_SIZE) money+=200;
-        position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
+        position = position % GameBoard.BOARD_SIZE;
         System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
         Game.getSquare(position).squareAction(this);
         Game.getSquare(position).addPlayer(this);
