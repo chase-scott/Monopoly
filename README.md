@@ -69,6 +69,8 @@ empty.
 
 - Press "buy" to buy the property you are currently on
 
+- Properties will appear in list that can be scrolled through
+
 - Press "pass" to pass the turn
 
 - Relevant events will be shown in a screen pop-up
