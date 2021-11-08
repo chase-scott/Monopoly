@@ -7,6 +7,9 @@ import Monopoly.Game;
 import Monopoly.GameBoard;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 /**
  * @version 1.0
@@ -14,34 +17,41 @@ import javax.swing.*;
  * @author Amith Kumar Das Orko 101126245
  */
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class Gui {
+public class Gui extends JFrame {
+
+    public static void main(String[] args) {
+
+        Gui a = new Gui();
+
+        a.setVisible(true);
+
+        a.setSize(500, 500);
+
+    }
+
     public Gui() {
-        JFrame frame = new JFrame();
-        JPanel panel = new JPanel();
+
         try {
-            //Setup the Layout
-            frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+// Setup the Layout
+            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             GridBagLayout thisLayout = new GridBagLayout();
-            thisLayout.rowWeights = new double[] { 0.2, 0.2, 0.2, 0.2, 0.2,
+            thisLayout.rowWeights = new double[] {0.2, 0.2, 0.2, 0.2, 0.2,
                     0.2, 0.2, 0.2, 0.2 };
             thisLayout.columnWeights = new double[] { 0.2, 0.2, 0.2, 0.2, 0.2,
                     0.2, 0.2, 0.2, 0.2 };
-            frame.getContentPane().setLayout(thisLayout);
+            getContentPane().setLayout(thisLayout);
 
-            //Default Grid values
+// Default Grid values
             int gridX = 0;
             int gridY = 0;
+
             //Add Panels for Each of the four sides
             for (int j = 0; j < 4; j++) {
                 for (int i = 0; i < 8; i++) {
                     JPanel tempPanel = new JPanel();
-                    switch(j)
-                    {
+                    switch (j) {
                         case 0://Top Spaces
                             gridX = i;
                             gridY = 0;
@@ -59,7 +69,7 @@ public class Gui {
                             gridY = 7;
                             break;
                     }
-                    frame.getContentPane().add(tempPanel,
+                    getContentPane().add(tempPanel,
                             new GridBagConstraints(gridX,// XGridSpot
                                     gridY,// YGridSpot
                                     1,// XGridSpaces
@@ -69,40 +79,22 @@ public class Gui {
                                     new Insets(0, 0, 0, 0), 0, 0));
                     tempPanel.setBorder(BorderFactory
                             .createLineBorder(Color.BLACK));
-
                 }
+
             }
 
-            {// Main Inner Area Notice Starts at (1,1) and takes up 7x7
-                JPanel innerPanel = new JPanel();
-                frame.getContentPane().add(
-                        innerPanel,
-                        new GridBagConstraints(1,
-                                1,
-                                7,
-                                7,
-                                0.0, 0.0,
-                                GridBagConstraints.CENTER,
-                                GridBagConstraints.BOTH,
-                                new Insets(0, 0, 0, 0), 0, 0));
-            }
-            frame.pack();
-            frame.setSize(300, 300);
-        } catch (Exception e) {
+            JPanel innerPanel = new JPanel();
+            getContentPane().add(innerPanel, new GridBagConstraints(1,
+                    1,
+                    7,
+                    7,
+                    0.0, 0.0,
+                    GridBagConstraints.CENTER,
+                    GridBagConstraints.BOTH,
+                    new Insets(0, 0, 0, 0), 0, 0));
+        }
+        catch (Exception e) {
             e.printStackTrace();
         }
-
-
-        frame.add(panel);
-        frame.setSize(400,400);
-        frame.setVisible(true);
-
-
-
-
-    }
-    public static void main(String args[]) {
-        Gui gui = new Gui();
-
     }
 }
