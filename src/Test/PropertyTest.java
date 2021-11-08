@@ -33,17 +33,6 @@ public class PropertyTest {
     }
 
     @Test
-    public void getRent() {
-
-        Colours orange = Colours.ORANGE;
-
-        double rent = orange.getRentRate() *  property.getPrice();
-
-        assertEquals(rent,property.getRent(),0.2);
-        assertNotEquals(orange.getRentRate(), property.getRent(), 0.2);
-    }
-
-    @Test
     public void getAOwnerNull() {
 
         assertNull(property.getOwner());

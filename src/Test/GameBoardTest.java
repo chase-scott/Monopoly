@@ -16,18 +16,6 @@ import static org.junit.Assert.*;
 public class GameBoardTest {
 
 
-
-
-    @Test
-    public void getName() {
-        GameBoard gameBoard = new GameBoard();
-        Square square = new Property("Oriental Avenue", 100, Colours.TEAL);
-
-        assertEquals(square.getName(), gameBoard.getName(3));
-        assertNotEquals(square.getName(), gameBoard.getName(1));
-    }
-
-
     @Override //Used to override Equals() compare method
     public boolean equals(Object o){
         if(getClass() == o.getClass()){
