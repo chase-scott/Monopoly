@@ -20,21 +20,14 @@ import java.awt.event.ActionListener;
 
 public class Gui extends JPanel {
 
-    public static void main(String[] args) {
 
+    private GameBoard gameBoard;
+    public Gui(GameBoard g1) {
 
-        Gui a = new Gui();
-//
-        JFrame jf = new JFrame();
-        jf.setContentPane(a);
-        jf.setVisible(true);
-        jf.setSize(500, 500);
-
-    }
-
-    public Gui() {
-
+        super();
+        this.gameBoard=g1;
         try {
+
 
 // Setup the Layout
             GridBagLayout thisLayout = new GridBagLayout();
