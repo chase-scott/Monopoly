@@ -77,6 +77,7 @@ public class Player {
         for (Property p : propertyList) {
             p.setOwner(null);
         }
+        JOptionPane.showMessageDialog(null, name + " has gone bankrupt! :(", "Bankrupt", JOptionPane.INFORMATION_MESSAGE);
         this.isBankrupt = true;
         propertyList.clear();
     }
