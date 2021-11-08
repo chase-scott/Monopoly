@@ -2,6 +2,11 @@ package GUI;
 
 import Monopoly.Game;
 
+/**
+ * Creates a thread for the monopoly GUI
+ * Necessary so the game doesn't freeze
+ * @author Chase Scott 101092194
+ */
 public class MonopolyThread implements Runnable {
     private Game model;
 
@@ -10,8 +15,12 @@ public class MonopolyThread implements Runnable {
         this.model = game;
     }
 
+    /**
+     * Starts the game loop thread.
+     */
+    @Override
     public void run() {
-        this.model.play();
+        model.play();
     }
 
 }

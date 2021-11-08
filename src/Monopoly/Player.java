@@ -17,12 +17,12 @@ public class Player {
     private final String name;              //the name of the players
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
-    private boolean takingTurn;
-    private List<MonopolyView> views;
-    private final Color tokenColour;
-    private int position = 0;
-    private static Dice dice = new Dice();
-    private boolean isBankrupt = false;
+    private boolean takingTurn;             //indicates if this player is taking their turn
+    private List<MonopolyView> views;       //the views associated with this player
+    private final Color tokenColour;        //this players token Colour
+    private int position = 0;               //this players position
+    private static Dice dice = new Dice();  //this players dice
+    private boolean isBankrupt = false;     //whether this player is bankrupt or not
 
 
     /**
@@ -60,6 +60,15 @@ public class Player {
         return dice.isRolled();
     }
 
+    public boolean isTakingTurn() {
+        return takingTurn;
+    }
+
+    public boolean getBankruptcyStatus() {return isBankrupt;}
+
+    /**
+     * Set's this player to bankrupt and relinquishes control of all their properties.
+     */
     public void becomeBankrupt() {
         for (Property p : propertyList) {
             p.setOwner(null);
@@ -67,8 +76,6 @@ public class Player {
         this.isBankrupt = true;
         propertyList.clear();
     }
-
-    public boolean getBankruptcyStatus() {return isBankrupt;}
 
     /**
      * Creates a vector of the names of each property in the property list
@@ -113,15 +120,18 @@ public class Player {
         Game.getSquare(position).updateViews();
     }
 
+    /**
+     * Buys the square that the player is on if it is a property square.
+     */
     public void buySquare() {
 
         Property propertyToBuy = (Property) Game.getSquare(position);
 
         if(money < propertyToBuy.getPrice()) {
-            System.out.println("You can not afford this property!");
+            //System.out.println("You can not afford this property!");
             return;
         }
-        System.out.println(name + " has just bought " + propertyToBuy.getName());
+        //System.out.println(name + " has just bought " + propertyToBuy.getName());
         money -= propertyToBuy.getPrice();
 
 
@@ -132,6 +142,9 @@ public class Player {
         Game.getSquare(position).updateViews();
     }
 
+    /**
+     * Informs the game class that this player is taking their turn, resumes when player clicks pass turn.
+     */
     public synchronized void makeMove() {
         this.takingTurn = true;
         updateViews();
@@ -145,14 +158,11 @@ public class Player {
         updateViews();
     }
 
+    /**
+     * Passes the turn
+     */
     public synchronized void passTurn() {
         this.notify();
     }
-    public boolean isTakingTurn() {
-        return takingTurn;
-    }
-
-
-
 
 }
