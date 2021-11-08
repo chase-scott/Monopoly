@@ -1,6 +1,6 @@
 package Monopoly;
 
-import GUI.MonopolyView;
+import GUI.SquareView;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -12,9 +12,9 @@ import java.util.List;
  */
 public abstract class Square {
 
-    private List<MonopolyView> views;
+    private List<SquareView> views;
     private final String name;
-    ArrayList<Player> players;
+    private List<Player> players;
 
     /**
      * Super constructor for a square
@@ -38,10 +38,17 @@ public abstract class Square {
     public abstract void squareAction(Player player);
 
     /**
+     * Abstract method for getting the colour of a square
+     *
+     * @return  Color, the colour of the square
+     */
+    public abstract Color getColour();
+
+    /**
      * Adds a monopoly view
      * @param view  MonopolyView, the view
      */
-    public void addView(MonopolyView view) {
+    public void addView(SquareView view) {
         views.add(view);
     }
 
@@ -49,11 +56,11 @@ public abstract class Square {
      * Updates each view.
      */
     protected synchronized void updateViews() {
-        views.forEach(MonopolyView::updateView);
+        views.forEach(SquareView::updateView);
     }
 
     public ArrayList<Player> getPlayers() {
-        return players;
+        return (ArrayList<Player>) players;
     }
 
     public void addPlayer(Player player) { players.add(player);}
@@ -62,7 +69,7 @@ public abstract class Square {
         players.remove(player);
     }
 
-    public abstract Color getColour();
+
 
 
 

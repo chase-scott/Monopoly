@@ -2,7 +2,6 @@ package GUI;
 
 import javax.swing.*;
 import Monopoly.*;
-
 import java.awt.*;
 
 /**
@@ -11,8 +10,14 @@ import java.awt.*;
  */
 public class MonopolyFrame extends JFrame {
 
-    public final static Color[] PLAYER_COLOURS = {Color.RED, Color.ORANGE, Color.YELLOW, Color.GREEN, Color.BLUE, Color.CYAN, Color.PINK, Color.MAGENTA};
+    public final static Color[] PLAYER_COLOURS = {Color.RED, Color.ORANGE, Color.YELLOW,
+            Color.GREEN, Color.BLUE, Color.CYAN, Color.PINK, Color.MAGENTA};    //The colours of the player's tokens
 
+    /**
+     * Constructor for the monopoly frame
+     *
+     * @param model Game, the model
+     */
     public MonopolyFrame(Game model) {
         super("Monopoly");
 
@@ -24,7 +29,6 @@ public class MonopolyFrame extends JFrame {
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
-
     }
 
     /**
@@ -73,7 +77,5 @@ public class MonopolyFrame extends JFrame {
         MonopolyFrame monopolyWindow = new MonopolyFrame(game);
 
     }
-
-
 
 }

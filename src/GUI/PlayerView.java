@@ -24,18 +24,18 @@ public class PlayerView extends JPanel implements MonopolyView {
     /**
      * Constructor for a player view
      *
-     * @param player    Player, the model
+     * @param model    Player, the model
      */
-    public PlayerView(Player player) {
+    public PlayerView(Player model) {
         super();
-        this.model = player;
-        money = new JLabel(String.valueOf(player.getMoney()));
+        this.model = model;
+        money = new JLabel(String.valueOf(model.getMoney()));
         this.createLayout();
 
         //add controllers
-        this.passTurn.addActionListener(new passTurnController());
+        this.passTurn.addActionListener(new PassTurnController());
         this.buyProperty.addActionListener(new BuyPropertyController());
-        this.rollDice.addActionListener(new rollDiceController());
+        this.rollDice.addActionListener(new RollDiceController());
 
         this.model.addMonopolyView(this);
     }
@@ -129,7 +129,7 @@ public class PlayerView extends JPanel implements MonopolyView {
     /**
      * passTurnController class
      */
-    private class passTurnController implements ActionListener {
+    private class PassTurnController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.passTurn();
@@ -139,7 +139,7 @@ public class PlayerView extends JPanel implements MonopolyView {
     /**
      * rollDiceController class
      */
-    private class rollDiceController implements ActionListener {
+    private class RollDiceController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.rollDice();
