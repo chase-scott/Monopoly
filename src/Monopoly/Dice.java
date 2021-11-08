@@ -26,14 +26,13 @@ public class Dice {
 
         dice[0] = (int) (Math.random() * 6 + 1);
         dice[1] = (int) (Math.random() * 6 + 1);
-        //System.out.println("Rolled a " + dice[0] + " and " + dice[1]);
         JOptionPane.showMessageDialog(null, "Rolled a " + dice[0] + " and " + dice[1], "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
         if(dice[0] == dice[1]) {
-            //System.out.println("You rolled DOUBLE!");
         } else {
             rolled = true;
         }
+
         return (dice[0] + dice[1]);
 
     }
@@ -41,6 +40,5 @@ public class Dice {
     public boolean isRolled() {return rolled;}
 
     public void setRolled(boolean isRolled) {this.rolled = isRolled;}
-
 
 }

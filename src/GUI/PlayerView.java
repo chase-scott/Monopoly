@@ -3,7 +3,6 @@ package GUI;
 import Monopoly.Game;
 import Monopoly.Player;
 import Monopoly.Property;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -15,21 +14,25 @@ import java.awt.event.ActionListener;
  */
 public class PlayerView extends JPanel implements MonopolyView {
 
-    private JLabel money;
-    private JButton buyProperty = new JButton("Buy Property");
-    private JButton passTurn = new JButton("Pass");
-    private JButton rollDice = new JButton("Roll");
-    private JList<String> ownedProperties = new JList<>();
-    private Player model;
+    private JLabel money;                                               //this players money
+    private JButton buyProperty = new JButton("Buy Property");      //button to buy property
+    private JButton passTurn = new JButton("Pass");                 //button to pass the turn
+    private JButton rollDice = new JButton("Roll");                 //button to roll the dice
+    private JList<String> ownedProperties = new JList<>();              //list of owned properties
+    private Player model;                                               //the model associated with this view
 
+    /**
+     * Constructor for a player view
+     *
+     * @param player    Player, the model
+     */
     public PlayerView(Player player) {
         super();
         this.model = player;
         money = new JLabel(String.valueOf(player.getMoney()));
         this.createLayout();
 
-        //trying to get pass turn to work
-
+        //add controllers
         this.passTurn.addActionListener(new passTurnController());
         this.buyProperty.addActionListener(new BuyPropertyController());
         this.rollDice.addActionListener(new rollDiceController());
@@ -37,6 +40,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.model.addMonopolyView(this);
     }
 
+    /**
+     * Create the layout for a PlayerView panel
+     */
     private void createLayout() {
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createTitledBorder(this.model.getName()));
@@ -89,6 +95,11 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.add(this.passTurn, c);
     }
 
+    /**
+     * Paints the component
+     *
+     * @param g Graphics, the graphics
+     */
     @Override
     protected void paintComponent(Graphics g) {
         g.setColor(this.getBackground());
@@ -100,6 +111,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.paintComponents(g);
     }
 
+    /**
+     * Updates this components view
+     */
     @Override
     public void updateView() {
         this.money.setText("$" + this.model.getMoney());
@@ -112,7 +126,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         } else {buyProperty.setEnabled(false);}
     }
 
-
+    /**
+     * passTurnController class
+     */
     private class passTurnController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -120,6 +136,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         }
     }
 
+    /**
+     * rollDiceController class
+     */
     private class rollDiceController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
@@ -127,16 +146,15 @@ public class PlayerView extends JPanel implements MonopolyView {
         }
     }
 
-
-
+    /**
+     * buyPropertyController class
+     */
     private class BuyPropertyController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
             model.buySquare();
         }
     }
-
-
 
 
 }

@@ -1,8 +1,6 @@
 package Monopoly;
 
-import GUI.MonopolyFrame;
 import GUI.MonopolyView;
-
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -58,8 +56,8 @@ public abstract class Square {
         return players;
     }
 
-    public void addPlayer(Player player) {players.add(player);
-    }
+    public void addPlayer(Player player) { players.add(player);}
+
     public void removePlayer(Player player) {
         players.remove(player);
     }

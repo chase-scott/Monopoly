@@ -12,9 +12,14 @@ import java.util.ArrayList;
  */
 public class SquareView extends JPanel implements MonopolyView {
 
-    private Square model;
-    private JTextArea textArea = new JTextArea();
+    private Square model;                           //this views model
+    private JTextArea textArea = new JTextArea();   //this views description
 
+    /**
+     * Constructor for a SquareView
+     *
+     * @param square    Square, the model
+     */
     public SquareView(Square square) {
         super();
         this.model = square;
@@ -23,6 +28,9 @@ public class SquareView extends JPanel implements MonopolyView {
 
     }
 
+    /**
+     * Create the layout for a SquareView panel
+     */
     private void createLayout() {
         this.setLayout(new GridLayout());
         this.add(textArea);
@@ -36,12 +44,19 @@ public class SquareView extends JPanel implements MonopolyView {
         updateView();
     }
 
+    /**
+     * Updates the view of this panel
+     */
     @Override
     public void updateView() {
         this.textArea.setText(this.model.toString());
         this.repaint();
     }
 
+    /**
+     * Paints the colour and tokens on this view
+     * @param g Graphics, the graphics
+     */
     @Override
     protected void paintComponent(Graphics g) {
 

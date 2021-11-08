@@ -74,7 +74,7 @@ public class Property extends Square {
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
                 player.setMoney(0);
-                System.out.println(player.getName() + " is bankrupt!");
+                //System.out.println(player.getName() + " is bankrupt!");
                 player.becomeBankrupt();
             } else {
                 player.setMoney(player.getMoney() - amountOwed);
