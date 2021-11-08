@@ -43,7 +43,6 @@ public class SquareView extends JPanel implements MonopolyView {
         this.repaint();
     }
 
-    //TODO should paint the players that are on this square
     @Override
     protected void paintComponent(Graphics g) {
 
