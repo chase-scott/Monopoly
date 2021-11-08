@@ -12,7 +12,7 @@ import javax.swing.*;
 public class Game {
 
     private Player[] players;           //array of players in the game
-    private int turnNumber = -1;         //the current turn
+    private int turnNumber = -1;         //the current turn, start at turn -1
     private static final GameBoard gameBoard = new GameBoard();  //the game's board
 
     /**

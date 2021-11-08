@@ -1,6 +1,7 @@
 package Monopoly;
 
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * A property square
@@ -13,7 +14,7 @@ public class Property extends Square {
     private final double price;
     private final double rentRate;
     private Player ownedBy = null;
-    private final String colour;
+    private final Color colour;
 
     /**
      * Constructor for initializing a property square
@@ -26,14 +27,14 @@ public class Property extends Square {
         super(name);
         this.price = price;
         this.rentRate = colour.getRentRate();
-        this.colour = colour.name();
+        this.colour = colour.getColour();
     }
 
     public int getPrice(){
         return (int)price;
     }
 
-    public String getColour(){
+    public Color getColour(){
         return colour;
     }
 

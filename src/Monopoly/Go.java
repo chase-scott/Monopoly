@@ -11,4 +11,10 @@ public class Go extends Square {
     public void squareAction(Player player) {
 
     }
+
+    @Override
+    public String toString() {
+        return "\n\n" + super.getName();
+    }
+
 }

@@ -1,6 +1,7 @@
 package GUI;
 
 import Monopoly.Game;
+import Monopoly.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -15,13 +16,13 @@ public class MonopolyGUI extends JPanel {
         super();
 
         JPanel playerPanel = this.generatePlayerPanel(model);
-
-        JPanel propertyPanel = this.generateBoardPanel(model);
-        propertyPanel.setPreferredSize(new Dimension(800, 800)); //temporary
+        JPanel propertyPanel = this.generateBoardPanel();
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
+
         this.add(propertyPanel);
         this.add(playerPanel);
+
 
 
 
@@ -47,11 +48,12 @@ public class MonopolyGUI extends JPanel {
         return panel;
     }
 
-    private JPanel generateBoardPanel(Game model) {
+    private JPanel generateBoardPanel() {
         JPanel panel = new JPanel();
-
-        panel.add(new SquareView(Game.getSquare(1)));
-
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        for(int i = 0; i < GameBoard.BOARD_SIZE/3; i++) {
+            panel.add(new SquareView(Game.getSquare(i)));
+        }
 
 
         return panel;

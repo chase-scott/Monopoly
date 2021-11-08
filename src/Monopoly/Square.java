@@ -16,7 +16,7 @@ public abstract class Square {
 
     private List<MonopolyView> views;
     private final String name;
-    Player[] players;
+    ArrayList<Player> players;
 
     /**
      * Super constructor for a square
@@ -26,14 +26,7 @@ public abstract class Square {
     public Square(String name) {
         this.name = name;
         views = new ArrayList<>();
-        players = new Player[8];
-
-        //TEMP TEST DELETE
-        for(int i = 0 ; i < players.length; i++) {
-            players[i] = new Player("Joe", MonopolyFrame.PLAYER_COLOURS[i]);
-        }
-
-
+        players = new ArrayList<>();
 
     }
 
@@ -61,8 +54,17 @@ public abstract class Square {
         views.forEach(MonopolyView::updateView);
     }
 
-    public Player[] getPlayers() {
+    public ArrayList<Player> getPlayers() {
         return players;
     }
+
+    public void addPlayer(Player player) {players.add(player);
+    }
+    public void removePlayer(Player player) {
+        players.remove(player);
+    }
+
+
+
 
 }

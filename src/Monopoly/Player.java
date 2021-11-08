@@ -37,6 +37,7 @@ public class Player {
         this.takingTurn = false;
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
+        Game.getSquare(0).addPlayer(this);
     }
 
     public String getName() {
@@ -100,11 +101,15 @@ public class Player {
 
 
     public void rollDice() {
+        Game.getSquare(position).removePlayer(this);
+        Game.getSquare(position).updateViews();
         position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
         System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
         Game.getSquare(position).squareAction(this);
-        updateViews();
+        Game.getSquare(position).addPlayer(this);
 
+        updateViews();
+        Game.getSquare(position).updateViews();
     }
 
     //TODO make this buy the property this player is on
@@ -124,6 +129,7 @@ public class Player {
         propertyToBuy.setOwner(this);
 
         updateViews();
+        Game.getSquare(position).updateViews();
     }
 
     public synchronized void makeMove() {
