@@ -1,7 +1,6 @@
 package GUI;
 
 import Monopoly.Player;
-import Monopoly.Property;
 import Monopoly.Square;
 import javax.swing.*;
 import java.awt.*;
@@ -28,7 +27,7 @@ public class SquareView extends JPanel implements MonopolyView {
         this.setLayout(new GridLayout());
         this.add(textArea);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setPreferredSize(new Dimension( 150, 150)); //DELETE
+        this.setPreferredSize(new Dimension( 125, 125)); //DELETE
 
         Font font = new Font("Arial", Font.BOLD, 12);
         this.textArea.setFont(font);

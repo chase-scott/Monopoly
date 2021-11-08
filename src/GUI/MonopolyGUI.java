@@ -4,7 +4,6 @@ import Monopoly.Game;
 import Monopoly.GameBoard;
 
 import javax.swing.*;
-import java.awt.*;
 
 /**
  * @version 1.0
@@ -20,7 +19,8 @@ public class MonopolyGUI extends JPanel {
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        this.add(propertyPanel);
+        //this.add(propertyPanel);
+        this.add(new BoardLayout().getBoardLayout());
         this.add(playerPanel);
 
 

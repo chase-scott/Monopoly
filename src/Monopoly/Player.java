@@ -99,10 +99,10 @@ public class Player {
         views.forEach(MonopolyView::updateView);
     }
 
-
     public void rollDice() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
+        if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
         System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
         Game.getSquare(position).squareAction(this);
@@ -112,7 +112,6 @@ public class Player {
         Game.getSquare(position).updateViews();
     }
 
-    //TODO make this buy the property this player is on
     public void buySquare() {
 
         Property propertyToBuy = (Property) Game.getSquare(position);
