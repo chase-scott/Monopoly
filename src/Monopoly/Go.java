@@ -1,5 +1,7 @@
 package Monopoly;
 
+import java.awt.*;
+
 public class Go extends Square {
 
     public Go(String name) {
@@ -10,6 +12,11 @@ public class Go extends Square {
     @Override
     public void squareAction(Player player) {
 
+    }
+
+    @Override
+    public Color getColour() {
+        return Color.WHITE;
     }
 
     @Override

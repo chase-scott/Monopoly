@@ -19,7 +19,6 @@ public class SquareView extends JPanel implements MonopolyView {
     public SquareView(Square square) {
         super();
         this.model = square;
-
         this.createLayout();
         this.model.addView(this);
 
@@ -29,7 +28,7 @@ public class SquareView extends JPanel implements MonopolyView {
         this.setLayout(new GridLayout());
         this.add(textArea);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setPreferredSize(new Dimension( 100, 100)); //DELETE
+        this.setPreferredSize(new Dimension( 150, 150)); //DELETE
 
         Font font = new Font("Arial", Font.BOLD, 12);
         this.textArea.setFont(font);
@@ -47,10 +46,12 @@ public class SquareView extends JPanel implements MonopolyView {
     //TODO should paint the players that are on this square
     @Override
     protected void paintComponent(Graphics g) {
-        if(model instanceof Property) {
-            g.setColor(((Property) model).getColour());
-            g.fillRect(0, (2*this.getHeight())/3, this.getWidth(), this.getHeight() / 3);
-        }
+
+        g.setColor(this.getBackground());
+        g.fillRect(0, 0, this.getWidth(), (2*this.getHeight()) / 3);
+        g.setColor(model.getColour());
+        g.fillRect(0, (2*this.getHeight())/3, this.getWidth(), this.getHeight() / 3);
+
         ArrayList<Player> playersHere = this.model.getPlayers();
         for (int i = 0; i < playersHere.size(); i++) {
             g.setColor(playersHere.get(i).getTokenColour());

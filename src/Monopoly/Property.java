@@ -34,13 +34,11 @@ public class Property extends Square {
         return (int)price;
     }
 
+    @Override
     public Color getColour(){
         return colour;
     }
 
-    public int getRent(){
-        return (int)(rentRate * price);
-    }
 
     public Player getOwner() {
         return ownedBy;
