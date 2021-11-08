@@ -41,7 +41,7 @@ public class MonopolyFrame extends JFrame {
 
         Object[] inputs = new Object[2 * numPlayers];
         for (int i = 0; i < inputs.length; i += 2) {
-            inputs[i] = "Name";
+            inputs[i] = "Player name";
             inputs[i + 1] = new JTextField();
         }
 

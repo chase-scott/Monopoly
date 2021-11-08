@@ -50,6 +50,14 @@ public class Player {
         return tokenColour;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public boolean getDiceRolledStatus() {
+        return dice.isRolled();
+    }
+
     /**
      * Creates a vector of the names of each property in the property list
      * @return  Vector<String>, vector of the names of properties
@@ -80,32 +88,42 @@ public class Player {
     }
 
 
-    private void rollDice() {
-        System.out.println(name + " is taking their turn");
-        do {
-            position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
-            System.out.println(name + " is on tile " + position + "\n");
-        } while(!dice.isRolled());
-        dice.setRolled(false);
+    public void rollDice() {
+        position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
+        System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+        updateViews();
 
     }
 
     //TODO make this buy the property this player is on
     public void buySquare() {
-        System.out.println("Player buys + " + Game.getSquare(position).getName());
 
+        Property propertyToBuy = (Property) Game.getSquare(position);
+
+        if(money < propertyToBuy.getPrice()) {
+            System.out.println("You can not afford this property!");
+            return;
+        }
+        System.out.println(name + " has just bought " + propertyToBuy.getName());
+        money -= propertyToBuy.getPrice();
+
+
+        propertyList.add(propertyToBuy);
+        propertyToBuy.setOwner(this);
+
+        updateViews();
     }
 
     public synchronized void makeMove() {
         this.takingTurn = true;
         updateViews();
-        this.rollDice();
 
         try {
             this.wait();
         } catch (InterruptedException ignored) {}
 
         this.takingTurn = false;
+        dice.setRolled(false);
         updateViews();
     }
 
