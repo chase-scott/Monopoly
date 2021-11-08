@@ -69,5 +69,5 @@ empty.
 
 - Press "pass" to pass the turn
 
--Relevant events will be shown in a screen pop-up
+- Relevant events will be shown in a screen pop-up
 
