@@ -1,7 +1,7 @@
 package Monopoly;
 
-import GUI.MonopolyView;
-
+import GUI.PlayerView;
+import javax.swing.*;
 import java.awt.*;
 import java.util.*;
 import java.util.List;
@@ -17,12 +17,12 @@ public class Player {
     private final String name;              //the name of the players
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
-    private boolean takingTurn;
-    private List<MonopolyView> views;
-    private final Color tokenColour;
-    private int position = 0;
-    private static Dice dice = new Dice();
-    private boolean isBankrupt = false;
+    private boolean takingTurn;             //indicates if this player is taking their turn
+    private List<PlayerView> views;       //the views associated with this player
+    private final Color tokenColour;        //this players token Colour
+    private int position = 0;               //this players position
+    private static Dice dice = new Dice();  //this players dice
+    private boolean isBankrupt = false;     //whether this player is bankrupt or not
 
 
     /**
@@ -30,9 +30,9 @@ public class Player {
      *
      * @param name  String, the name of the player
      */
-    public Player(String name, Color color) {
+    public Player(String name, Color colour) {
         this.name = name;
-        this.tokenColour = color;
+        this.tokenColour = colour;
         this.money = 1500;
         this.takingTurn = false;
         this.propertyList = new ArrayList<>();
@@ -48,6 +48,10 @@ public class Player {
         return money;
     }
 
+    public void setMoney(double money) {
+        this.money = money;
+    }
+
     public Color getTokenColour() {
         return tokenColour;
     }
@@ -60,15 +64,23 @@ public class Player {
         return dice.isRolled();
     }
 
+    public boolean isTakingTurn() {
+        return takingTurn;
+    }
+
+    public boolean getBankruptcyStatus() {return isBankrupt;}
+
+    /**
+     * Set's this player to bankrupt and relinquishes control of all their properties.
+     */
     public void becomeBankrupt() {
         for (Property p : propertyList) {
             p.setOwner(null);
         }
+        JOptionPane.showMessageDialog(null, name + " has gone bankrupt! :(", "Bankrupt", JOptionPane.INFORMATION_MESSAGE);
         this.isBankrupt = true;
         propertyList.clear();
     }
-
-    public boolean getBankruptcyStatus() {return isBankrupt;}
 
     /**
      * Creates a vector of the names of each property in the property list
@@ -78,16 +90,11 @@ public class Player {
         return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
     }
 
-    public void setMoney(double money) {
-        this.money = money;
-    }
-
-
     /**
      * Adds a monopoly view
      * @param view  MonopolyView, the view
      */
-    public void addMonopolyView(MonopolyView view) {
+    public void addMonopolyView(PlayerView view) {
         views.add(view);
         this.updateViews();
     }
@@ -96,32 +103,36 @@ public class Player {
      * Updates each view.
      */
     public void updateViews() {
-        views.forEach(MonopolyView::updateView);
+        views.forEach(PlayerView::updateView);
     }
-
 
     public void rollDice() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
-        position = (position + dice.roll()) % GameBoard.BOARD_SIZE;
-        System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+        position = position + dice.roll();
+        if(position >= GameBoard.BOARD_SIZE) money+=200;
+        position = position % GameBoard.BOARD_SIZE;
+        //System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
         Game.getSquare(position).squareAction(this);
         Game.getSquare(position).addPlayer(this);
-
         updateViews();
         Game.getSquare(position).updateViews();
     }
 
-    //TODO make this buy the property this player is on
+    /**
+     * Buys the square that the player is on if it is a property square.
+     */
     public void buySquare() {
 
         Property propertyToBuy = (Property) Game.getSquare(position);
 
         if(money < propertyToBuy.getPrice()) {
-            System.out.println("You can not afford this property!");
+            //System.out.println("You can not afford this property!");
+            JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
             return;
         }
-        System.out.println(name + " has just bought " + propertyToBuy.getName());
+        //System.out.println(name + " has just bought " + propertyToBuy.getName());
         money -= propertyToBuy.getPrice();
 
 
@@ -132,6 +143,9 @@ public class Player {
         Game.getSquare(position).updateViews();
     }
 
+    /**
+     * Informs the game class that this player is taking their turn, resumes when player clicks pass turn.
+     */
     public synchronized void makeMove() {
         this.takingTurn = true;
         updateViews();
@@ -145,14 +159,11 @@ public class Player {
         updateViews();
     }
 
+    /**
+     * Passes the turn
+     */
     public synchronized void passTurn() {
         this.notify();
     }
-    public boolean isTakingTurn() {
-        return takingTurn;
-    }
-
-
-
 
 }

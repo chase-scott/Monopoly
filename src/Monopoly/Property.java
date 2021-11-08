@@ -34,13 +34,11 @@ public class Property extends Square {
         return (int)price;
     }
 
+    @Override
     public Color getColour(){
         return colour;
     }
 
-    public int getRent(){
-        return (int)(rentRate * price);
-    }
 
     public Player getOwner() {
         return ownedBy;
@@ -76,7 +74,7 @@ public class Property extends Square {
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
                 player.setMoney(0);
-                System.out.println(player.getName() + " is bankrupt!");
+                //System.out.println(player.getName() + " is bankrupt!");
                 player.becomeBankrupt();
             } else {
                 player.setMoney(player.getMoney() - amountOwed);

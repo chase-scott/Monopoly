@@ -9,7 +9,7 @@ package Monopoly;
 public class GameBoard {
 
     private Square[] squares; //Array of squares that comprise the board
-    public final static int BOARD_SIZE = 23;
+    public final static int BOARD_SIZE = 28;    //Size of the board
 
     /**
      * Default constructor
@@ -56,15 +56,14 @@ public class GameBoard {
         squares[21] = new Property("Park Place", 350, Colours.BLUE);
         squares[22] = new Property("Boardwalk", 400, Colours.BLUE);
 
-    }
+        //These are all temp until other square types are added
+        squares[23] = new Go("EMPTY SQUARE");
+        squares[24] = new Go("EMPTY SQUARE");
+        squares[25] = new Go("EMPTY SQUARE");
+        squares[26] = new Go("EMPTY SQUARE");
+        squares[27] = new Go("EMPTY SQUARE");
 
-    /**
-     * Acquires the name of a square given a position
-     *
-     * @param position  int, the position of the square
-     * @return  String, the name of the square
-     */
-    public String getName(int position) {return squares[position].getName();}
+    }
 
     /**
      * Acquires the square in a given position

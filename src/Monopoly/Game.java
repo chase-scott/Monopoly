@@ -29,8 +29,10 @@ public class Game {
     public void setPlayers(Player[] players){this.players = players;}
 
 
-
-
+    /**
+     * Begins the game loop. Once a player has passed their turn, increment turn number.
+     * Then check for win state, if game is over, display win message and quit.
+     */
     public void play() {
 
         int bankruptPlayers = 0;
@@ -58,10 +60,14 @@ public class Game {
         }
     }
 
-
+    /**
+     * Get the square at location i in the gameboard
+     *
+     * @param i int, location on the board
+     * @return  Sqaure, the square
+     */
     public static Square getSquare(int i) {
         return gameBoard.getSquare(i);
     }
-
 
 }

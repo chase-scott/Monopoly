@@ -1,7 +1,6 @@
 package GUI;
 
 import Monopoly.Player;
-import Monopoly.Property;
 import Monopoly.Square;
 import javax.swing.*;
 import java.awt.*;
@@ -13,23 +12,30 @@ import java.util.ArrayList;
  */
 public class SquareView extends JPanel implements MonopolyView {
 
-    private Square model;
-    private JTextArea textArea = new JTextArea();
+    private Square model;                           //this views model
+    private JTextArea textArea = new JTextArea();   //this views description
 
-    public SquareView(Square square) {
+    /**
+     * Constructor for a SquareView
+     *
+     * @param model    Square, the model
+     */
+    public SquareView(Square model) {
         super();
-        this.model = square;
-
+        this.model = model;
         this.createLayout();
         this.model.addView(this);
 
     }
 
+    /**
+     * Create the layout for a SquareView panel
+     */
     private void createLayout() {
         this.setLayout(new GridLayout());
         this.add(textArea);
         this.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        this.setPreferredSize(new Dimension( 100, 100)); //DELETE
+        this.setPreferredSize(new Dimension( 125, 125)); //DELETE
 
         Font font = new Font("Arial", Font.BOLD, 12);
         this.textArea.setFont(font);
@@ -38,19 +44,27 @@ public class SquareView extends JPanel implements MonopolyView {
         updateView();
     }
 
+    /**
+     * Updates the view of this panel
+     */
     @Override
     public void updateView() {
         this.textArea.setText(this.model.toString());
         this.repaint();
     }
 
-    //TODO should paint the players that are on this square
+    /**
+     * Paints the colour and tokens on this view
+     * @param g Graphics, the graphics
+     */
     @Override
     protected void paintComponent(Graphics g) {
-        if(model instanceof Property) {
-            g.setColor(((Property) model).getColour());
-            g.fillRect(0, (2*this.getHeight())/3, this.getWidth(), this.getHeight() / 3);
-        }
+
+        g.setColor(this.getBackground());
+        g.fillRect(0, 0, this.getWidth(), (2*this.getHeight()) / 3);
+        g.setColor(model.getColour());
+        g.fillRect(0, (2*this.getHeight())/3, this.getWidth(), this.getHeight() / 3);
+
         ArrayList<Player> playersHere = this.model.getPlayers();
         for (int i = 0; i < playersHere.size(); i++) {
             g.setColor(playersHere.get(i).getTokenColour());

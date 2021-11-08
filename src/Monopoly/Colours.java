@@ -15,8 +15,8 @@ public enum Colours {
     BLUE(0.5, new Color	(0,0,255)), RED(0.1, new Color(255, 0, 0)),
     YELLOW(0.4, new Color(255,255,0)), GREEN(0.4, new Color(34,139,34));
 
-    private final double rentRate; //rent rate associated with the colour
-    private final Color colour;
+    private final double rentRate;  //rent rate associated with the colour
+    private final Color colour;     //Color associated with the colour
 
     Colours(double rentRate, Color colour) {
         this.rentRate = rentRate;
