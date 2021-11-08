@@ -18,15 +18,17 @@ import java.awt.event.ActionListener;
  */
 
 
-public class Gui extends JFrame {
+public class Gui extends JPanel {
 
     public static void main(String[] args) {
 
+
         Gui a = new Gui();
-
-        a.setVisible(true);
-
-        a.setSize(500, 500);
+//
+        JFrame jf = new JFrame();
+        jf.setContentPane(a);
+        jf.setVisible(true);
+        jf.setSize(500, 500);
 
     }
 
@@ -35,13 +37,12 @@ public class Gui extends JFrame {
         try {
 
 // Setup the Layout
-            setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
             GridBagLayout thisLayout = new GridBagLayout();
             thisLayout.rowWeights = new double[] {0.2, 0.2, 0.2, 0.2, 0.2,
                     0.2, 0.2, 0.2, 0.2 };
             thisLayout.columnWeights = new double[] { 0.2, 0.2, 0.2, 0.2, 0.2,
                     0.2, 0.2, 0.2, 0.2 };
-            getContentPane().setLayout(thisLayout);
+            this.setLayout(thisLayout);
 
 // Default Grid values
             int gridX = 0;
@@ -69,7 +70,7 @@ public class Gui extends JFrame {
                             gridY = 7;
                             break;
                     }
-                    getContentPane().add(tempPanel,
+                    this.add(tempPanel,
                             new GridBagConstraints(gridX,// XGridSpot
                                     gridY,// YGridSpot
                                     1,// XGridSpaces
@@ -84,7 +85,7 @@ public class Gui extends JFrame {
             }
 
             JPanel innerPanel = new JPanel();
-            getContentPane().add(innerPanel, new GridBagConstraints(1,
+            this.add(innerPanel, new GridBagConstraints(1,
                     1,
                     7,
                     7,
@@ -96,5 +97,10 @@ public class Gui extends JFrame {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public JPanel getViewJPanel() {
+        return this;
+
     }
 }
