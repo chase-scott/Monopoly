@@ -37,14 +37,8 @@ public class Rail extends Property{
             if (count == 4){
                 amountOwed = 200;
             }
-            if (player.getMoney() - amountOwed < 0) {
-                ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
-                player.setMoney(0);
-                player.becomeBankrupt();
-            } else {
-                player.setMoney(player.getMoney() - amountOwed);
-                ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
-            }
+            player.setMoney(player.getMoney() - amountOwed);
+            ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
             ownedBy.updateViews();
             }
         }
