@@ -40,7 +40,7 @@ public class Rail extends Square{
             for (int i = 4; i < 27; i=i+6){
                 Square railSquare = gameBoard.getSquare(i);
 
-                if((Rail)railSquare.getOwner()==ownedBy){
+                if(((Rail)railSquare).getOwner()==ownedBy){
                     count++;
                 }
             }
