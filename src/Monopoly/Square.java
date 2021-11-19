@@ -42,6 +42,9 @@ public abstract class Square {
      *
      * @return  Color, the colour of the square
      */
+    //public abstract void handlePlayer(Player p);
+    //public abstract Player getOwner();
+
     public abstract Color getColour();
 
     /**

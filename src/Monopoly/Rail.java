@@ -1,28 +1,47 @@
 package Monopoly;
 
+import java.awt.*;
 import java.util.ArrayList;
 
-public class Rail extends Property{
+public class Rail extends Square{
 
     /**
-     * Constructor for initializing a property square
+     * Super constructor for a square
      *
-     * @param name   String, the name of the property
-     * @param price  double, the price of the property
-     * @param colour Colour, the colour of the property
+     * @param name String, the name of the square
      */
+    GameBoard gameBoard= new GameBoard();
+    private final int  price = 200;
     private int amountOwed;
-
-    public Rail(String name, double price, Colours colour, int amountOwed) {
-        super(name, price, colour);
-        this.amountOwed=amountOwed;
+    private Player ownedBy = null;
+    public Rail(String name, GameBoard gameBoard) {
+        super(name);
+        this.gameBoard = gameBoard;
     }
 
-    public void handlePlayer(Player player) {
-        if(this.getOwner()!=null){
-            int count=0;
-            Player ownedBy = this.getOwner();
-            //ownedBy.getPropertyList();
+    public Player getOwner() {
+        return ownedBy;
+    }
+
+    public void setOwner(Player currentPlayer){
+        ownedBy = currentPlayer;
+        //double playerMoney = currentPlayer.getMoney();
+        //currentPlayer.setMoney(playerMoney-200);
+    }
+
+    public boolean checkIfAvailable(){
+        return getOwner() == null;
+    }
+
+    @Override
+    public void squareAction(Player player) {
+        if(ownedBy != null && ownedBy != player) {
+            int count = 0;
+            for (int i = 3; i < 27; i=i+5){
+                if(gameBoard.getSquare(i).getOwner()==ownedBy){
+                    count++;
+                }
+            }
             if (count == 1){
                 amountOwed = 25;	    }
             //take 25
@@ -37,10 +56,21 @@ public class Rail extends Property{
             if (count == 4){
                 amountOwed = 200;
             }
-            player.setMoney(player.getMoney() - amountOwed);
-            ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
-            ownedBy.updateViews();
+            // take 200
+            if (player.getMoney() - amountOwed < 0) {
+                ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
+                player.setMoney(0);
+                player.becomeBankrupt();
+            } else {
+                player.setMoney(player.getMoney() - amountOwed);
+                ownedBy.setMoney(ownedBy.getMoney() + amountOwed);
             }
+            ownedBy.updateViews();
         }
+    }
 
+    @Override
+    public Color getColour() {
+        return null;
+    }
 }
