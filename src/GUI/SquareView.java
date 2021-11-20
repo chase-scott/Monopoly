@@ -78,17 +78,26 @@ public class SquareView extends JPanel implements MonopolyView {
         //paint houses built
         if (model instanceof Property) {
             for (int i = 0; i < ((Property) model).getNumHouses() ; i++) {
-                //black outline
+                //draw house
                 g.setColor(Color.BLACK);
-                g.fillRect(2 + (i * 25), this.getHeight() - 15, 22, 11);
-                g.fillPolygon(new int[]{(i*25), 12+(i*25), 25+(i*25)},new int[]{this.getHeight()-15,
-                        this.getHeight()-34, this.getHeight()-15}, 3);
-                //green interior
-                g.setColor(new Color(0,204,0));
-                g.fillRect(3 + (i * 25), this.getHeight() - 15, 20, 10);
+                if (i < 4) {
+                    //black outline
+                    g.fillRect(2 + (i * 25), this.getHeight() - 15, 22, 11);
+                    g.fillPolygon(new int[]{(i * 25), 12 + (i * 25), 25 + (i * 25)}, new int[]{this.getHeight() - 15,
+                            this.getHeight() - 34, this.getHeight() - 15}, 3);
+                    //green interior
+                    g.setColor(new Color(0, 204, 0));
+                    g.fillRect(3 + (i * 25), this.getHeight() - 15, 20, 10);
 
-                g.fillPolygon(new int[]{1 + (i*25), 12+(i*25), 24+(i*25)},new int[]{this.getHeight()-15,
-                        this.getHeight()-32, this.getHeight()-15}, 3);
+                    g.fillPolygon(new int[]{1 + (i * 25), 12 + (i * 25), 24 + (i * 25)}, new int[]{this.getHeight() - 15,
+                            this.getHeight() - 32, this.getHeight() - 15}, 3);
+                }
+                //draw hotel
+                else {
+                    g.fillRect(5 + (i * 25), this.getHeight() - 35, 20, 31);
+                    g.setColor(new Color(0, 204, 0));
+                    g.fillRect(6 + (i * 25), this.getHeight() - 34, 18, 29);
+                }
             }
         }
 

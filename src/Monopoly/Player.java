@@ -24,9 +24,6 @@ public class Player {
     private static Dice dice = new Dice();  //this players dice
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
 
-
-
-
     /**
      * Constructor for a player
      *
@@ -110,13 +107,17 @@ public class Player {
         views.forEach(PlayerView::updateView);
     }
 
+
+    /**
+     * rolls the dice and moves the player by the result
+     */
     public void rollDice() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
         position = position + dice.roll();
         if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = position % GameBoard.BOARD_SIZE;
-        //System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
+
         Game.getSquare(position).squareAction(this);
         Game.getSquare(position).addPlayer(this);
         updateViews();
@@ -131,14 +132,11 @@ public class Player {
         Property propertyToBuy = (Property) Game.getSquare(position);
 
         if(money < propertyToBuy.getPrice()) {
-            //System.out.println("You can not afford this property!");
             JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
                     JOptionPane.WARNING_MESSAGE);
             return;
         }
-        //System.out.println(name + " has just bought " + propertyToBuy.getName());
         money -= propertyToBuy.getPrice();
-
         propertyList.add(propertyToBuy);
         propertyToBuy.setOwner(this);
 
@@ -151,7 +149,19 @@ public class Player {
      * @param selectedIndex int, the index of the property selected
      */
     public void buildHouse(int selectedIndex) {
-        if(selectedIndex > -1) propertyList.get(selectedIndex).addHouse(this);
+        if(selectedIndex > -1) {
+
+
+            //make sure player is building houses symmetrically
+            for(Property p : propertyList) {
+                if(propertyList.get(selectedIndex).getBuiltHouses() > p.getBuiltHouses()) {
+                    JOptionPane.showMessageDialog(null, "You must build houses symmetrically!", "Warning",
+                            JOptionPane.WARNING_MESSAGE);
+                    return;
+                }
+            }
+            propertyList.get(selectedIndex).addHouse(this);
+        }
     }
 
     /**

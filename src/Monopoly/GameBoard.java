@@ -26,14 +26,14 @@ public class GameBoard {
 
         squares[0] = new Go("GO");
 
-        squares[1] = new Property("Mediterranean Avenue", 60, Colours.BROWN);
+        squares[1] = new Property("Mediterranean Ave.", 60, Colours.BROWN);
         squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);
 
         squares[3] = new Go("RAILROAD/UTILITY");
 
         squares[4] = new Property("Oriental Avenue", 100, Colours.TEAL);
         squares[5] = new Property("Vermont Avenue", 100, Colours.TEAL);
-        squares[6] = new Property("Connecticut Avenue", 120, Colours.TEAL);
+        squares[6] = new Property("Connecticut Ave.", 120, Colours.TEAL);
 
         squares[7] = new Go("JAIL");
 

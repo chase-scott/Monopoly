@@ -74,14 +74,12 @@ public class PlayerView extends JPanel implements MonopolyView {
         c.fill = GridBagConstraints.BOTH;
         this.add(this.money, c);
 
-
         c.fill = GridBagConstraints.BOTH;
         c.gridwidth = 3;
         c.weighty = 0.75;
         c.gridx = 0;
         c.gridy = 1;
         this.add(propertyScrollList, c);
-
 
         c.gridwidth = 1;
         c.weighty = 0;
@@ -127,6 +125,7 @@ public class PlayerView extends JPanel implements MonopolyView {
 
         passTurn.setEnabled(model.getDiceRolledStatus() && model.isTakingTurn());
         rollDice.setEnabled(!model.getDiceRolledStatus() && model.isTakingTurn());
+        ownedProperties.setEnabled(model.isTakingTurn());
         if(Game.getSquare(model.getPosition()) instanceof Property) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
         } else {buyProperty.setEnabled(false);}
