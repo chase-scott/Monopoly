@@ -29,39 +29,45 @@ public class GameBoard {
         squares[1] = new Property("Mediterranean Avenue", 60, Colours.BROWN);
         squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);
 
-        squares[3] = new Property("Oriental Avenue", 100, Colours.TEAL);
-        squares[4] = new Property("Vermont Avenue", 100, Colours.TEAL);
-        squares[5] = new Property("Connecticut Avenue", 120, Colours.TEAL);
+        squares[3] = new Go("RAILROAD/UTILITY");
 
-        squares[6] = new Property("St. Charles Place", 140, Colours.PINK);
-        squares[7] = new Property("States Avenue", 140, Colours.PINK);
-        squares[8] = new Property("Virginia Avenue", 160, Colours.PINK);
+        squares[4] = new Property("Oriental Avenue", 100, Colours.TEAL);
+        squares[5] = new Property("Vermont Avenue", 100, Colours.TEAL);
+        squares[6] = new Property("Connecticut Avenue", 120, Colours.TEAL);
 
-        squares[9] = new Property("St. James Place", 180, Colours.ORANGE);
-        squares[10] = new Property("Tennessee Avenue", 180, Colours.ORANGE);
-        squares[11] = new Property("New York Avenue", 200, Colours.ORANGE);
+        squares[7] = new Go("JAIL");
 
-        squares[12] = new Property("Kentucky Avenue", 220, Colours.RED);
-        squares[13] = new Property("Indiana Avenue", 220, Colours.RED);
-        squares[14] = new Property("Illinois Avenue", 240, Colours.RED);
+        squares[8] = new Property("St. Charles Place", 140, Colours.PINK);
+        squares[9] = new Property("States Avenue", 140, Colours.PINK);
+        squares[10] = new Property("Virginia Avenue", 160, Colours.PINK);
 
-        squares[15] = new Property("Atlantic Avenue", 260, Colours.YELLOW);
-        squares[16] = new Property("Ventnor Avenue", 260, Colours.YELLOW);
-        squares[17] = new Property("Marvin Gardens", 280, Colours.YELLOW);
+        squares[11] = new Go("RAILROAD/UTILITY");
+        //squares[11] = new Property("St. James Place", 180, Colours.ORANGE);
+        squares[12] = new Property("Tennessee Avenue", 180, Colours.ORANGE);
+        squares[13] = new Property("New York Avenue", 200, Colours.ORANGE);
 
-        squares[18] = new Property("Pacific Avenue", 300, Colours.GREEN);
-        squares[19] = new Property("North Carolina Avenue", 300, Colours.GREEN);
-        squares[20] = new Property("Pennsylvania Avenue", 320, Colours.GREEN);
+        squares[14] = new Go("FREE PARKING");
 
-        squares[21] = new Property("Park Place", 350, Colours.BLUE);
-        squares[22] = new Property("Boardwalk", 400, Colours.BLUE);
+        squares[15] = new Property("Kentucky Avenue", 220, Colours.RED);
+        squares[16] = new Property("Indiana Avenue", 220, Colours.RED);
+        //squares[17] = new Property("Illinois Avenue", 240, Colours.RED);
+        squares[17] = new Go("RAILROAD/UTILITY");
 
-        //These are all temp until other square types are added
-        squares[23] = new Go("EMPTY SQUARE");
-        squares[24] = new Go("EMPTY SQUARE");
-        squares[25] = new Go("EMPTY SQUARE");
-        squares[26] = new Go("EMPTY SQUARE");
-        squares[27] = new Go("EMPTY SQUARE");
+        squares[18] = new Property("Atlantic Avenue", 260, Colours.YELLOW);
+        squares[19] = new Property("Ventnor Avenue", 260, Colours.YELLOW);
+        squares[20] = new Property("Marvin Gardens", 280, Colours.YELLOW);
+
+        squares[21] = new Go("GO TO JAIL");
+
+        squares[22] = new Property("Pacific Avenue", 300, Colours.GREEN);
+        squares[23] = new Property("North Carolina Ave.", 300, Colours.GREEN);
+        squares[24] = new Property("Pennsylvania Ave.", 320, Colours.GREEN);
+
+        squares[25] = new Go("RAILROAD/UTILITY");
+
+        squares[26] = new Property("Park Place", 350, Colours.BLUE);
+        squares[27] = new Property("Boardwalk", 400, Colours.BLUE);
+
 
     }
 
