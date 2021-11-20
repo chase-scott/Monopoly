@@ -17,12 +17,14 @@ public abstract class Player {
     private final String name;              //the name of the players
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
-    private boolean takingTurn;             //indicates if this player is taking their turn
     private List<PlayerView> views;       //the views associated with this player
     private final Color tokenColour;        //this players token Colour
     private int position = 0;               //this players position
-    private static Dice dice = new Dice();  //this players dice
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
+
+    protected boolean takingTurn;             //indicates if this player is taking their turn
+    protected static Dice dice = new Dice();  //this players dice
+
 
     /**
      * Constructor for a player
@@ -151,9 +153,15 @@ public abstract class Player {
     public void buildHouse(int selectedIndex) {
 
         if(selectedIndex > -1) {
+            //check if player has enough money
+            if(money < propertyList.get(selectedIndex).getHousePrice()) {
+                JOptionPane.showMessageDialog(null, "You can not afford to build here!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             //make sure player is building houses symmetrically
             for(Property p : propertyList) {
-                if(propertyList.get(selectedIndex).getNumHouses() > p.getNumHouses()) {
+                if(propertyList.get(selectedIndex).getNumHouses() > p.getNumHouses() && propertyList.get(selectedIndex).getColour() == p.getColour()) {
                     JOptionPane.showMessageDialog(null, "You must build houses symmetrically!", "Warning",
                             JOptionPane.WARNING_MESSAGE);
                     return;

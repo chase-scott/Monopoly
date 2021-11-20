@@ -170,7 +170,7 @@ public class PlayerView extends JPanel implements MonopolyView {
     private class BuildHouseController implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
-            model.buildHouse(ownedProperties.getSelectedIndex());
+            ((HumanPlayer)model).buildHouse(ownedProperties.getSelectedIndex());
         }
         @Override
         public void mousePressed(MouseEvent e) {}

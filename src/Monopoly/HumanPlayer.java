@@ -3,6 +3,9 @@ package Monopoly;
 import java.awt.*;
 
 public class HumanPlayer extends Player {
+
+    private static Dice dice = new Dice();  //this players dice
+
     /**
      * Constructor for a human player
      *
