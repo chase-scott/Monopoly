@@ -1,9 +1,6 @@
 package Test;
 
-import Monopoly.Colours;
-import Monopoly.Player;
-import Monopoly.Property;
-import Monopoly.Square;
+import Monopoly.*;
 import org.junit.Test;
 import java.awt.*;
 import java.util.ArrayList;
@@ -18,7 +15,7 @@ public class SquareTest {
 
     Square square = new Property("Mediterranean Avenue", 60, Colours.ORANGE);
     ArrayList<Player> playersList = new ArrayList<>();
-    Player player = new Player("Sethster999", Color.ORANGE);
+    Player player = new HumanPlayer("Sethster999", Color.ORANGE);
 
     @Test
     public void getName() {

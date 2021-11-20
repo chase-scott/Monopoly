@@ -8,11 +8,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * Monopoly.Player class
+ * Player class
  * @author Chase Scott 101092194
  * @author Amith Kumar Das Orko 101126245
  */
-public class Player {
+public abstract class Player {
 
     private final String name;              //the name of the players
     private double money;                   //the player's money
@@ -27,7 +27,8 @@ public class Player {
     /**
      * Constructor for a player
      *
-     * @param name  String, the name of the player
+     * @param name      String, the name of the player
+     * @param colour    Color, the colour of the player
      */
     public Player(String name, Color colour) {
         this.name = name;
@@ -37,7 +38,6 @@ public class Player {
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
         Game.getSquare(0).addPlayer(this);
-
     }
 
     public String getName() {

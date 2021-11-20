@@ -1,6 +1,7 @@
 package GUI;
 
 import Monopoly.Game;
+import Monopoly.HumanPlayer;
 import Monopoly.Player;
 import Monopoly.Property;
 import javax.swing.*;
@@ -81,22 +82,24 @@ public class PlayerView extends JPanel implements MonopolyView {
         c.gridy = 1;
         this.add(propertyScrollList, c);
 
-        c.gridwidth = 1;
-        c.weighty = 0;
-        c.weightx = 0.3;
-        c.gridx = 0;
-        c.gridy = 2;
-        this.add(this.rollDice, c);
+        if(model instanceof HumanPlayer) {
+            c.gridwidth = 1;
+            c.weighty = 0;
+            c.weightx = 0.3;
+            c.gridx = 0;
+            c.gridy = 2;
+            this.add(this.rollDice, c);
 
-        c.weightx = 0.3;
-        c.gridx = 1;
-        c.gridy = 2;
-        this.add(this.buyProperty, c);
+            c.weightx = 0.3;
+            c.gridx = 1;
+            c.gridy = 2;
+            this.add(this.buyProperty, c);
 
-        c.weightx = 0.3;
-        c.gridx = 2;
-        c.gridy = 2;
-        this.add(this.passTurn, c);
+            c.weightx = 0.3;
+            c.gridx = 2;
+            c.gridy = 2;
+            this.add(this.passTurn, c);
+        }
     }
 
     /**

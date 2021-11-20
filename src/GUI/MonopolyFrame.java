@@ -59,13 +59,13 @@ public class MonopolyFrame extends JFrame {
         for (int i = 0, j = 1; i < numPlayers; i++, j+=2) {
             if(inputs[j] instanceof JTextField) {
                 if(((JTextField) inputs[j]).getText().isEmpty()) {
-                    players[i] = new Player("Player " + (counter + 1), PLAYER_COLOURS[i]);
+                    players[i] = new ComputerPlayer("Computer Player " + (counter + 1), PLAYER_COLOURS[i]);
+                    counter++;
                 } else {
-                    players[i] = new Player(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i]);
+                    players[i] = new HumanPlayer(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i]);
                 }
 
             }
-            counter++;
         }
 
         return players;

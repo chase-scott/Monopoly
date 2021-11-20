@@ -1,5 +1,6 @@
 package Test;
 
+import Monopoly.HumanPlayer;
 import Monopoly.Player;
 import Monopoly.Property;
 import org.junit.FixMethodOrder;
@@ -23,34 +24,34 @@ public class PlayerTest {
 
     @Test
     public void getName() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         assertEquals("Sethy", player.getName());
         assertNotEquals("Colton", player.getName());
     }
 
     @Test
     public void getMoney() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         assertEquals(1500, player.getMoney(),0.2);
 
     }
 
     @Test
     public void getTokenColour() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         assertEquals(Color.BLUE, player.getTokenColour());
     }
 
     @Test
     public void getPosition() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         assertEquals(0, player.getPosition());
 
     }
 
     @Test
     public void aGetDiceRolledStatus() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         assertFalse(player.getDiceRolledStatus());
 
         player.rollDice();
@@ -60,7 +61,7 @@ public class PlayerTest {
 
     @Test
     public void getBankruptcyStatus() {  //*****Tests the method becomeBankrupt also
-        Player player = new Player("Sethy", Color.RED);
+        Player player = new HumanPlayer("Sethy", Color.RED);
         assertFalse(player.getBankruptcyStatus());
 
         player.becomeBankrupt();
@@ -69,7 +70,7 @@ public class PlayerTest {
 
     @Test
     public void getPropertyList() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         Vector<String> property = new Vector<>();
         assertEquals(property, player.getPropertyList());     /*Compares to another ArrayList of Property type that is empty
                                     to ensure  that they are equivalent
@@ -78,7 +79,7 @@ public class PlayerTest {
 
     @Test
     public void setMoney() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         player.setMoney(123);
         assertEquals(123, player.getMoney(), 0.1);
     }
@@ -86,14 +87,14 @@ public class PlayerTest {
 
     @Test
     public void rollDice() {
-        Player player = new Player("Sethy", Color.BLUE);
+        Player player = new HumanPlayer("Sethy", Color.BLUE);
         player.rollDice();
         assertTrue(player.getDiceRolledStatus());
     }
 
     @Test
     public void buySquare() {
-        Player player1 = new Player("Sethy", Color.BLUE);
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
         player1.rollDice();
         player1.buySquare();
         assertNotNull(player1.getPropertyList());   //Tests that the Property List is not empty
