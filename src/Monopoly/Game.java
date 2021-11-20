@@ -39,7 +39,7 @@ public class Game {
 
         while(true) {
             turnNumber++;
-            if(players[turnNumber % players.length].getBankruptcyStatus()) {turnNumber++; continue;}
+            if(players[turnNumber % players.length].getBankruptcyStatus()) {continue;}
             players[turnNumber % players.length].makeMove();
 
             //CHECK WIN STATE

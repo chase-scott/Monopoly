@@ -16,6 +16,7 @@ public class Property extends Square {
     private Player ownedBy = null;
     private final Color colour;
 
+    private final double housePrice;
     private int builtHouses; //TEST
 
     /**
@@ -30,6 +31,8 @@ public class Property extends Square {
         this.price = price;
         this.rentRate = colour.getRentRate();
         this.colour = colour.getColour();
+
+        this.housePrice = colour.getHousePrice();
         this.builtHouses = 0;
     }
 
@@ -67,9 +70,10 @@ public class Property extends Square {
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
-            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + rentRate * price + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
 
-            double amountOwed = rentRate * price;
+            double amountOwed = rentRate * price * (builtHouses/2.0 + 1);
+
+            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
@@ -85,14 +89,36 @@ public class Property extends Square {
 
     /**
      * Add a house to this property
-     * TODO add game logic to this, increase rent of property etc.
      */
-    public void addHouse() {
+    public void addHouse(Player player) {
+        //check that player owns colour set
+        for(int i = 0; i < GameBoard.BOARD_SIZE; i++) {
+            if(Game.getSquare(i) instanceof Property) {
+                if(((Property) Game.getSquare(i)).getOwner() != player && Game.getSquare(i).getColour() == this.colour) {
+                       System.out.println("MISSING A PROPERTY IN THIS SET");
+                       return;
+                }
+            }
+        }
+
         if (builtHouses < 4) {
+            player.setMoney(player.getMoney() - housePrice);
+            player.updateViews();
+
             this.builtHouses += 1;
             updateViews();
+
             JOptionPane.showMessageDialog(null, "Built house on " + this.getName());
         }
+    }
+
+    /**
+     * clears this property of the player who owns it
+     */
+    public void clear() {
+        ownedBy = null;
+        builtHouses = 0;
+        updateViews();
     }
 
     /**
@@ -108,7 +134,7 @@ public class Property extends Square {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nRent: $").append(rentRate * price).append("\nOwned by: ");
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nRent: $").append(rentRate * price * (builtHouses/2.0 + 1)).append("\nOwned by: ");
         if(ownedBy == null) {
             sb.append("Nobody");
         } else{

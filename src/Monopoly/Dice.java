@@ -30,7 +30,8 @@ public class Dice {
 
         if(dice[0] != dice[1]) rolled = true;
 
-       return (dice[0] + dice[1]);
+       //return (dice[0] + dice[1]);
+        return 1;
     }
 
     public boolean isRolled() {return rolled;}

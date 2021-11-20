@@ -69,9 +69,4 @@ public abstract class Square {
         players.remove(player);
     }
 
-
-
-
-
-
 }
