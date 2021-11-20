@@ -69,8 +69,10 @@ public class SquareView extends JPanel implements MonopolyView {
         //paint players here
         ArrayList<Player> playersHere = this.model.getPlayers();
         for (int i = 0; i < playersHere.size(); i++) {
-            g.setColor(playersHere.get(i).getTokenColour());
-            g.fillOval(i * 20, 0, 20, 20);
+            if(!playersHere.get(i).getBankruptcyStatus()) {
+                g.setColor(playersHere.get(i).getTokenColour());
+                g.fillOval(i * 20, 0, 20, 20);
+            }
         }
 
         //paint houses built

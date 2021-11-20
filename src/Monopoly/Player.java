@@ -78,7 +78,7 @@ public class Player {
      */
     public void becomeBankrupt() {
         for (Property p : propertyList) {
-            p.setOwner(null);
+            p.clear();
         }
         JOptionPane.showMessageDialog(null, name + " has gone bankrupt! :(", "Bankrupt", JOptionPane.INFORMATION_MESSAGE);
         this.isBankrupt = true;
@@ -139,7 +139,6 @@ public class Player {
         //System.out.println(name + " has just bought " + propertyToBuy.getName());
         money -= propertyToBuy.getPrice();
 
-
         propertyList.add(propertyToBuy);
         propertyToBuy.setOwner(this);
 
@@ -152,7 +151,7 @@ public class Player {
      * @param selectedIndex int, the index of the property selected
      */
     public void buildHouse(int selectedIndex) {
-        propertyList.get(selectedIndex).addHouse();
+        if(selectedIndex > -1) propertyList.get(selectedIndex).addHouse(this);
     }
 
     /**
