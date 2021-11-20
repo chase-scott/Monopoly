@@ -11,6 +11,7 @@ public class Dice {
 
     private int[] dice;     //the game dice
     private boolean rolled; //whether the dice has been rolled this turn
+    boolean isdouble=true;
 
     public Dice() {
         this.dice = new int[2];
@@ -29,10 +30,14 @@ public class Dice {
         JOptionPane.showMessageDialog(null, "Rolled a " + dice[0] + " and " + dice[1], "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
         if(dice[0] != dice[1]) rolled = true;
+        if(dice[0]==dice[1]){
+            isdouble=true;
+        }else{isdouble=false;}
 
        return (dice[0] + dice[1]);
     }
 
+    public boolean isIsdouble(){return isdouble;}
     public boolean isRolled() {return rolled;}
 
     public void setRolled(boolean isRolled) {this.rolled = isRolled;}

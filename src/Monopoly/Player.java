@@ -14,6 +14,9 @@ import java.util.stream.Collectors;
  */
 public class Player {
 
+    private int jailCount = 0;
+    private boolean inJail = false;
+    private int BAIL_PRICE=50;
     private final String name;              //the name of the players
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
@@ -108,6 +111,16 @@ public class Player {
     }
 
     public void rollDice() {
+        if (inJail){
+            if(dice.isIsdouble()){
+                inJail = false;
+                Game.getSquare(position).removePlayer(this);
+                Game.getSquare(position).updateViews();
+                position = position + dice.roll();
+            }else {
+                jailCount--;
+            }
+        }
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
         position = position + dice.roll();
@@ -165,6 +178,30 @@ public class Player {
      */
     public synchronized void passTurn() {
         this.notify();
+    }
+
+    public void goToJail()
+    {
+        inJail = true;
+        jailCount = 3;
+        position=10;
+        Game.getSquare(position).updateViews();
+    }
+
+    public boolean isInJail(){
+        jailCount--;
+        if (jailCount < 0){
+            inJail = false;
+        }
+
+        return inJail;
+    }
+    public boolean getOutOfJail(){
+        if (money < BAIL_PRICE)
+            return false;
+        money -= 50;
+        this.inJail = false;
+        return true;
     }
 
 }
