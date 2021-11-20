@@ -9,14 +9,14 @@ public class Utilities extends Square{
      * @param name String, the name of the square
      */
     private final int  price = 150;
-    private static Dice dice = new Dice();
     private int amountOwed;
     GameBoard gameBoard= new GameBoard();
     private Player ownedBy = null;
-    public Utilities(String name, Dice dice,GameBoard gameBoard) {
+
+
+    public Utilities(String name,GameBoard gameBoard) {
         super(name);
         this.gameBoard=gameBoard;
-        this.dice=dice;
     }
 
     public Player getOwner() {
@@ -32,7 +32,7 @@ public class Utilities extends Square{
     @Override
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
-            int playerRoll = dice.roll();
+            int playerRoll = player.getDiceVal();
             Square u1 = gameBoard.getSquare(3);
             Square u2 = gameBoard.getSquare(17);
             if(((Utilities)u1).getOwner()==ownedBy && ((Utilities)u2).getOwner()==ownedBy ){

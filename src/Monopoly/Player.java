@@ -17,6 +17,7 @@ public class Player {
     private int jailCount = 0;
     private boolean inJail = false;
     private int BAIL_PRICE=50;
+    private int diceVal=0;
     private final String name;              //the name of the players
     private double money;                   //the player's money
     private List<Property> propertyList;    //the list of properties owned by the player
@@ -45,6 +46,9 @@ public class Player {
 
     public String getName() {
         return name;
+    }
+    public int getDiceVal() {
+        return diceVal;
     }
 
     public double getMoney() {
@@ -117,20 +121,23 @@ public class Player {
                 inJail = false;
                 Game.getSquare(position).removePlayer(this);
                 Game.getSquare(position).updateViews();
-                position = position + dice.roll();
+                diceVal=dice.roll();
+                position = position + diceVal;
             }else {
                 jailCount--;
                 if(jailCount==0){
                     inJail = false;
                     Game.getSquare(position).removePlayer(this);
                     Game.getSquare(position).updateViews();
-                    position = position + dice.roll();
+                    diceVal=dice.roll();
+                    position = position + diceVal;
                 }
             }
         }
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
-        position = position + dice.roll();
+        diceVal=dice.roll();
+        position = position + diceVal;
         if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = position % GameBoard.BOARD_SIZE;
         //System.out.println(name + " is on tile " + Game.getSquare(position).getName() + "\n");
