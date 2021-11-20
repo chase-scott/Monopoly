@@ -106,7 +106,8 @@ public class Property extends Square {
                 }
         }
         if (builtHouses < 5) {
-            int result = JOptionPane.showConfirmDialog(null, "DO YOU WANT BUY??", "Buy House", JOptionPane.YES_NO_OPTION);
+            int result = JOptionPane.showConfirmDialog(null, "Place a house on " + getName() +
+                    " for $" + housePrice + "?", "Buy House", JOptionPane.YES_NO_OPTION);
             if(result == JOptionPane.YES_OPTION) {
                 player.setMoney(player.getMoney() - housePrice);
                 player.updateViews();
