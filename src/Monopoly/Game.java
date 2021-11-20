@@ -64,7 +64,7 @@ public class Game {
      * Get the square at location i in the gameboard
      *
      * @param i int, location on the board
-     * @return  Sqaure, the square
+     * @return  Square, the square
      */
     public static Square getSquare(int i) {
         return gameBoard.getSquare(i);

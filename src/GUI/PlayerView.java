@@ -4,9 +4,13 @@ import Monopoly.Game;
 import Monopoly.Player;
 import Monopoly.Property;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @version 1.0
@@ -36,6 +40,7 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.passTurn.addActionListener(new PassTurnController());
         this.buyProperty.addActionListener(new BuyPropertyController());
         this.rollDice.addActionListener(new RollDiceController());
+        this.ownedProperties.addMouseListener(new BuildHouseController());
 
         this.model.addMonopolyView(this);
     }
@@ -53,8 +58,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.passTurn.setFont(font);
         this.rollDice.setFont(font);
         this.ownedProperties.setFont(font);
-
         this.ownedProperties.setVisible(true);
+        this.ownedProperties.setSelectionMode(0);
+
         JScrollPane propertyScrollList = new JScrollPane(this.ownedProperties);
         propertyScrollList.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         propertyScrollList.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -155,6 +161,27 @@ public class PlayerView extends JPanel implements MonopolyView {
             model.buySquare();
         }
     }
+
+    /**
+     * BuildHouseController class
+     */
+    private class BuildHouseController implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            model.buildHouse(ownedProperties.getSelectedIndex());
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {}
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
+    }
+
+
+
 
 
 }

@@ -74,8 +74,8 @@ public class SquareView extends JPanel implements MonopolyView {
         }
 
         //paint houses built
-        for (int i = 0; i < Math.random()*4; i++) {
-            if (model instanceof Property) {
+        if (model instanceof Property) {
+            for (int i = 0; i < ((Property) model).getNumHouses() ; i++) {
                 //black outline
                 g.setColor(Color.BLACK);
                 g.fillRect(2 + (i * 25), this.getHeight() - 15, 22, 11);

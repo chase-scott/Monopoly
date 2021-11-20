@@ -16,6 +16,8 @@ public class Property extends Square {
     private Player ownedBy = null;
     private final Color colour;
 
+    private int builtHouses; //TEST
+
     /**
      * Constructor for initializing a property square
      *
@@ -28,6 +30,7 @@ public class Property extends Square {
         this.price = price;
         this.rentRate = colour.getRentRate();
         this.colour = colour.getColour();
+        this.builtHouses = 0;
     }
 
     public int getPrice(){
@@ -38,7 +41,6 @@ public class Property extends Square {
     public Color getColour(){
         return colour;
     }
-
 
     public Player getOwner() {
         return ownedBy;
@@ -80,6 +82,28 @@ public class Property extends Square {
             ownedBy.updateViews();
         }
     }
+
+    /**
+     * Add a house to this property
+     * TODO add game logic to this, increase rent of property etc.
+     */
+    public void addHouse() {
+        if (builtHouses < 4) {
+            this.builtHouses += 1;
+            updateViews();
+            JOptionPane.showMessageDialog(null, "Built house on " + this.getName());
+        }
+    }
+
+    /**
+     * Get the number of built houses on this property
+     *
+     * @return
+     */
+    public int getNumHouses() {
+        return builtHouses;
+    }
+
 
     @Override
     public String toString() {

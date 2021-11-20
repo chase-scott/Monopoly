@@ -25,6 +25,8 @@ public class Player {
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
 
 
+
+
     /**
      * Constructor for a player
      *
@@ -38,6 +40,7 @@ public class Player {
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
         Game.getSquare(0).addPlayer(this);
+
     }
 
     public String getName() {
@@ -142,6 +145,14 @@ public class Player {
 
         updateViews();
         Game.getSquare(position).updateViews();
+    }
+
+    /**
+     * Builds a house on the currently selected square
+     * @param selectedIndex int, the index of the property selected
+     */
+    public void buildHouse(int selectedIndex) {
+        propertyList.get(selectedIndex).addHouse();
     }
 
     /**
