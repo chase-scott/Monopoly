@@ -33,8 +33,8 @@ public class Utilities extends Square{
     public void squareAction(Player player) {
         if(ownedBy != null && ownedBy != player) {
             int playerRoll = dice.roll();
-            Square u1 = gameBoard.getSquare(12);
-            Square u2 = gameBoard.getSquare(22);
+            Square u1 = gameBoard.getSquare(3);
+            Square u2 = gameBoard.getSquare(17);
             if(((Utilities)u1).getOwner()==ownedBy && ((Utilities)u2).getOwner()==ownedBy ){
                 amountOwed=10*playerRoll;
             }else{

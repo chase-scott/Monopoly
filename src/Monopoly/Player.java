@@ -111,6 +111,7 @@ public class Player {
     }
 
     public void rollDice() {
+        jailCount=3;
         if (inJail){
             if(dice.isIsdouble()){
                 inJail = false;
@@ -119,6 +120,12 @@ public class Player {
                 position = position + dice.roll();
             }else {
                 jailCount--;
+                if(jailCount==0){
+                    inJail = false;
+                    Game.getSquare(position).removePlayer(this);
+                    Game.getSquare(position).updateViews();
+                    position = position + dice.roll();
+                }
             }
         }
         Game.getSquare(position).removePlayer(this);
@@ -189,15 +196,10 @@ public class Player {
     }
 
     public boolean isInJail(){
-        jailCount--;
-        if (jailCount < 0){
-            inJail = false;
-        }
-
         return inJail;
     }
-    public boolean getOutOfJail(){
-        if (money < BAIL_PRICE)
+    public boolean getOutOfJail(){//needs a button that is visible if inJail
+        if (money < BAIL_PRICE && inJail)
             return false;
         money -= 50;
         this.inJail = false;

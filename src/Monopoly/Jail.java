@@ -21,7 +21,9 @@ public class Jail extends Square {
     @Override
     public void squareAction(Player player) {
         if (player.isInJail()) {
-            //return new GetOutOfJailOption(player);
+            if(player.getOutOfJail()){
+                //nothing happens ig this is pointless
+            }
         }
     }
 
