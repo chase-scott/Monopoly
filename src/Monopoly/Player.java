@@ -149,12 +149,11 @@ public class Player {
      * @param selectedIndex int, the index of the property selected
      */
     public void buildHouse(int selectedIndex) {
+
         if(selectedIndex > -1) {
-
-
             //make sure player is building houses symmetrically
             for(Property p : propertyList) {
-                if(propertyList.get(selectedIndex).getBuiltHouses() > p.getBuiltHouses()) {
+                if(propertyList.get(selectedIndex).getNumHouses() > p.getNumHouses()) {
                     JOptionPane.showMessageDialog(null, "You must build houses symmetrically!", "Warning",
                             JOptionPane.WARNING_MESSAGE);
                     return;

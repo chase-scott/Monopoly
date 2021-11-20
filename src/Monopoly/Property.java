@@ -40,9 +40,11 @@ public class Property extends Square {
         return (int)price;
     }
 
-    public int getBuiltHouses() {return builtHouses; }
-
     public double getHousePrice() {return housePrice;}
+
+    public int getNumHouses() {
+        return builtHouses;
+    }
 
     @Override
     public Color getColour(){
@@ -99,16 +101,18 @@ public class Property extends Square {
         for(int i = 0; i < GameBoard.BOARD_SIZE; i++) {
             if(!(Game.getSquare(i) instanceof Property)) continue;
                 if(((Property) Game.getSquare(i)).getOwner() != player && Game.getSquare(i).getColour() == this.colour) {
-                       System.out.println("MISSING A PROPERTY IN THIS SET");
+                       //System.out.println("MISSING A PROPERTY IN THIS SET");
                        return;
                 }
         }
         if (builtHouses < 5) {
-            player.setMoney(player.getMoney() - housePrice);
-            player.updateViews();
-
-            this.builtHouses += 1;
-            updateViews();
+            int result = JOptionPane.showConfirmDialog(null, "DO YOU WANT BUY??", "Buy House", JOptionPane.YES_NO_OPTION);
+            if(result == JOptionPane.YES_OPTION) {
+                player.setMoney(player.getMoney() - housePrice);
+                player.updateViews();
+                this.builtHouses += 1;
+                updateViews();
+            }
         }
     }
 
@@ -120,16 +124,6 @@ public class Property extends Square {
         builtHouses = 0;
         updateViews();
     }
-
-    /**
-     * Get the number of built houses on this property
-     *
-     * @return
-     */
-    public int getNumHouses() {
-        return builtHouses;
-    }
-
 
     @Override
     public String toString() {
