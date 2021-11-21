@@ -17,7 +17,7 @@ public class Property extends Square {
     private final Color colour;
 
     private final double housePrice;
-    private int builtHouses; //TEST
+    private int builtHouses;
 
     /**
      * Constructor for initializing a property square

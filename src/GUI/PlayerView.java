@@ -1,12 +1,8 @@
 package GUI;
 
-import Monopoly.Game;
-import Monopoly.HumanPlayer;
-import Monopoly.Player;
-import Monopoly.Property;
+import Monopoly.*;
+
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -129,9 +125,14 @@ public class PlayerView extends JPanel implements MonopolyView {
         passTurn.setEnabled(model.getDiceRolledStatus() && model.isTakingTurn());
         rollDice.setEnabled(!model.getDiceRolledStatus() && model.isTakingTurn());
         ownedProperties.setEnabled(model.isTakingTurn());
+
+
         if(Game.getSquare(model.getPosition()) instanceof Property) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
-        } else {buyProperty.setEnabled(false);}
+        } else if (Game.getSquare(model.getPosition()) instanceof Utility) {
+            buyProperty.setEnabled(model.isTakingTurn() && ((Utility) Game.getSquare(model.getPosition())).checkIfAvailable());
+        }
+        else {buyProperty.setEnabled(false);}
     }
 
     /**
@@ -170,7 +171,7 @@ public class PlayerView extends JPanel implements MonopolyView {
     private class BuildHouseController implements MouseListener {
         @Override
         public void mouseClicked(MouseEvent e) {
-            ((HumanPlayer)model).buildHouse(ownedProperties.getSelectedIndex());
+            model.buildHouse(ownedProperties.getSelectedIndex());
         }
         @Override
         public void mousePressed(MouseEvent e) {}

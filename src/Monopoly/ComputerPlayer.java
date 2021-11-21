@@ -18,7 +18,10 @@ public class ComputerPlayer extends Player {
      * Buys the square that the player is on if it is a property square.
      */
     public void buySquare() {
-        if(Game.getSquare(getPosition()) instanceof Property) super.buySquare();
+        if(Game.getSquare(getPosition()) instanceof Property) {
+            if (((Property) Game.getSquare(getPosition())).checkIfAvailable())
+                super.buySquare();
+        }
     }
 
     @Override

@@ -29,7 +29,7 @@ public class GameBoard {
         squares[1] = new Property("Mediterranean Ave.", 60, Colours.BROWN);
         squares[2] = new Property("Baltic Avenue", 60, Colours.BROWN);
 
-        squares[3] = new Go("RAILROAD/UTILITY");
+        squares[3] = new Utility("RAILROAD");
 
         squares[4] = new Property("Oriental Avenue", 100, Colours.TEAL);
         squares[5] = new Property("Vermont Avenue", 100, Colours.TEAL);
@@ -41,7 +41,7 @@ public class GameBoard {
         squares[9] = new Property("States Avenue", 140, Colours.PINK);
         squares[10] = new Property("Virginia Avenue", 160, Colours.PINK);
 
-        squares[11] = new Go("RAILROAD/UTILITY");
+        squares[11] = new Utility("Electric Company");
         //squares[11] = new Property("St. James Place", 180, Colours.ORANGE);
         squares[12] = new Property("Tennessee Avenue", 180, Colours.ORANGE);
         squares[13] = new Property("New York Avenue", 200, Colours.ORANGE);
@@ -51,7 +51,7 @@ public class GameBoard {
         squares[15] = new Property("Kentucky Avenue", 220, Colours.RED);
         squares[16] = new Property("Indiana Avenue", 220, Colours.RED);
         //squares[17] = new Property("Illinois Avenue", 240, Colours.RED);
-        squares[17] = new Go("RAILROAD/UTILITY");
+        squares[17] = new Utility("RAILROAD");
 
         squares[18] = new Property("Atlantic Avenue", 260, Colours.YELLOW);
         squares[19] = new Property("Ventnor Avenue", 260, Colours.YELLOW);
@@ -63,7 +63,7 @@ public class GameBoard {
         squares[23] = new Property("North Carolina Ave.", 300, Colours.GREEN);
         squares[24] = new Property("Pennsylvania Ave.", 320, Colours.GREEN);
 
-        squares[25] = new Go("RAILROAD/UTILITY");
+        squares[25] = new Utility("Water Works");
 
         squares[26] = new Property("Park Place", 350, Colours.BLUE);
         squares[27] = new Property("Boardwalk", 400, Colours.BLUE);
