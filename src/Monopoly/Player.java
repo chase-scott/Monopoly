@@ -117,15 +117,15 @@ public class Player {
     public void rollDice() {
         jailCount=3;
         if (inJail){
-            if(dice.isIsdouble()){
-                inJail = false;
+            if(dice.isIsdouble()){        //is double is rolled get out of jail
+                setJail(false);
                 Game.getSquare(position).removePlayer(this);
                 Game.getSquare(position).updateViews();
                 diceVal=dice.roll();
                 position = position + diceVal;
             }else {
                 jailCount--;
-                if(jailCount==0){
+                if(jailCount==0){              //after three turns get out of jail
                     inJail = false;
                     Game.getSquare(position).removePlayer(this);
                     Game.getSquare(position).updateViews();
@@ -170,6 +170,38 @@ public class Player {
         updateViews();
         Game.getSquare(position).updateViews();
     }
+    /**
+     * Buys the square that the player is on if it is a utilities square.
+     */
+    public void buyUtility(){
+        Utilities utilityToBuy = (Utilities) Game.getSquare(position);
+        int utilityPrice=150;
+        if(money < utilityPrice) {
+            JOptionPane.showMessageDialog(null, "You can not afford this utility!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        money-=150;
+        utilityToBuy.setOwner(this);
+        updateViews();
+        Game.getSquare(position).updateViews();
+    }
+    /**
+     * Buys the square that the player is on if it is a rail square.
+     */
+    public void buyRail(){
+        Rail railToBuy = (Rail) Game.getSquare(position);
+        int railPrice=200;
+        if(money < railPrice) {
+            JOptionPane.showMessageDialog(null, "You can not afford this utility!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        money-=150;
+        railToBuy.setOwner(this);
+        updateViews();
+        Game.getSquare(position).updateViews();
+    }
 
     /**
      * Informs the game class that this player is taking their turn, resumes when player clicks pass turn.
@@ -194,6 +226,9 @@ public class Player {
         this.notify();
     }
 
+    /**
+     * sends player to Jail square
+     */
     public void goToJail()
     {
         inJail = true;
@@ -202,15 +237,28 @@ public class Player {
         Game.getSquare(position).updateViews();
     }
 
+    /**
+     * check if player is still in jail
+     *
+     * @return boolean, true if player is in jail
+     */
     public boolean isInJail(){
         return inJail;
     }
-    public boolean getOutOfJail(){//needs a button that is visible if inJail
-        if (money < BAIL_PRICE && inJail)
-            return false;
-        money -= 50;
-        this.inJail = false;
-        return true;
-    }
 
+    public void setJail(boolean b){
+        this.inJail=b;
+    }
+    /**
+     *player pays a $50 fine to get out of jail
+     *
+     * @returns boolean, true if player pays
+     */
+    public boolean payOutOfJail(){
+        if (money > BAIL_PRICE && inJail) {
+            money -= BAIL_PRICE;
+            setJail(false);
+            return true;
+        }return false;
+    }
 }

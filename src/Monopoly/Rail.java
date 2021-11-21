@@ -6,9 +6,10 @@ import java.util.ArrayList;
 public class Rail extends Square{
 
     /**
-     * Super constructor for a square
-     *
-     * @param name String, the name of the square
+     * A Rail square
+     *Rent increases if opponent owns multiple railways
+     *  @author Chase Scott 101092194
+     *  @author Amith Kumar Das Orko 101126245
      */
     GameBoard gameBoard= new GameBoard();
     private final int  price = 200;
