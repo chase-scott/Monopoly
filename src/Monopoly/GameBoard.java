@@ -35,7 +35,7 @@ public class GameBoard {
         squares[5] = new Property("Vermont Avenue", 100, Colours.TEAL);
         squares[6] = new Property("Connecticut Avenue", 120, Colours.TEAL);
 
-        squares[7] = new Go("JAIL");
+        squares[7] = new Jail("JAIL");
 
         squares[8] = new Property("St. Charles Place", 140, Colours.PINK);
         squares[9] = new Property("States Avenue", 140, Colours.PINK);

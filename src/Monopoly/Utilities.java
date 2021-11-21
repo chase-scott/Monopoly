@@ -8,7 +8,7 @@ public class Utilities extends Square{
      *
      * @param name String, the name of the square
      */
-    private final int  price = 150;
+    private final int  price =150;
     private int amountOwed;
     GameBoard gameBoard= new GameBoard();
     private Player ownedBy = null;
