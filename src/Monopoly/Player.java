@@ -132,7 +132,22 @@ public abstract class Player {
     /**
      * Buys the square that the player is on if it is a property square.
      */
-    public abstract void buySquare();
+    public void buySquare() {
+        Property propertyToBuy = (Property) Game.getSquare(getPosition());
+
+        if (getMoney() < propertyToBuy.getPrice()) {
+            if(this instanceof HumanPlayer)
+            JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
+                    JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        setMoney(getMoney() - propertyToBuy.getPrice());
+        addProperty(propertyToBuy);
+        propertyToBuy.setOwner(this);
+
+        updateViews();
+        Game.getSquare(getPosition()).updateViews();
+    }
 
     /**
      * Builds a house on the currently selected square
@@ -143,6 +158,7 @@ public abstract class Player {
         if(selectedIndex > -1) {
             //check if player has enough money
             if(money < propertyList.get(selectedIndex).getHousePrice()) {
+                if(this instanceof HumanPlayer)
                 JOptionPane.showMessageDialog(null, "You can not afford to build here!", "Warning",
                     JOptionPane.WARNING_MESSAGE);
                 return;
@@ -150,6 +166,7 @@ public abstract class Player {
             //make sure player is building houses symmetrically
             for(Property p : propertyList) {
                 if(propertyList.get(selectedIndex).getNumHouses() > p.getNumHouses() && propertyList.get(selectedIndex).getColour() == p.getColour()) {
+                    if(this instanceof HumanPlayer)
                     JOptionPane.showMessageDialog(null, "You must build houses symmetrically!", "Warning",
                             JOptionPane.WARNING_MESSAGE);
                     return;
