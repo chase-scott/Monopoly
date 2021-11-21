@@ -1,5 +1,6 @@
 package Monopoly;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class ComputerPlayer extends Player {
@@ -14,19 +15,39 @@ public class ComputerPlayer extends Player {
         super(name, colour);
     }
 
+    /**
+     * Buys the square that the player is on if it is a property square.
+     */
+    public void buySquare() {
+        if(Game.getSquare(getPosition()) instanceof Property) {
+            Property propertyToBuy = (Property) Game.getSquare(getPosition());
+
+            if (getMoney() < propertyToBuy.getPrice()) {
+                return;
+            }
+            setMoney(getMoney() - propertyToBuy.getPrice());
+            addProperty(propertyToBuy);
+            propertyToBuy.setOwner(this);
+
+            updateViews();
+            Game.getSquare(getPosition()).updateViews();
+        }
+    }
+
+
+
     @Override
     public synchronized void makeMove() {
 
-        this.takingTurn = true;
-        super.rollDice();
+
+        rollDice();
 
         //TODO buy square landed on, must override buySquare()
+        buySquare();
 
         //TODO build houses if it can, must override buildHouse()
 
 
-        this.takingTurn = false;
-        dice.setRolled(false);
         updateViews();
     }
 

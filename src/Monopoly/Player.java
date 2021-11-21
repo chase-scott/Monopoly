@@ -23,7 +23,7 @@ public abstract class Player {
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
 
     protected boolean takingTurn;             //indicates if this player is taking their turn
-    protected static Dice dice = new Dice();  //this players dice
+    protected Dice dice = new Dice();  //this players dice
 
 
     /**
@@ -62,15 +62,25 @@ public abstract class Player {
         return position;
     }
 
-    public boolean getDiceRolledStatus() {
-        return dice.isRolled();
-    }
+    public boolean getDiceRolledStatus() {return dice.isRolled();}
 
     public boolean isTakingTurn() {
         return takingTurn;
     }
 
     public boolean getBankruptcyStatus() {return isBankrupt;}
+
+    public void addProperty(Square square) {
+        propertyList.add((Property)square);
+    }
+
+    /**
+     * Creates a vector of the names of each property in the property list
+     * @return  Vector<String>, vector of the names of properties
+     */
+    public Vector<String> getPropertyList() {
+        return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
+    }
 
     /**
      * Set's this player to bankrupt and relinquishes control of all their properties.
@@ -83,14 +93,6 @@ public abstract class Player {
         this.isBankrupt = true;
         propertyList.clear();
         passTurn();
-    }
-
-    /**
-     * Creates a vector of the names of each property in the property list
-     * @return  Vector<String>, vector of the names of properties
-     */
-    public Vector<String> getPropertyList() {
-        return propertyList.stream().map(Square::getName).collect(Collectors.toCollection(Vector::new));
     }
 
     /**
@@ -116,6 +118,7 @@ public abstract class Player {
     public void rollDice() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
+
         position = position + dice.roll();
         if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = position % GameBoard.BOARD_SIZE;
@@ -129,22 +132,7 @@ public abstract class Player {
     /**
      * Buys the square that the player is on if it is a property square.
      */
-    public void buySquare() {
-
-        Property propertyToBuy = (Property) Game.getSquare(position);
-
-        if(money < propertyToBuy.getPrice()) {
-            JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
-                    JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        money -= propertyToBuy.getPrice();
-        propertyList.add(propertyToBuy);
-        propertyToBuy.setOwner(this);
-
-        updateViews();
-        Game.getSquare(position).updateViews();
-    }
+    public abstract void buySquare();
 
     /**
      * Builds a house on the currently selected square
