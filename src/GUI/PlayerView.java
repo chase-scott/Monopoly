@@ -132,10 +132,7 @@ public class PlayerView extends JPanel implements MonopolyView {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
         } else if (Game.getSquare(model.getPosition()) instanceof Utility) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Utility) Game.getSquare(model.getPosition())).checkIfAvailable());
-        } else if(Game.getSquare(model.getPosition()) instanceof Railroad) {
-            buyProperty.setEnabled(model.isTakingTurn() && ((Railroad) Game.getSquare(model.getPosition())).checkIfAvailable());
-        }
-        else {buyProperty.setEnabled(false);}
+        } else {buyProperty.setEnabled(false);}
     }
 
     /**

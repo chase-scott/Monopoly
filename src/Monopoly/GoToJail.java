@@ -22,7 +22,6 @@ public class GoToJail extends Square {
 
     @Override
     public void clear() {
-
     }
 
     @Override
@@ -32,7 +31,6 @@ public class GoToJail extends Square {
 
     @Override
     public void setOwner(Player player) {
-
     }
 
     @Override

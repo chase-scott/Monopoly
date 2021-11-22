@@ -1,6 +1,5 @@
 package Monopoly;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ComputerPlayer extends Player {
@@ -16,11 +15,14 @@ public class ComputerPlayer extends Player {
     }
 
     /**
-     * Buys the square that the player is on if it is a property square.
+     * Buys the square that the player is on if it is a property or utility square.
      */
     public void buySquare() {
         if(Game.getSquare(getPosition()) instanceof Property) {
             if (((Property) Game.getSquare(getPosition())).checkIfAvailable())
+                super.buySquare();
+        } else if(Game.getSquare(getPosition()) instanceof Utility) {
+            if (((Utility) Game.getSquare(getPosition())).checkIfAvailable())
                 super.buySquare();
         }
     }
