@@ -123,8 +123,8 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.money.setText("$" + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
-        passTurn.setEnabled(model.getDiceRolledStatus() && model.isTakingTurn());
-        rollDice.setEnabled(!model.getDiceRolledStatus() && model.isTakingTurn());
+        passTurn.setEnabled(model.getDice().isRolled() && model.isTakingTurn());
+        rollDice.setEnabled(!model.getDice().isRolled() && model.isTakingTurn());
         ownedProperties.setEnabled(model.isTakingTurn());
 
 

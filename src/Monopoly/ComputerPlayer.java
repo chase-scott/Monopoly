@@ -40,6 +40,8 @@ public class ComputerPlayer extends Player {
         //build a house on a random property that this AI owns
         if(!getPropertyList().isEmpty()) super.buildHouse((int) (Math.random() * getPropertyList().size()));
         updateViews();
+
+        passTurn();
     }
 
 }

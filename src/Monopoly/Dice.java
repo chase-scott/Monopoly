@@ -1,7 +1,5 @@
 package Monopoly;
 
-import javax.swing.*;
-
 /**
  * Roll and return value of the two dice
  * @author Amith Kumar Das Orko 101126245
@@ -29,12 +27,14 @@ public class Dice {
 
         if(dice[0] != dice[1]) rolled = true;
 
-        //return dice;
-        return new int[] {1,0};
+        return dice;
+        //return new int[]{1,0};
     }
 
     public boolean isRolled() {return rolled;}
 
     public void setRolled(boolean isRolled) {this.rolled = isRolled;}
+
+    public int rollResult() {return dice[0] + dice[1];}
 
 }

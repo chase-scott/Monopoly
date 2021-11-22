@@ -7,7 +7,7 @@ public class Utility extends Square {
 
     private Player ownedBy = null;
     private final double price;
-    private String type; //false for utility, true for railroad
+    private final String type;
 
     public static final String RAILROAD = "RAILROAD";
     public static final String UTILITY = "UTILITY";
@@ -21,6 +21,7 @@ public class Utility extends Square {
         super(name);
         this.price = price;
         this.type = type;
+
     }
 
     /**
@@ -42,22 +43,22 @@ public class Utility extends Square {
 
             //check utility owners
             double amountOwed;
-
-            if (type.equals("RAILROAD")) {
+            if (type.equals(RAILROAD)) {
                 if (ownedBy.getPropertyList().contains("Reading Railroad") && ownedBy.getPropertyList().contains("B. & O. Railroad")) {
-                    amountOwed = 0.8 * price;
+                    amountOwed = 100;
                 } else {
-                    amountOwed = 0.6 * price;
+                    amountOwed = 50;
                 }
-            } else if(type.equals("UTILITY")) {
+            } else if(type.equals(UTILITY)) {
                 if (ownedBy.getPropertyList().contains("Electric Company") && ownedBy.getPropertyList().contains("Water Works")) {
-                    amountOwed = 0.4 * price;
+                    amountOwed = 10 * player.getDice().rollResult();
                 } else {
-                    amountOwed = 0.2 * price;
+                    amountOwed = 4 * player.getDice().rollResult();
                 }
             } else {return;}
 
-            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed + " to " + ownedBy.getName(), "Paid Utility!", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed +
+                    " to " + ownedBy.getName(), "Paid Utility!", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
@@ -89,7 +90,9 @@ public class Utility extends Square {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nOwned by: ");
+
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price);
+        sb.append("\nOwned by: ");
         if(ownedBy == null) {
             sb.append("Nobody");
         } else{
