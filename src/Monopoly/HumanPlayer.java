@@ -2,6 +2,12 @@ package Monopoly;
 
 import java.awt.*;
 
+/**
+ * HumanPlayer class.
+ * Used to distinguish from AI player
+ *
+ * @author Chase Scott 101092194
+ */
 public class HumanPlayer extends Player {
 
     /**

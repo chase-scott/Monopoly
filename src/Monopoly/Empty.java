@@ -3,7 +3,8 @@ package Monopoly;
 import java.awt.*;
 
 /**
- * A Go square
+ * An empty square
+ * Used for squares that have no effect when the player lands on them
  *
  * @author Chase Scott 101092194
  */

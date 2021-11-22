@@ -2,9 +2,15 @@ package Monopoly;
 
 import java.awt.*;
 
+/**
+ * GoToJail Class.
+ * Sends the player to jail when they land on it
+ *
+ * @author Chase Scott 101092194
+ */
 public class GoToJail extends Square {
     /**
-     * Super constructor for a square
+     * Constructor for a GoToJail square
      */
     public GoToJail() {
         super("Go to Jail");

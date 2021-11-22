@@ -19,7 +19,6 @@ public class Game {
      * Default constructor
      */
     public Game() {
-
     }
 
     public int getNumberPlayers() {return players.length;}

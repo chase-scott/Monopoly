@@ -27,6 +27,9 @@ public class ComputerPlayer extends Player {
         }
     }
 
+    /**
+     *Simple logic for AI decisions on its turn
+     */
     @Override
     public synchronized void makeMove() {
 
@@ -34,7 +37,6 @@ public class ComputerPlayer extends Player {
 
         //handle jail scenario for AI
         jailLogic();
-
         //roll the dice and advance this AI player
         rollDice();
         //buy the square the AI is on if it can

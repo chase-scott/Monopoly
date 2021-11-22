@@ -21,7 +21,7 @@ public enum Colours {
 
     private final double rentRate;  //rent rate associated with the colour
     private final Color colour;     //Color associated with the colour
-    private final double housePrice;
+    private final double housePrice;//cost of the house of the property
 
     Colours(double rentRate, double housePrice,Color colour) {
         this.rentRate = rentRate;

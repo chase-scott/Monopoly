@@ -3,6 +3,12 @@ package Monopoly;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Utility Class.
+ * Can either be of type utility or type railroad.
+ *
+ * @author Chase Scott 101092194
+ */
 public class Utility extends Square {
 
     private Player ownedBy = null;
@@ -21,7 +27,6 @@ public class Utility extends Square {
         super(name);
         this.price = price;
         this.type = type;
-
     }
 
     /**
