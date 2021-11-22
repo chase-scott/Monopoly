@@ -1,6 +1,7 @@
 package Test;
 
 import Monopoly.Colours;
+import Monopoly.HumanPlayer;
 import Monopoly.Player;
 import Monopoly.Property;
 import org.junit.FixMethodOrder;
@@ -38,7 +39,7 @@ public class PropertyTest {
 
     @Test
     public void getOwner() {  // ***** Used to test setOwner() method Also ****roperty property = new Property("St. James Place", 180, Colours.ORANGE);
-        Player player = new Player("Sethster69", Color.BLUE);
+        Player player = new HumanPlayer("Sethster69", Color.BLUE);
         property.setOwner(player);
         assertEquals(player, property.getOwner());
 
@@ -50,15 +51,15 @@ public class PropertyTest {
     public void checkIfAvailable() {
         assertTrue(property.checkIfAvailable()); //Since this Junit Test is computedin order, this is false at first
 
-        Player player = new Player("Sethster69", Color.BLUE);
+        Player player = new HumanPlayer("Sethster69", Color.BLUE);
         property.setOwner(player);
         assertFalse(property.checkIfAvailable());
     }
 
     @Test
     public void squareActionBankrupt() {   //Tests the behaviour of squareAction(), if the user becomes bankrupt
-        Player player = new Player("Emily", Color.RED);
-        Player player2 = new Player("Sethster", Color.BLUE);
+        Player player = new HumanPlayer("Emily", Color.RED);
+        Player player2 = new HumanPlayer("Sethster", Color.BLUE);
 
         property.setOwner(player);
         player2.setMoney(2);
@@ -73,8 +74,8 @@ public class PropertyTest {
 
     @Test
     public void squareAction() { //Tests the behaviour of squareAction(), if the user has enough funds
-        Player player = new Player("Emily", Color.RED);
-        Player player2 = new Player("Sethster69", Color.BLUE);
+        Player player = new HumanPlayer("Emily", Color.RED);
+        Player player2 = new HumanPlayer("Sethster69", Color.BLUE);
 
         property.setOwner(player);
         player2.setMoney(30);

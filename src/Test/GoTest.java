@@ -1,7 +1,7 @@
 package Test;
 
 import Monopoly.Colours;
-import Monopoly.Go;
+import Monopoly.Empty;
 import Monopoly.Property;
 import Monopoly.Square;
 import org.junit.Test;
@@ -16,7 +16,7 @@ public class GoTest {
     @Test
     public void toString1() {
         Square square = new Property("\n\nOriental Avenue", 100, Colours.TEAL);
-        Go go = new Go("Oriental Avenue");
+        Empty go = new Empty("Oriental Avenue");
 
         assertEquals(square.getName(), go.toString());
 

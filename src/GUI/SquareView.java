@@ -1,6 +1,7 @@
 package GUI;
 
 import Monopoly.Player;
+import Monopoly.Property;
 import Monopoly.Square;
 import javax.swing.*;
 import java.awt.*;
@@ -65,10 +66,40 @@ public class SquareView extends JPanel implements MonopolyView {
         g.setColor(model.getColour());
         g.fillRect(0, (2*this.getHeight())/3, this.getWidth(), this.getHeight() / 3);
 
+        //paint players here
         ArrayList<Player> playersHere = this.model.getPlayers();
         for (int i = 0; i < playersHere.size(); i++) {
-            g.setColor(playersHere.get(i).getTokenColour());
-            g.fillOval(i * 20, 0, 20, 20);
+            if(!playersHere.get(i).getBankruptcyStatus()) {
+                g.setColor(playersHere.get(i).getTokenColour());
+                g.fillOval(i * 20, 0, 20, 20);
+            }
         }
+
+        //paint houses built
+        if (model instanceof Property) {
+            for (int i = 0; i < ((Property) model).getNumHouses() ; i++) {
+                //draw house
+                g.setColor(Color.BLACK);
+                if (i < 4) {
+                    //black outline
+                    g.fillRect(2 + (i * 25), this.getHeight() - 15, 22, 11);
+                    g.fillPolygon(new int[]{(i * 25), 12 + (i * 25), 25 + (i * 25)}, new int[]{this.getHeight() - 15,
+                            this.getHeight() - 34, this.getHeight() - 15}, 3);
+                    //green interior
+                    g.setColor(new Color(0, 204, 0));
+                    g.fillRect(3 + (i * 25), this.getHeight() - 15, 20, 10);
+
+                    g.fillPolygon(new int[]{1 + (i * 25), 12 + (i * 25), 24 + (i * 25)}, new int[]{this.getHeight() - 15,
+                            this.getHeight() - 32, this.getHeight() - 15}, 3);
+                }
+                //draw hotel
+                else {
+                    g.fillRect(5 + (i * 25), this.getHeight() - 35, 20, 31);
+                    g.setColor(new Color(0, 204, 0));
+                    g.fillRect(6 + (i * 25), this.getHeight() - 34, 18, 29);
+                }
+            }
+        }
+
     }
 }

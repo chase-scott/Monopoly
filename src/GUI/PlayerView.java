@@ -1,12 +1,13 @@
 package GUI;
 
-import Monopoly.Game;
-import Monopoly.Player;
-import Monopoly.Property;
+import Monopoly.*;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  * @version 1.0
@@ -36,6 +37,7 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.passTurn.addActionListener(new PassTurnController());
         this.buyProperty.addActionListener(new BuyPropertyController());
         this.rollDice.addActionListener(new RollDiceController());
+        this.ownedProperties.addMouseListener(new BuildHouseController());
 
         this.model.addMonopolyView(this);
     }
@@ -44,6 +46,7 @@ public class PlayerView extends JPanel implements MonopolyView {
      * Create the layout for a PlayerView panel
      */
     private void createLayout() {
+        this.setPreferredSize(new Dimension(450,200));
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createTitledBorder(this.model.getName()));
 
@@ -53,8 +56,9 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.passTurn.setFont(font);
         this.rollDice.setFont(font);
         this.ownedProperties.setFont(font);
-
         this.ownedProperties.setVisible(true);
+        this.ownedProperties.setSelectionMode(0);
+
         JScrollPane propertyScrollList = new JScrollPane(this.ownedProperties);
         propertyScrollList.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         propertyScrollList.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
@@ -68,7 +72,6 @@ public class PlayerView extends JPanel implements MonopolyView {
         c.fill = GridBagConstraints.BOTH;
         this.add(this.money, c);
 
-
         c.fill = GridBagConstraints.BOTH;
         c.gridwidth = 3;
         c.weighty = 0.75;
@@ -76,23 +79,24 @@ public class PlayerView extends JPanel implements MonopolyView {
         c.gridy = 1;
         this.add(propertyScrollList, c);
 
+        if(model instanceof HumanPlayer) {
+            c.gridwidth = 1;
+            c.weighty = 0;
+            c.weightx = 0.3;
+            c.gridx = 0;
+            c.gridy = 2;
+            this.add(this.rollDice, c);
 
-        c.gridwidth = 1;
-        c.weighty = 0;
-        c.weightx = 0.3;
-        c.gridx = 0;
-        c.gridy = 2;
-        this.add(this.rollDice, c);
+            c.weightx = 0.3;
+            c.gridx = 1;
+            c.gridy = 2;
+            this.add(this.buyProperty, c);
 
-        c.weightx = 0.3;
-        c.gridx = 1;
-        c.gridy = 2;
-        this.add(this.buyProperty, c);
-
-        c.weightx = 0.3;
-        c.gridx = 2;
-        c.gridy = 2;
-        this.add(this.passTurn, c);
+            c.weightx = 0.3;
+            c.gridx = 2;
+            c.gridy = 2;
+            this.add(this.passTurn, c);
+        }
     }
 
     /**
@@ -119,10 +123,15 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.money.setText("$" + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
-        passTurn.setEnabled(model.getDiceRolledStatus() && model.isTakingTurn());
-        rollDice.setEnabled(!model.getDiceRolledStatus() && model.isTakingTurn());
+        passTurn.setEnabled(model.getDice().isRolled() && model.isTakingTurn());
+        rollDice.setEnabled(!model.getDice().isRolled() && model.isTakingTurn());
+        ownedProperties.setEnabled(model.isTakingTurn());
+
+
         if(Game.getSquare(model.getPosition()) instanceof Property) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
+        } else if (Game.getSquare(model.getPosition()) instanceof Utility) {
+            buyProperty.setEnabled(model.isTakingTurn() && ((Utility) Game.getSquare(model.getPosition())).checkIfAvailable());
         } else {buyProperty.setEnabled(false);}
     }
 
@@ -152,9 +161,30 @@ public class PlayerView extends JPanel implements MonopolyView {
     private class BuyPropertyController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.buySquare();
+                model.buySquare();
         }
     }
+
+    /**
+     * BuildHouseController class
+     */
+    private class BuildHouseController implements MouseListener {
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            model.buildHouse(ownedProperties.getSelectedIndex());
+        }
+        @Override
+        public void mousePressed(MouseEvent e) {}
+        @Override
+        public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseEntered(MouseEvent e) {}
+        @Override
+        public void mouseExited(MouseEvent e) {}
+    }
+
+
+
 
 
 }

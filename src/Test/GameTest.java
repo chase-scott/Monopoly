@@ -2,6 +2,7 @@ package Test;
 
 import Monopoly.Game;
 import Monopoly.GameBoard;
+import Monopoly.HumanPlayer;
 import Monopoly.Player;
 import org.junit.Test;
 import java.awt.*;
@@ -39,7 +40,7 @@ public class GameTest {
     @Test
     public void GetPlayers() {  //Also Tests setPlayers()
         Player[] player = new Player[1];
-        player[0] = new Player("Sethster999", Color.RED);
+        player[0] = new HumanPlayer("Sethster999", Color.RED);
 
         Game game = new Game();
         game.setPlayers(player);
@@ -58,7 +59,7 @@ public class GameTest {
         Game game = new Game();
         GameBoard gameBoard = new GameBoard();
 
-        gameBoard.getSquare(1).equals(Game.getSquare(1));
+        //gameBoard.getSquare(1).equals(Game.getSquare(1));
 
     }
 
