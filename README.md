@@ -50,13 +50,13 @@ The customization may be defined in XML or JSON format.
 
 - For the AI, Player was converted into an abstract class. HumanPlayer and ComputerPlayer extend this class. ComputerPlayer changes the taketurn method, adding in the simple logic for making its decisions during its turn.
 
--AIPlayer's are created when a user doesn't specify a name for a player, since if they didn't add a name it is likely no one is controlling them.
+- AIPlayer's are created when a user doesn't specify a name for a player, since if they didn't add a name it is likely no one is controlling them.
 
--Some information pop-ups were factored out to only appear for human decisions, since it is not important for the player to see for the AI.
+- Some information pop-ups were factored out to only appear for human decisions, since it is not important for the player to see for the AI.
 
--The jail state initializes when a player rolls 3 doubles or lands on go to jail. A player may either pay $50 or attempt to roll a double to escape. If a player does either, they may roll again and take their turn. Alternatively, if a player has been in jail for 3 turns, they are automatically let out.
+- The jail state initializes when a player rolls 3 doubles or lands on go to jail. A player may either pay $50 or attempt to roll a double to escape. If a player does either, they may roll again and take their turn. Alternatively, if a player has been in jail for 3 turns, they are automatically let out.
 
--AI's will always choose to pay their way out of jail if they can, they will always choose to buy a square they are on if they can, and will try to build one house/hotel per turn if they can.
+- AI's will always choose to pay their way out of jail if they can, they will always choose to buy a square they are on if they can, and will try to build one house/hotel per turn if they can.
 
 ### User Manual:
 
