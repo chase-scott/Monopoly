@@ -20,11 +20,12 @@ Amith Kumar Das Orko 101126245
 
 ### Description:
 
-Implementing a GUI-based version of the game, this includes the view and controller part of the MVC pattern and unit testing.
+Additional features: houses, hotels, and special properties and squares such as: jail, “Go”, railroad, utility. Also, the ability to use any number of “AI” players.
 
 ### Changes since last deliverable:
 
--
+- Added new squares, including Railroad, Utility, Go to Jail, and Jail
+- Added the option to have AI controlled players.
 - Updated JUnit testing to account for the added features and funtionality
 - Updated UML diagrams corresponding to up-to-date source codes and TA feedback
 
