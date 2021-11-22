@@ -22,15 +22,15 @@ public class Dice {
      *
      * @return  int, the result of the roll
      */
-    public int roll(){
+    public int[] roll(){
 
         dice[0] = (int) (Math.random() * 6 + 1);
         dice[1] = (int) (Math.random() * 6 + 1);
-        JOptionPane.showMessageDialog(null, "Rolled a " + dice[0] + " and " + dice[1], "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
         if(dice[0] != dice[1]) rolled = true;
 
-       return (dice[0] + dice[1]);
+        //return dice;
+        return new int[] {1,2};
     }
 
     public boolean isRolled() {return rolled;}

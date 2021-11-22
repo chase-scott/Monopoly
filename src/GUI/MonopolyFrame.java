@@ -25,7 +25,7 @@ public class MonopolyFrame extends JFrame {
 
         JPanel contents = new MonopolyGUI(model);
         this.setContentPane(contents);
-        this.setMinimumSize(new Dimension((900 + model.getNumberPlayers()*150), 1300));
+        this.setMinimumSize(new Dimension((1100 + model.getNumberPlayers()*50), 1300));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -59,17 +59,16 @@ public class MonopolyFrame extends JFrame {
         for (int i = 0, j = 1; i < numPlayers; i++, j+=2) {
             if(inputs[j] instanceof JTextField) {
                 if(((JTextField) inputs[j]).getText().isEmpty()) {
-                    players[i] = new Player("Player " + (counter + 1), PLAYER_COLOURS[i]);
+                    players[i] = new ComputerPlayer("AI Player " + (counter + 1), PLAYER_COLOURS[i]);
+                    counter++;
                 } else {
-                    players[i] = new Player(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i]);
+                    players[i] = new HumanPlayer(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i]);
                 }
 
             }
-            counter++;
         }
 
         return players;
-
     }
 
     public static void main(String[] args) {
