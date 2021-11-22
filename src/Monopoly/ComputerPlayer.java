@@ -30,6 +30,8 @@ public class ComputerPlayer extends Player {
     @Override
     public synchronized void makeMove() {
 
+        getDice().setRolled(false);
+
         //handle jail scenario for AI
         jailLogic();
 
@@ -41,6 +43,7 @@ public class ComputerPlayer extends Player {
         if(!getPropertyList().isEmpty()) super.buildHouse((int) (Math.random() * getPropertyList().size()));
         updateViews();
 
+        if (!getDice().isRolled()) makeMove(); //if rolled double, repeat
         passTurn();
     }
 
