@@ -1,6 +1,5 @@
 package Monopoly;
 
-import javax.swing.*;
 import java.awt.*;
 
 public class ComputerPlayer extends Player {
@@ -16,17 +15,22 @@ public class ComputerPlayer extends Player {
     }
 
     /**
-     * Buys the square that the player is on if it is a property square.
+     * Buys the square that the player is on if it is a property or utility square.
      */
     public void buySquare() {
         if(Game.getSquare(getPosition()) instanceof Property) {
             if (((Property) Game.getSquare(getPosition())).checkIfAvailable())
+                super.buySquare();
+        } else if(Game.getSquare(getPosition()) instanceof Utility) {
+            if (((Utility) Game.getSquare(getPosition())).checkIfAvailable())
                 super.buySquare();
         }
     }
 
     @Override
     public synchronized void makeMove() {
+
+        getDice().setRolled(false);
 
         //handle jail scenario for AI
         jailLogic();
@@ -38,6 +42,9 @@ public class ComputerPlayer extends Player {
         //build a house on a random property that this AI owns
         if(!getPropertyList().isEmpty()) super.buildHouse((int) (Math.random() * getPropertyList().size()));
         updateViews();
+
+        if (!getDice().isRolled()) makeMove(); //if rolled double, repeat
+        passTurn();
     }
 
 }

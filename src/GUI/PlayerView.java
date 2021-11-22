@@ -123,8 +123,8 @@ public class PlayerView extends JPanel implements MonopolyView {
         this.money.setText("$" + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
-        passTurn.setEnabled(model.getDiceRolledStatus() && model.isTakingTurn());
-        rollDice.setEnabled(!model.getDiceRolledStatus() && model.isTakingTurn());
+        passTurn.setEnabled(model.getDice().isRolled() && model.isTakingTurn());
+        rollDice.setEnabled(!model.getDice().isRolled() && model.isTakingTurn());
         ownedProperties.setEnabled(model.isTakingTurn());
 
 
@@ -132,10 +132,7 @@ public class PlayerView extends JPanel implements MonopolyView {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
         } else if (Game.getSquare(model.getPosition()) instanceof Utility) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Utility) Game.getSquare(model.getPosition())).checkIfAvailable());
-        } else if(Game.getSquare(model.getPosition()) instanceof Railroad) {
-            buyProperty.setEnabled(model.isTakingTurn() && ((Railroad) Game.getSquare(model.getPosition())).checkIfAvailable());
-        }
-        else {buyProperty.setEnabled(false);}
+        } else {buyProperty.setEnabled(false);}
     }
 
     /**

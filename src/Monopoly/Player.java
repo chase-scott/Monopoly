@@ -16,18 +16,18 @@ public abstract class Player {
 
     private final String name;              //the name of the players
     private double money;                   //the player's money
-    private List<Square> propertyList;    //the list of properties owned by the player
-    private List<PlayerView> views;       //the views associated with this player
+    private List<Square> propertyList;      //the list of properties owned by the player
+    private List<PlayerView> views;         //the views associated with this player
     private final Color tokenColour;        //this players token Colour
     private int position = 0;               //this players position
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
     private boolean takingTurn;             //indicates if this player is taking their turn
-    private Dice dice = new Dice();  //this players dice
+    private Dice dice = new Dice();         //this players dice
 
-    //TEST
-    private int doublesRolledThisTurn;
-    private boolean inJail;
-    private int turnsInJail;
+    //Jail stuff
+    private int doublesRolledThisTurn;      //keeps track of amount of doubles rolled this turn
+    private boolean inJail;                 //if the player is in jail
+    private int turnsInJail;                //keeps track of how many turns the player has been in jail
 
     /**
      * Constructor for a player
@@ -44,7 +44,6 @@ public abstract class Player {
         this.views = new ArrayList<>();
         Game.getSquare(0).addPlayer(this);
 
-        ///TEST
         this.doublesRolledThisTurn = 0;
         this.inJail = false;
         this.turnsInJail = 0;
@@ -70,7 +69,7 @@ public abstract class Player {
         return position;
     }
 
-    public boolean getDiceRolledStatus() {return dice.isRolled();}
+    public Dice getDice() {return dice;}
 
     public boolean isTakingTurn() {
         return takingTurn;
@@ -124,13 +123,16 @@ public abstract class Player {
      * rolls the dice and moves the player by the result
      */
     public void rollDice() {
+
+        int[] roll = dice.roll();
+        JOptionPane.showMessageDialog(null, "Rolled a " + roll[0] + " and " + roll[1],
+                "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
+
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
 
-        int[] roll = dice.roll();
-
         if(roll[0] == roll[1]) doublesRolledThisTurn++;
-        if(doublesRolledThisTurn == 1) {
+        if(doublesRolledThisTurn == 3) {
             goToJail();
             return;
         }
@@ -140,8 +142,6 @@ public abstract class Player {
 
         Game.getSquare(position).addPlayer(this);
         Game.getSquare(position).updateViews();
-        JOptionPane.showMessageDialog(null, "Rolled a " + roll[0] + " and " + roll[1],
-                "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
         Game.getSquare(position).squareAction(this);
         updateViews();
     }
