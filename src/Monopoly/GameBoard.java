@@ -57,7 +57,7 @@ public class GameBoard {
         squares[19] = new Property("Ventnor Avenue", 260, Colours.YELLOW);
         squares[20] = new Property("Marvin Gardens", 280, Colours.YELLOW);
 
-        squares[21] = new Empty("GO TO JAIL");
+        squares[21] = new GoToJail();
 
         squares[22] = new Property("Pacific Avenue", 300, Colours.GREEN);
         squares[23] = new Property("North Carolina Ave.", 300, Colours.GREEN);

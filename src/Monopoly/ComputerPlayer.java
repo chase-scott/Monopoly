@@ -1,5 +1,6 @@
 package Monopoly;
 
+import javax.swing.*;
 import java.awt.*;
 
 public class ComputerPlayer extends Player {
@@ -26,6 +27,10 @@ public class ComputerPlayer extends Player {
 
     @Override
     public synchronized void makeMove() {
+
+        //handle jail scenario for AI
+        jailLogic();
+
         //roll the dice and advance this AI player
         rollDice();
         //buy the square the AI is on if it can

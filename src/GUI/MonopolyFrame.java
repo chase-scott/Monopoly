@@ -25,7 +25,7 @@ public class MonopolyFrame extends JFrame {
 
         JPanel contents = new MonopolyGUI(model);
         this.setContentPane(contents);
-        this.setMinimumSize(new Dimension((900 + model.getNumberPlayers()*150), 1300));
+        this.setMinimumSize(new Dimension((1100 + model.getNumberPlayers()*50), 1300));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);

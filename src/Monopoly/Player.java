@@ -25,8 +25,9 @@ public abstract class Player {
     private Dice dice = new Dice();  //this players dice
 
     //TEST
-    private int doubles;
+    private int doublesRolledThisTurn;
     private boolean inJail;
+    private int turnsInJail;
 
     /**
      * Constructor for a player
@@ -44,8 +45,9 @@ public abstract class Player {
         Game.getSquare(0).addPlayer(this);
 
         ///TEST
-        this.doubles = 0;
+        this.doublesRolledThisTurn = 0;
         this.inJail = false;
+        this.turnsInJail = 0;
     }
 
     public String getName() {
@@ -127,8 +129,8 @@ public abstract class Player {
 
         int[] roll = dice.roll();
 
-        if(roll[0] == roll[1]) doubles++;
-        if(doubles == 1) {
+        if(roll[0] == roll[1]) doublesRolledThisTurn++;
+        if(doublesRolledThisTurn == 1) {
             goToJail();
             return;
         }
@@ -206,21 +208,7 @@ public abstract class Player {
         this.takingTurn = true;
         updateViews();
 
-        if(inJail) {
-            int answer = JOptionPane.showOptionDialog(null, "Pay $50 or roll?", "Jail", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"PAY", "ROLL"}, 0);
-            if(answer == 0) {
-                money -= 50;
-                inJail = false;
-                updateViews();
-            } else {
-                if((int)(Math.random() * 6 + 1) == (int)(Math.random() * 6 + 1)) {
-                    JOptionPane.showMessageDialog(null, "You rolled double! OUT OF JAIL!!!");
-                    inJail = false;
-                } else {
-                    JOptionPane.showMessageDialog(null, "You did NOT roll double...");
-                }
-            }
-        }
+        jailLogic();
 
         try {
             if(!inJail) this.wait();
@@ -235,22 +223,56 @@ public abstract class Player {
      * Passes the turn
      */
     public synchronized void passTurn() {
-        doubles = 0;
+        doublesRolledThisTurn = 0;
         this.notify();
     }
 
-    private void goToJail() {
+    public void goToJail() {
         Game.getSquare(position).removePlayer(this);
         Game.getSquare(position).updateViews();
         position = 7;
         Game.getSquare(position).addPlayer(this);
         Game.getSquare(position).updateViews();
         this.inJail = true;
-        JOptionPane.showMessageDialog(null, name + " rolled too many doubles... off to jail!");
+        JOptionPane.showMessageDialog(null, name + " is being sent to jail!");
         passTurn();
     }
 
+    public void jailLogic() {
+        if(turnsInJail == 3) {
+            inJail = false;
+            turnsInJail = 0;
+            JOptionPane.showMessageDialog(null, name + " has served their time and been let out of jail");
+        }
 
+        if(inJail) {
+            int answer = 0;
+            if(money < 50) { answer = 1; }
+            else if(this instanceof HumanPlayer) answer = JOptionPane.showOptionDialog(null,
+                    "Pay $50 or roll?", "Jail", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"PAY", "ROLL"}, 0);
+
+            if(answer == 0) {
+                money -= 50;
+                inJail = false;
+                turnsInJail = 0;
+                updateViews();
+            } else {
+                if((int)(Math.random() * 6 + 1) == (int)(Math.random() * 6 + 1)) {
+                    JOptionPane.showMessageDialog(null, "You rolled double! OUT OF JAIL!!!");
+                    turnsInJail = 0;
+                    inJail = false;
+                } else {
+                    JOptionPane.showMessageDialog(null, "You did NOT roll double...");
+                    turnsInJail++;
+                }
+            }
+        }
+
+
+
+
+
+    }
 
 
 
