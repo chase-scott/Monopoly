@@ -2,13 +2,10 @@ package Test;
 
 import Monopoly.HumanPlayer;
 import Monopoly.Player;
-import Monopoly.Property;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Vector;
 
 import static org.junit.Assert.*;

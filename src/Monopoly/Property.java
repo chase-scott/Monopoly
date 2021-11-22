@@ -36,8 +36,8 @@ public class Property extends Square {
         this.builtHouses = 0;
     }
 
-    public int getPrice(){
-        return (int)price;
+    public double getPrice(){
+        return price;
     }
 
     public double getHousePrice() {return housePrice;}

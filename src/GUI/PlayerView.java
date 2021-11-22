@@ -46,6 +46,7 @@ public class PlayerView extends JPanel implements MonopolyView {
      * Create the layout for a PlayerView panel
      */
     private void createLayout() {
+        this.setPreferredSize(new Dimension(450,200));
         this.setLayout(new GridBagLayout());
         this.setBorder(BorderFactory.createTitledBorder(this.model.getName()));
 
@@ -131,6 +132,8 @@ public class PlayerView extends JPanel implements MonopolyView {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) Game.getSquare(model.getPosition())).checkIfAvailable());
         } else if (Game.getSquare(model.getPosition()) instanceof Utility) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Utility) Game.getSquare(model.getPosition())).checkIfAvailable());
+        } else if(Game.getSquare(model.getPosition()) instanceof Railroad) {
+            buyProperty.setEnabled(model.isTakingTurn() && ((Railroad) Game.getSquare(model.getPosition())).checkIfAvailable());
         }
         else {buyProperty.setEnabled(false);}
     }
@@ -161,7 +164,7 @@ public class PlayerView extends JPanel implements MonopolyView {
     private class BuyPropertyController implements ActionListener {
         @Override
         public void actionPerformed(ActionEvent e) {
-            model.buySquare();
+                model.buySquare();
         }
     }
 

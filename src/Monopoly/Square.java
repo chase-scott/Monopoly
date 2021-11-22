@@ -44,6 +44,13 @@ public abstract class Square {
      */
     public abstract Color getColour();
 
+    public abstract void clear();
+
+    public abstract double getPrice();
+
+    public abstract void setOwner(Player player);
+
+
     /**
      * Adds a monopoly view
      * @param view  MonopolyView, the view
@@ -68,5 +75,6 @@ public abstract class Square {
     public void removePlayer(Player player) {
         players.remove(player);
     }
+
 
 }

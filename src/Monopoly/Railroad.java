@@ -3,7 +3,7 @@ package Monopoly;
 import javax.swing.*;
 import java.awt.*;
 
-public class Utility extends Square {
+public class Railroad extends Square {
 
     private Player ownedBy = null;
     private final double price;
@@ -13,7 +13,7 @@ public class Utility extends Square {
      *
      * @param name String, the name of the square
      */
-    public Utility(String name, double price) {
+    public Railroad(String name, double price) {
         super(name);
         this.price = price;
     }
@@ -38,7 +38,7 @@ public class Utility extends Square {
             //check utility owners
             double amountOwed;
 
-            if(ownedBy.getPropertyList().contains("Electric Company") && ownedBy.getPropertyList().contains("Water Works")) {
+            if(ownedBy.getPropertyList().contains("Reading Railroad") && ownedBy.getPropertyList().contains("B. & O. Railroad")) {
                 amountOwed = 0.4 * price;
             } else {
                 amountOwed = 0.2 * price;
@@ -63,8 +63,8 @@ public class Utility extends Square {
 
     @Override
     public void clear() {
-            ownedBy = null;
-            updateViews();
+        ownedBy = null;
+        updateViews();
     }
 
     @Override
