@@ -23,7 +23,6 @@ public abstract class Player {
     private boolean isBankrupt = false;     //whether this player is bankrupt or not
     private boolean takingTurn;             //indicates if this player is taking their turn
     private Dice dice = new Dice();         //this players dice
-
     //Jail stuff
     private int doublesRolledThisTurn;      //keeps track of amount of doubles rolled this turn
     private boolean inJail;                 //if the player is in jail
@@ -68,6 +67,8 @@ public abstract class Player {
     public int getPosition() {
         return position;
     }
+
+    public boolean isInJail() {return inJail;}
 
     public Dice getDice() {return dice;}
 

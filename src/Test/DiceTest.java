@@ -13,8 +13,9 @@ public class DiceTest {
     @Test
     public void roll() {
         Dice dice = new Dice();
-        //assertNotEquals(0,dice.roll()); // Ensures Dice value cannot be 0
-        //assertTrue(dice.roll() <= 12);  //Ensures Dice Value is not any higher than 12
+        int[] rollResult = dice.roll();
+        assertNotEquals(0,rollResult[0] + rollResult[1]); // Ensures Dice value cannot be 0
+        assertTrue(rollResult[0] + rollResult[1] <= 12);  //Ensures Dice Value is not any higher than 12
 
         //Need for the IF statement, if that is implemented
     }

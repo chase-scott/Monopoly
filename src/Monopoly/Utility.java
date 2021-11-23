@@ -11,7 +11,7 @@ import java.awt.*;
  */
 public class Utility extends Square {
 
-    private Player ownedBy = null;
+    private Player ownedBy;
     private final double price;
     private final String type;
 
@@ -27,6 +27,7 @@ public class Utility extends Square {
         super(name);
         this.price = price;
         this.type = type;
+        this.ownedBy = null;
     }
 
     /**

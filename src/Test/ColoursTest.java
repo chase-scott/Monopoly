@@ -15,7 +15,7 @@ public class ColoursTest {
     @org.junit.Test
     public void getRentRate() {
         Colours color= Colours.RED;
-        assertEquals(0.1, color.getRentRate(), Delta);
+        assertEquals(0.2, color.getRentRate(), Delta);
 
     }
 
