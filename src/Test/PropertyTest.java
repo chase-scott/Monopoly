@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  * Used to test the Property Class.
  * @author Mohammad Gaffori 101082318
  */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PropertyTest {
     Property property = new Property("Mediterranean Avenue", 60, Colours.ORANGE);
@@ -55,7 +56,7 @@ public class PropertyTest {
 
     @Test
     public void checkIfAvailable() {
-        assertTrue(property.checkIfAvailable()); //Since this Junit Test is computedin order, this is false at first
+        assertTrue(property.checkIfAvailable()); //Since this Junit Test is computed in order, this is false at first
 
         Player player = new HumanPlayer("Sethster69", Color.BLUE);
         property.setOwner(player);
@@ -79,30 +80,19 @@ public class PropertyTest {
     }
 
     @Test
-    public void squareAction() { //Tests the behaviour of squareAction(), if the user has enough funds
-        Player player = new HumanPlayer("Emily", Color.RED);
-        Player player2 = new HumanPlayer("Sethster69", Color.BLUE);
-
-        property.setOwner(player);
-        player2.setMoney(30);
-
-        property.squareAction(player2);
-
-        assertEquals(18, player2.getMoney(),0.2);
-
-        property.setOwner(null);
+    public void squareAction(){
 
     }
 
     @Test
-    public void addHouse(){ //also tests the clear option
+    public void Clear() {
         Player player = new HumanPlayer("Emily", Color.RED);
-        player.addProperty(Game.getSquare(1));
+        property.setOwner(player);
 
-        player.buildHouse(0);
-        assertEquals(0, ((Property)Game.getSquare(1)).getNumHouses());
-        Game.getSquare(1).clear();
+        assertEquals(player,property.getOwner());
+        property.clear();
 
+        assertTrue(property.checkIfAvailable());
     }
 
 }
