@@ -9,6 +9,11 @@ import java.util.Vector;
 
 import static org.junit.Assert.*;
 
+/**
+ * Used to test the ComputerPlayer Class.
+ * @author Mohammad Gaffori 101082318
+ */
+
 public class ComputerPlayerTest {
     Player player = new ComputerPlayer("Sethster", Color.RED);
 

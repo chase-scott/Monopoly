@@ -11,6 +11,7 @@ import static org.junit.Assert.*;
  * Used to test the Property Class.
  * @author Mohammad Gaffori 101082318
  */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PropertyTest {
     Property property = new Property("Mediterranean Avenue", 60, Colours.ORANGE);

@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
  * Used to test the Player Class.
  * @author Mohammad Gaffori 101082318
  */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PlayerTest {
 

@@ -12,7 +12,11 @@ import java.util.Vector;
 
 import static org.junit.Assert.*;
 
-//Just did the first three
+/**
+ * Used to test the HumanPlayer Class.
+ * @author Mohammad Gaffori 101082318
+ */
+
 public class HumanPlayerTest {
     Player player = new HumanPlayer("Sethster", Color.RED);
 
