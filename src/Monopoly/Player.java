@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
  * Player class
  * @author Chase Scott 101092194
  * @author Amith Kumar Das Orko 101126245
+ * @author Mohammad Gaffori 101082318
  */
 public abstract class Player {
 
@@ -80,6 +81,8 @@ public abstract class Player {
     public void addProperty(Square square) {
         propertyList.add(square);
     }
+
+    public boolean isInJail(){return inJail;};
 
     /**
      * Creates a vector of the names of each property in the property list
