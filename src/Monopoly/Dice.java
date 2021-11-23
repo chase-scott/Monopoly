@@ -4,6 +4,7 @@ package Monopoly;
  * Roll and return value of the two dice
  * @author Amith Kumar Das Orko 101126245
  * @author Chase Scott 101092194
+ * @author Mohammad Gaffori 101082318
  */
 public class Dice {
 
@@ -36,5 +37,7 @@ public class Dice {
     public void setRolled(boolean isRolled) {this.rolled = isRolled;}
 
     public int rollResult() {return dice[0] + dice[1];}
+
+    public boolean isDouble(){ return  dice[0] == dice[1]; }
 
 }
