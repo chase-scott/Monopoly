@@ -12,6 +12,7 @@ import static org.junit.Assert.*;
 
 public class UtilityTest {
     private Utility utility = new Utility("TrainStation", 300, "RAILROAD");
+    private Utility waterworks = new Utility("TrainStation", 300, "UTILITY");
     Player player = new HumanPlayer("Sethster69", Color.BLUE);
     Player player2 = new ComputerPlayer("Sethster69420", Color.RED);
 
@@ -47,5 +48,30 @@ public class UtilityTest {
     public void getPrice() {
         assertEquals(utility.getPrice(), 300, 0.2);
     }
+
+    @Test
+    public void getSquareActionRailroad(){
+        utility.setOwner(player);
+        utility.squareAction(player2);
+        assertEquals(1450, player2.getMoney(),0.2);
+    }
+
+    @Test
+    public void getSquareActionUtility(){
+        waterworks.setOwner(player);
+        player2.setMoney(1500);
+        player2.rollDice();
+        waterworks.squareAction(player2);
+        assertEquals((1500 - (4 * (player2.getDice().rollResult()))), player2.getMoney(),0.2);
+    }
+
+    @Test
+    public void getSquareActionBankrupt(){
+        utility.setOwner(player);
+        player2.setMoney(1);
+        utility.squareAction(player2);
+        assertTrue(player2.getBankruptcyStatus());
+    }
+
 
 }
