@@ -126,4 +126,19 @@ public class PlayerTest {
         player1.goToJail();
         assertFalse(player1.isTakingTurn());
     }
+
+    @Test
+    public void JailLogicWhileBroke(){
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
+        player1.goToJail();
+        player1.setMoney(2);
+        player1.rollDice();
+        if(player1.getDice().isDouble()){
+            assertFalse(player1.isInJail());
+        }else{
+                assertTrue(player1.isInJail());
+        }
+    }
+
 }
+
