@@ -36,4 +36,37 @@ public class Dice {
 
     public int rollResult() {return dice[0] + dice[1];}
 
+    public boolean isDouble() {return dice[0] == dice[1];
+    
+
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+    
+    
+    
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    }
 }

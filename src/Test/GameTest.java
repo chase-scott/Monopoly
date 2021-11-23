@@ -53,14 +53,5 @@ public class GameTest {
         return getClass() == o.getClass();
     }
 
-    @Test
-    public void getSquare() {
-
-        Game game = new Game();
-        GameBoard gameBoard = new GameBoard();
-
-        //gameBoard.getSquare(1).equals(Game.getSquare(1));
-
-    }
 
 }

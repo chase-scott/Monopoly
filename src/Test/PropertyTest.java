@@ -1,9 +1,6 @@
 package Test;
 
-import Monopoly.Colours;
-import Monopoly.HumanPlayer;
-import Monopoly.Player;
-import Monopoly.Property;
+import Monopoly.*;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
@@ -20,9 +17,18 @@ public class PropertyTest {
 
     @Test
     public void getPrice() {
-        assertEquals(60, property.getPrice());
+        assertEquals(60, property.getPrice(),0.2);
     }
 
+    @Test
+    public void getHousePrice(){
+        assertEquals(100, property.getHousePrice(),0.2);
+    }
+
+    @Test
+    public void getNumHouses(){
+        assertEquals(0, property.getNumHouses());
+    }
     @Test
     public void getColour() {
         Colours orange= Colours.ORANGE;
@@ -82,9 +88,20 @@ public class PropertyTest {
 
         property.squareAction(player2);
 
-        assertEquals(12, player2.getMoney(),0.2);
+        assertEquals(18, player2.getMoney(),0.2);
 
         property.setOwner(null);
+
+    }
+
+    @Test
+    public void addHouse(){ //also tests the clear option
+        Player player = new HumanPlayer("Emily", Color.RED);
+        player.addProperty(Game.getSquare(1));
+
+        player.buildHouse(0);
+        assertEquals(0, ((Property)Game.getSquare(1)).getNumHouses());
+        Game.getSquare(1).clear();
 
     }
 
