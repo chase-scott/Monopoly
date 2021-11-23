@@ -8,6 +8,11 @@ import java.awt.*;
 
 import static org.junit.Assert.*;
 
+/**
+ * Used to test the Empty Class.
+ * @author Mohammad Gaffori 101082318
+ */
+
 public class EmptyTest {
 
     Square Empty = new Empty("Baltic Avenue");

@@ -1,14 +1,11 @@
 package Test;
 
-import Monopoly.Colours;
+
 import Monopoly.HumanPlayer;
 import Monopoly.Player;
-import Monopoly.Property;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
-
-import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
@@ -18,6 +15,7 @@ import static org.junit.Assert.*;
  * Used to test the Player Class.
  * @author Mohammad Gaffori 101082318
  */
+
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PlayerTest {
 
@@ -102,16 +100,6 @@ public class PlayerTest {
         assertTrue(1 <= player1.getPropertyList().size() ); //Tests that the propertyList contains at least 1 item
 
     }
-    @Test
-    public void buildHouse(){
-        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
-        player1.setMoney(10);
-        Property Property = new Property("Baltic Ave", 100, Colours.RED);
-        player1.addProperty(Property);
-        player1.buildHouse(0);
-        assertEquals(JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE);
-
-    }
 
     @Test
     public void goToJail(){
@@ -126,4 +114,18 @@ public class PlayerTest {
         player1.goToJail();
         assertFalse(player1.isTakingTurn());
     }
+
+    @Test
+    public void JailLogicWhileBroke(){
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
+        player1.goToJail();
+        player1.setMoney(2);
+        player1.rollDice();
+        if(player1.getDice().isDouble()){
+            assertFalse(player1.isInJail());
+        }else{
+            assertTrue(player1.isInJail());
+        }
+    }
+
 }
