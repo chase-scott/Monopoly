@@ -10,12 +10,12 @@ import static org.junit.Assert.*;
  */
 public class ColoursTest {
 
-    private static final double Delta = 1e-15; // Constant used for the assertEquals() Method
+    private static final double Delta = 0.2; // Constant used for the assertEquals() Method
 
     @org.junit.Test
     public void getRentRate() {
         Colours color= Colours.RED;
-        assertEquals(0.1, color.getRentRate(), Delta);
+        assertEquals(0.2, color.getRentRate(), Delta);
 
     }
 

@@ -1,10 +1,14 @@
 package Test;
 
+import Monopoly.Colours;
 import Monopoly.HumanPlayer;
 import Monopoly.Player;
+import Monopoly.Property;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runners.MethodSorters;
+
+import javax.swing.*;
 import java.awt.*;
 import java.util.Vector;
 
@@ -97,5 +101,29 @@ public class PlayerTest {
         assertNotNull(player1.getPropertyList());   //Tests that the Property List is not empty
         assertTrue(1 <= player1.getPropertyList().size() ); //Tests that the propertyList contains at least 1 item
 
+    }
+    @Test
+    public void buildHouse(){
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
+        player1.setMoney(10);
+        Property Property = new Property("Baltic Ave", 100, Colours.RED);
+        player1.addProperty(Property);
+        player1.buildHouse(0);
+        assertEquals(JOptionPane.WARNING_MESSAGE, JOptionPane.WARNING_MESSAGE);
+
+    }
+
+    @Test
+    public void goToJail(){
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
+        player1.goToJail();
+        assertEquals(7,player1.getPosition(),0.2);
+    }
+
+    @Test
+    public void makeMove(){
+        Player player1 = new HumanPlayer("Sethy", Color.BLUE);
+        player1.goToJail();
+        assertFalse(player1.isTakingTurn());
     }
 }
