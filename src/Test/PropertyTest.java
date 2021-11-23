@@ -55,7 +55,7 @@ public class PropertyTest {
 
     @Test
     public void checkIfAvailable() {
-        assertTrue(property.checkIfAvailable()); //Since this Junit Test is computedin order, this is false at first
+        assertTrue(property.checkIfAvailable()); //Since this Junit Test is computed in order, this is false at first
 
         Player player = new HumanPlayer("Sethster69", Color.BLUE);
         property.setOwner(player);
@@ -79,28 +79,19 @@ public class PropertyTest {
     }
 
     @Test
-    public void squareAction() { //Tests the behaviour of squareAction(), if the user has enough funds
-        Player player = new HumanPlayer("Emily", Color.RED);
-        Player player2 = new HumanPlayer("Sethster69", Color.BLUE);
-
-        property.setOwner(player);
-        player2.setMoney(30);
-
-        property.squareAction(player2);
-
-        assertEquals(18, player2.getMoney(),0.2);
-
-        property.setOwner(null);
+    public void squareAction(){
 
     }
 
     @Test
-    public void addHouse(){ //also tests the clear option
-        Player Player = new HumanPlayer("Emily", Color.RED);
-        //property.addHouse(Player.buildHouse(   1));
-        //assertEquals(1, property.getNumHouses());
-        //property.clear();
+    public void Clear() {
+     Player player = new HumanPlayer("Emily", Color.RED);
+     property.setOwner(player);
 
+     assertEquals(player,property.getOwner());
+     property.clear();
+
+     assertTrue(property.checkIfAvailable());
     }
 
 }
