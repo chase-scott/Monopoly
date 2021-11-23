@@ -16,8 +16,8 @@ import static org.junit.Assert.*;
  */
 
 public class UtilityTest {
-    private Utility utility = new Utility("TrainStation", 300, "RAILROAD");
-    private Utility waterworks = new Utility("TrainStation", 300, "UTILITY");
+    private final Utility utility = new Utility("TrainStation", 300, "RAILROAD");
+    private final Utility waterworks = new Utility("TrainStation", 300, "UTILITY");
     Player player = new HumanPlayer("Sethster69", Color.BLUE);
     Player player2 = new ComputerPlayer("Sethster69420", Color.RED);
 
