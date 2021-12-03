@@ -98,8 +98,8 @@ public class Property extends Square {
     public void addHouse(Player player) {
         //check that player owns colour set
         for(int i = 0; i < GameBoard.BOARD_SIZE; i++) {
-            if(!(Game.getSquare(i) instanceof Property)) continue;
-                if(((Property) Game.getSquare(i)).getOwner() != player && Game.getSquare(i).getColour() == this.colour) {
+            if(!(player.getGame().getSquare(i) instanceof Property)) continue;
+                if(((Property) player.getGame().getSquare(i)).getOwner() != player && player.getGame().getSquare(i).getColour() == this.colour) {
                        //System.out.println("MISSING A PROPERTY IN THIS SET");
                        return;
                 }

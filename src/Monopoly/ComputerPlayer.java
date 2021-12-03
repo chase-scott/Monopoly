@@ -10,19 +10,19 @@ public class ComputerPlayer extends Player {
      * @param name      String, the name of the player
      * @param colour    Color, the colour of the player
      */
-    public ComputerPlayer(String name, Color colour) {
-        super(name, colour);
+    public ComputerPlayer(String name, Color colour, Game game) {
+        super(name, colour, game);
     }
 
     /**
      * Buys the square that the player is on if it is a property or utility square.
      */
     public void buySquare() {
-        if(Game.getSquare(getPosition()) instanceof Property) {
-            if (((Property) Game.getSquare(getPosition())).checkIfAvailable())
+        if(getGame().getSquare(getPosition()) instanceof Property) {
+            if (((Property) getGame().getSquare(getPosition())).checkIfAvailable())
                 super.buySquare();
-        } else if(Game.getSquare(getPosition()) instanceof Utility) {
-            if (((Utility) Game.getSquare(getPosition())).checkIfAvailable())
+        } else if(getGame().getSquare(getPosition()) instanceof Utility) {
+            if (((Utility) getGame().getSquare(getPosition())).checkIfAvailable())
                 super.buySquare();
         }
     }

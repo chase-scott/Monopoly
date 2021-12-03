@@ -28,6 +28,8 @@ public abstract class Player implements Serializable {
     private int doublesRolledThisTurn;      //keeps track of amount of doubles rolled this turn
     private boolean inJail;                 //if the player is in jail
     private int turnsInJail;                //keeps track of how many turns the player has been in jail
+    //reference to the game the player is a part of
+    private Game monopolyGame;
 
     /**
      * Constructor for a player
@@ -35,14 +37,16 @@ public abstract class Player implements Serializable {
      * @param name      String, the name of the player
      * @param colour    Color, the colour of the player
      */
-    public Player(String name, Color colour) {
+    public Player(String name, Color colour, Game monopolyGame) {
         this.name = name;
         this.tokenColour = colour;
         this.money = 1500;
         this.takingTurn = false;
         this.propertyList = new ArrayList<>();
         this.views = new ArrayList<>();
-        Game.getSquare(0).addPlayer(this);
+
+        this.monopolyGame = monopolyGame;
+        monopolyGame.getSquare(0).addPlayer(this);
 
         this.doublesRolledThisTurn = 0;
         this.inJail = false;
@@ -82,6 +86,8 @@ public abstract class Player implements Serializable {
     public void addProperty(Square square) {
         propertyList.add(square);
     }
+
+    public Game getGame() {return monopolyGame;}
 
     /**
      * Creates a vector of the names of each property in the property list
@@ -130,8 +136,8 @@ public abstract class Player implements Serializable {
         JOptionPane.showMessageDialog(null, "Rolled a " + roll[0] + " and " + roll[1],
                 "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
-        Game.getSquare(position).removePlayer(this);
-        Game.getSquare(position).updateViews();
+        monopolyGame.getSquare(position).removePlayer(this);
+        monopolyGame.getSquare(position).updateViews();
 
         if(roll[0] == roll[1]) doublesRolledThisTurn++;
         if(doublesRolledThisTurn == 3) {
@@ -142,9 +148,9 @@ public abstract class Player implements Serializable {
         if(position >= GameBoard.BOARD_SIZE) money+=200;
         position = position % GameBoard.BOARD_SIZE;
 
-        Game.getSquare(position).addPlayer(this);
-        Game.getSquare(position).updateViews();
-        Game.getSquare(position).squareAction(this);
+        monopolyGame.getSquare(position).addPlayer(this);
+        monopolyGame.getSquare(position).updateViews();
+        monopolyGame.getSquare(position).squareAction(this);
         updateViews();
     }
 
@@ -154,7 +160,7 @@ public abstract class Player implements Serializable {
      */
     public void buySquare() {
 
-        Square squareToBuy = Game.getSquare(getPosition());
+        Square squareToBuy = monopolyGame.getSquare(getPosition());
 
         if (money < squareToBuy.getPrice()) {
             if(this instanceof HumanPlayer)
@@ -163,11 +169,11 @@ public abstract class Player implements Serializable {
             return;
         }
         money -= squareToBuy.getPrice();
-        addProperty(Game.getSquare(getPosition()));
+        addProperty(monopolyGame.getSquare(getPosition()));
         squareToBuy.setOwner(this);
 
         updateViews();
-        Game.getSquare(getPosition()).updateViews();
+        monopolyGame.getSquare(getPosition()).updateViews();
     }
 
     /**
@@ -230,11 +236,11 @@ public abstract class Player implements Serializable {
     }
 
     public void goToJail() {
-        Game.getSquare(position).removePlayer(this);
-        Game.getSquare(position).updateViews();
+        monopolyGame.getSquare(position).removePlayer(this);
+        monopolyGame.getSquare(position).updateViews();
         position = 7;
-        Game.getSquare(position).addPlayer(this);
-        Game.getSquare(position).updateViews();
+        monopolyGame.getSquare(position).addPlayer(this);
+        monopolyGame.getSquare(position).updateViews();
         this.inJail = true;
         JOptionPane.showMessageDialog(null, name + " is being sent to jail!");
         passTurn();
@@ -271,16 +277,8 @@ public abstract class Player implements Serializable {
         }
 
     }
-    /*
-    public String toXML() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("\t<player>\n");
-        sb.append("\t\t<name>" + name + "</name>\n");
-        sb.append("\t\t<money>" + money + "</money>\n");
-        sb.append("\t</player>\n");
-        return sb.toString();
-    }
-    */
+
+
 
 
 }

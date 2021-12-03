@@ -16,7 +16,7 @@ public class MonopolyGUI extends JPanel {
         super();
 
         JPanel playerPanel = this.generatePlayerPanel(model);
-        JPanel propertyPanel = this.generateBoardPanel();
+        JPanel propertyPanel = this.generateBoardPanel(model);
 
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
@@ -49,7 +49,7 @@ public class MonopolyGUI extends JPanel {
      *
      * @return  JPanel, the game board panel
      */
-    private JPanel generateBoardPanel() {
+    private JPanel generateBoardPanel(Game model) {
         JPanel panel = new JPanel();
 
         panel.setPreferredSize(new Dimension(1000, 1000));
@@ -59,28 +59,28 @@ public class MonopolyGUI extends JPanel {
         topPanel.setLayout(new BoxLayout(topPanel, BoxLayout.X_AXIS));
         topPanel.setPreferredSize(new Dimension(1000, 125));
         for(int i = 0; i < 8; i++) {
-            topPanel.add(new SquareView(Game.getSquare(i)));
+            topPanel.add(new SquareView(model.getSquare(i)));
         }
 
         JPanel rightPanel = new JPanel();
         rightPanel.setLayout(new GridLayout(6, 1));
         rightPanel.setPreferredSize(new Dimension(150, 750));
         for(int i = 8; i < 14; i++) {
-            rightPanel.add(new SquareView(Game.getSquare(i)));
+            rightPanel.add(new SquareView(model.getSquare(i)));
         }
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.setLayout(new BoxLayout(bottomPanel, BoxLayout.X_AXIS));
         bottomPanel.setPreferredSize(new Dimension(1000, 125));
         for(int i = 21; i > 13; i--) {
-            bottomPanel.add(new SquareView(Game.getSquare(i)));
+            bottomPanel.add(new SquareView(model.getSquare(i)));
         }
 
         JPanel leftPanel = new JPanel();
         leftPanel.setLayout(new GridLayout(6, 1));
         leftPanel.setPreferredSize(new Dimension(150, 750));
         for (int i = 27; i > 21; i--) {
-            leftPanel.add(new SquareView(Game.getSquare(i)));
+            leftPanel.add(new SquareView(model.getSquare(i)));
         }
 
         //Add monopolyLogo

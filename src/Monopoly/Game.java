@@ -13,13 +13,15 @@ import java.io.*;
 public class Game implements Serializable {
 
     private Player[] players;           //array of players in the game
-    private int turnNumber = -1;         //the current turn, start at turn -1
-    private static final GameBoard gameBoard = new GameBoard();  //the game's board
+    private int turnNumber;         //the current turn, start at turn -1
+    private GameBoard gameBoard;  //the game's board
 
     /**
      * Default constructor
      */
     public Game() {
+        turnNumber = -1;
+        gameBoard = new GameBoard();
     }
 
     public int getNumberPlayers() {
@@ -68,7 +70,7 @@ public class Game implements Serializable {
      * @param i int, location on the board
      * @return  Square, the square
      */
-    public static Square getSquare(int i) {
+    public Square getSquare(int i) {
         return gameBoard.getSquare(i);
     }
 
@@ -105,6 +107,12 @@ public class Game implements Serializable {
         System.arraycopy(loadedGame.players, 0, players, 0, loadedGame.players.length);
 
         //rebuild board
+        gameBoard = loadedGame.gameBoard;
+        turnNumber = loadedGame.turnNumber - 1;
+
+        for(Player p : players) {
+            System.out.println(p.isTakingTurn());
+        }
 
 
 

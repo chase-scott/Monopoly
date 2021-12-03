@@ -16,8 +16,8 @@ public class HumanPlayer extends Player {
      * @param name      String, the name of the player
      * @param colour    Color, the colour of the player
      */
-    public HumanPlayer(String name, Color colour) {
-        super(name, colour);
+    public HumanPlayer(String name, Color colour, Game game) {
+        super(name, colour, game);
     }
 
 

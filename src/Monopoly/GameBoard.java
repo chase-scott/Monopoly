@@ -1,12 +1,14 @@
 package Monopoly;
 
+import java.io.Serializable;
+
 /**
  * Creates and initializes the game board.
  *
  * @author Mohammad Gaffori 101082318
  * @author Chase Scott 101092194
  */
-public class GameBoard {
+public class GameBoard implements Serializable {
 
     private Square[] squares; //Array of squares that comprise the board
     public final static int BOARD_SIZE = 28;    //Size of the board
