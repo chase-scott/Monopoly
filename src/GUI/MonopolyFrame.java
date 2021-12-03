@@ -13,8 +13,6 @@ public class MonopolyFrame extends JFrame {
     public final static Color[] PLAYER_COLOURS = {Color.RED, Color.ORANGE, Color.YELLOW,
             Color.GREEN, Color.BLUE, Color.CYAN, Color.PINK, Color.MAGENTA};    //The colours of the player's tokens
 
-    private Game model;
-
     /**
      * Constructor for the monopoly frame
      *
@@ -22,10 +20,21 @@ public class MonopolyFrame extends JFrame {
      */
     public MonopolyFrame(Game model) {
         super("Monopoly");
-        this.model = model;
 
-        model.setPlayers(generateWelcome());
-        generateMenuBar();
+        //choose new or load game
+        JPopupMenu menu = new JPopupMenu("Monopoly");
+        String[] buttons = {"New Game", "Load Game", "Exit"};
+        int returnValue = JOptionPane.showOptionDialog(null, "Welcome to Monopoly!",
+                "Monopoly", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
+
+        if(returnValue == 2 || returnValue == -1) System.exit(0);
+        if(returnValue == 1) loadGame(model);
+        //END
+
+        if(model.getNumberPlayers() == 0) {
+            model.setPlayers(generateWelcome());
+        }
+        this.generateMenuBar(model);
 
         JPanel contents = new MonopolyGUI(model);
         this.setContentPane(contents);
@@ -40,6 +49,7 @@ public class MonopolyFrame extends JFrame {
      * @return  Player[],   the array of players
      */
     private Player[] generateWelcome() {
+
         int numPlayers = 0;
         int counter = 0;
         try {
@@ -75,7 +85,7 @@ public class MonopolyFrame extends JFrame {
         return players;
     }
 
-    private void generateMenuBar() {
+    private void generateMenuBar(Game model) {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
 
@@ -84,15 +94,15 @@ public class MonopolyFrame extends JFrame {
 
         JMenuItem item;
         item = new JMenuItem("Save");
-        item.addActionListener(e -> saveGame());
+        item.addActionListener(e -> saveGame(model));
         fileMenu.add(item);
         item = new JMenuItem("Load");
-        item.addActionListener(e -> loadGame());
+        item.addActionListener(e -> loadGame(model));
         fileMenu.add(item);
 
     }
 
-    private void saveGame() {
+    private void saveGame(Game model) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a file to save");
         if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -100,7 +110,7 @@ public class MonopolyFrame extends JFrame {
         }
     }
 
-    private void loadGame() {
+    private void loadGame(Game model) {
         JFileChooser fileChooser = new JFileChooser();
         fileChooser.setDialogTitle("Choose a file to load");
         if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
@@ -111,7 +121,7 @@ public class MonopolyFrame extends JFrame {
 
 
     public static void main(String[] args) {
-        MonopolyFrame monopolyWindow = new MonopolyFrame(new Game());
+        new MonopolyFrame(new Game());
 
     }
 

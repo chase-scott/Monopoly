@@ -2,7 +2,6 @@ package Monopoly;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.ArrayList;
 
 /**
  * Monopoly.Game class for Monopoly
@@ -23,12 +22,14 @@ public class Game implements Serializable {
     public Game() {
     }
 
-    public int getNumberPlayers() {return players.length;}
+    public int getNumberPlayers() {
+        try { return players.length;
+        } catch (NullPointerException e) { return 0; }
+    }
 
     public Player getPlayer(int i) {return players[i];}
 
     public void setPlayers(Player[] players){this.players = players;}
-
 
     /**
      * Begins the game loop. Once a player has passed their turn, increment turn number.
@@ -84,50 +85,29 @@ public class Game implements Serializable {
 
         } catch (IOException ignored){}
 
-
-
-
-        /*
-        try {
-            FileWriter fileWriter = new java.io.FileWriter(fileName);
-            fileWriter.write(this.toXML());
-            fileWriter.close();
-        } catch (IOException ignored) {}
-        */
     }
 
     public void readFile(String fileName) {
 
-            Game loadedGame = null;
+        Game loadedGame = null;
+
         try {
             ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
-
             loadedGame = (Game) objectInputStream.readObject();
-
-
 
         } catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
         }
 
         assert loadedGame != null;
-        for(Player p : loadedGame.players) {
-            System.out.println(p.getName() + " Properties: " + p.getPropertyList());
-        }
+
+        players = new Player[loadedGame.players.length];
+        System.arraycopy(loadedGame.players, 0, players, 0, loadedGame.players.length);
+
+        //rebuild board
+
 
 
     }
-
-    /*
-    private String toXML() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("<game>\n");
-        for(Player p : players) {
-            sb.append(p.toXML());
-        }
-        sb.append("</game>\n");
-        return sb.toString();
-    }
-    */
 
 }
