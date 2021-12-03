@@ -45,7 +45,7 @@ public class ComputerPlayer extends Player {
         if(!getPropertyList().isEmpty()) super.buildHouse((int) (Math.random() * getPropertyList().size()));
         updateViews();
 
-        if (!getDice().isRolled()) makeMove(); //if rolled double, repeat
+        if (!getDice().isRolled() && !isInJail()) makeMove(); //if rolled double, repeat
         passTurn();
     }
 

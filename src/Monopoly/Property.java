@@ -15,7 +15,6 @@ public class Property extends Square {
     private final double rentRate;
     private Player ownedBy = null;
     private final Color colour;
-
     private final double housePrice;
     private int builtHouses;
 

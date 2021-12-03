@@ -13,6 +13,8 @@ public class MonopolyFrame extends JFrame {
     public final static Color[] PLAYER_COLOURS = {Color.RED, Color.ORANGE, Color.YELLOW,
             Color.GREEN, Color.BLUE, Color.CYAN, Color.PINK, Color.MAGENTA};    //The colours of the player's tokens
 
+    private Game model;
+
     /**
      * Constructor for the monopoly frame
      *
@@ -20,12 +22,14 @@ public class MonopolyFrame extends JFrame {
      */
     public MonopolyFrame(Game model) {
         super("Monopoly");
+        this.model = model;
 
         model.setPlayers(generateWelcome());
+        generateMenuBar();
 
         JPanel contents = new MonopolyGUI(model);
         this.setContentPane(contents);
-        this.setMinimumSize(new Dimension((1100 + model.getNumberPlayers()*100), 1300));
+        this.setMinimumSize(new Dimension((1000 + model.getNumberPlayers()*100), 1300));
         this.setLocationRelativeTo(null);
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
@@ -71,9 +75,43 @@ public class MonopolyFrame extends JFrame {
         return players;
     }
 
+    private void generateMenuBar() {
+        JMenuBar menuBar = new JMenuBar();
+        setJMenuBar(menuBar);
+
+        JMenu fileMenu = new JMenu("File");
+        menuBar.add(fileMenu);
+
+        JMenuItem item;
+        item = new JMenuItem("Save");
+        item.addActionListener(e -> saveGame());
+        fileMenu.add(item);
+        item = new JMenuItem("Load");
+        item.addActionListener(e -> loadGame());
+        fileMenu.add(item);
+
+    }
+
+    private void saveGame() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose a file to save");
+        if (fileChooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
+            model.writeToFile(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }
+
+    private void loadGame() {
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Choose a file to load");
+        if (fileChooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+
+            model.readFile(fileChooser.getSelectedFile().getAbsolutePath());
+        }
+    }
+
+
     public static void main(String[] args) {
-        Game game = new Game();
-        MonopolyFrame monopolyWindow = new MonopolyFrame(game);
+        MonopolyFrame monopolyWindow = new MonopolyFrame(new Game());
 
     }
 

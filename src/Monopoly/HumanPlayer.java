@@ -1,6 +1,7 @@
 package Monopoly;
 
 import java.awt.*;
+import java.io.Serializable;
 
 /**
  * HumanPlayer class.
@@ -8,7 +9,7 @@ import java.awt.*;
  *
  * @author Chase Scott 101092194
  */
-public class HumanPlayer extends Player {
+public class HumanPlayer extends Player implements Serializable {
 
     /**
      * Constructor for a human player

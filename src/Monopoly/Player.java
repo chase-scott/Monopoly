@@ -3,6 +3,7 @@ package Monopoly;
 import GUI.PlayerView;
 import javax.swing.*;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -12,7 +13,7 @@ import java.util.stream.Collectors;
  * @author Chase Scott 101092194
  * @author Amith Kumar Das Orko 101126245
  */
-public abstract class Player {
+public abstract class Player implements Serializable {
 
     private final String name;              //the name of the players
     private double money;                   //the player's money
@@ -270,5 +271,16 @@ public abstract class Player {
         }
 
     }
+    /*
+    public String toXML() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("\t<player>\n");
+        sb.append("\t\t<name>" + name + "</name>\n");
+        sb.append("\t\t<money>" + money + "</money>\n");
+        sb.append("\t</player>\n");
+        return sb.toString();
+    }
+    */
+
 
 }
