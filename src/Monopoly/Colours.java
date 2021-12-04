@@ -7,6 +7,7 @@ import java.awt.*;
  * @author Chase Scott 101092194
  */
 public enum Colours {
+
     /**
      * All the colours for the game board
      */
@@ -23,7 +24,7 @@ public enum Colours {
     private final Color colour;     //Color associated with the colour
     private final double housePrice;//cost of the house of the property
 
-    Colours(double rentRate, double housePrice,Color colour) {
+    Colours(double rentRate, double housePrice, Color colour) {
         this.rentRate = rentRate;
         this.colour = colour;
         this.housePrice = housePrice;
@@ -36,4 +37,14 @@ public enum Colours {
     public double getHousePrice() { return housePrice; }
 
     public Color getColour() {return colour;}
+
+    public static Colours matchColour(int rgb) {
+        for (Colours c : Colours.values()) {
+            if(c.getColour().getRGB() == rgb) {
+                return c;
+            }
+        }
+        return null;
+    }
+
 }

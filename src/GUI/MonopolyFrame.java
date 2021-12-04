@@ -3,6 +3,7 @@ package GUI;
 import javax.swing.*;
 import Monopoly.*;
 import java.awt.*;
+import java.util.Objects;
 
 /**
  * @version 1.0
@@ -24,18 +25,10 @@ public class MonopolyFrame extends JFrame {
         super("Monopoly");
 
         this.model = model;
-
-        //choose new or load game
-        JPopupMenu menu = new JPopupMenu("Monopoly");
-        String[] buttons = {"New Game", "Load Game", "Exit"};
-        int returnValue = JOptionPane.showOptionDialog(null, "Welcome to Monopoly!",
-                "Monopoly", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.ERROR_MESSAGE, null, buttons, buttons[0]);
-
-        if(returnValue == 2 || returnValue == -1) System.exit(0);
-        if(returnValue == 1) loadGame();
-        //END
+        startMenu();
 
         if(model.getNumberPlayers() == 0) {
+            chooseVersion();
             model.setPlayers(generateWelcome());
         }
         this.generateMenuBar();
@@ -47,6 +40,33 @@ public class MonopolyFrame extends JFrame {
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
         this.setVisible(true);
     }
+
+    private void chooseVersion() {
+
+        String returnValue = (String) JOptionPane.showInputDialog(null,
+                    "Select the Version", "Monopoly",
+                    JOptionPane.QUESTION_MESSAGE, null, GameBoard.VERSIONS, 0);
+
+        if(returnValue == null) System.exit(0);
+
+
+
+    }
+
+    private void startMenu() {
+
+        Object[] buttons = {"New Game", "Load Game"};
+
+        ImageIcon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("monopolyIcon.png")));
+        int returnValue = JOptionPane.showOptionDialog(null, "Welcome to Monopoly!",
+                "Monopoly", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, icon, buttons, buttons[0]);
+
+        if(returnValue == -1) System.exit(0);
+        if(returnValue == 1) loadGame();
+
+    }
+
+
 
     /**
      * Displays the prompt for how many players and their names, then compiles them into an array of Players.
