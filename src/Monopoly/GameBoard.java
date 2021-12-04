@@ -25,16 +25,18 @@ public class GameBoard implements Serializable {
     /**
      * Default constructor
      */
-    public GameBoard() {
+    public GameBoard(String version) {
         try {
-            createBoard();
+            createBoard(version);
         } catch (Exception e) {System.out.println("ERROR");}
     }
 
     /**
      * Initializes the game board.
      */
-    private void createBoard() throws Exception {
+    private void createBoard(String version) throws Exception {
+
+        //this will be function input
 
         File f = new File("src/versions.xml");
         ArrayList<Square> board = new ArrayList<>();
@@ -44,6 +46,7 @@ public class GameBoard implements Serializable {
 
         DefaultHandler dh = new DefaultHandler() {
 
+            private boolean correctVersion = false;
             private String name = "";
             private String type = "";
             private double price = 0.0;
@@ -53,35 +56,43 @@ public class GameBoard implements Serializable {
             StringBuilder elementValue = new StringBuilder();
 
           public void startElement(String u, String ln, String qName, Attributes a) {
-              elementValue = new StringBuilder();
+
+              if(qName.equals(version)) {
+                  correctVersion = true;
+              } else {
+                  elementValue = new StringBuilder();
+              }
           }
 
-          public void endElement(String url, String localNAme, String qName) {
-              switch (qName) {
-                  case "name":
-                      this.name = elementValue.toString();
-                      break;
-                  case "price":
-                      this.price = Integer.parseInt(elementValue.toString());
-                      break;
-                  case "colour":
-                      this.colour = Integer.parseInt(elementValue.toString());
-                      break;
-                  case "type":
-                      this.type = elementValue.toString();
-                      break;
-                  case "Property":
-                      board.add(new Property(name, price, Objects.requireNonNull(Colours.matchColour(colour))));
-                      break;
-                  case "Utility":
-                      board.add(new Utility(name, price, type));
-                      break;
-                  case "Empty":
-                      board.add(new Empty(name));
-                      break;
-                  case "GoToJail":
-                      board.add(new GoToJail());
-                      break;
+          public void endElement(String url, String localName, String qName) {
+
+              if(correctVersion) {
+                  switch (qName) {
+                      case "name":
+                          this.name = elementValue.toString();
+                          break;
+                      case "price":
+                          this.price = Integer.parseInt(elementValue.toString());
+                          break;
+                      case "colour":
+                          this.colour = Integer.parseInt(elementValue.toString());
+                          break;
+                      case "type":
+                          this.type = elementValue.toString();
+                          break;
+                      case "Property":
+                          board.add(new Property(name, price, Objects.requireNonNull(Colours.matchColour(colour))));
+                          break;
+                      case "Utility":
+                          board.add(new Utility(name, price, type));
+                          break;
+                      case "Empty":
+                          board.add(new Empty(name));
+                          break;
+                      case "GoToJail":
+                          board.add(new GoToJail());
+                          break;
+                  }
               }
           }
 

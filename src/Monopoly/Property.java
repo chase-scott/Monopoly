@@ -78,7 +78,7 @@ public class Property extends Square {
 
             double amountOwed = rentRate * price * (builtHouses/2.0 + 1);
 
-            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed + " to " + ownedBy.getName(), "Paid Rent!", JOptionPane.INFORMATION_MESSAGE);
+            showMessage(player.getName() + " pays $" + amountOwed + " to " + ownedBy.getName(), "Paid Rent", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
@@ -100,15 +100,15 @@ public class Property extends Square {
         for(int i = 0; i < GameBoard.BOARD_SIZE; i++) {
             if(!(player.getGame().getSquare(i) instanceof Property)) continue;
                 if(((Property) player.getGame().getSquare(i)).getOwner() != player && player.getGame().getSquare(i).getColour() == this.colour) {
-                       //System.out.println("MISSING A PROPERTY IN THIS SET");
+                       //MISSING A PROPERTY IN THIS SET
                        return;
                 }
         }
         if (builtHouses < 5) {
             int result;
             if(player instanceof HumanPlayer) {
-                result = JOptionPane.showConfirmDialog(null, "Place a house on " + getName() +
-                        " for $" + housePrice + "?", "Buy House", JOptionPane.YES_NO_OPTION);
+                result = showConfirmDialog("Place a house on " + getName() +
+                        " for $" + housePrice + "?", "Building House", JOptionPane.YES_NO_OPTION);
             } else {
                 result = JOptionPane.YES_OPTION;
             }

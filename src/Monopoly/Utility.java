@@ -63,8 +63,8 @@ public class Utility extends Square {
                 }
             } else {return;}
 
-            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed +
-                    " to " + ownedBy.getName(), "Paid Utility!", JOptionPane.INFORMATION_MESSAGE);
+            showMessage(player.getName() + " pays $" + amountOwed +
+                    " to " + ownedBy.getName(), "Paid Utility", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());

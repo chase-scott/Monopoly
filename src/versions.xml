@@ -1,162 +1,326 @@
-<American>
-	<Empty>
-		<name>Go</name>
-	</Empty>
+<Versions>
+	<American>
+		<Empty>
+			<name>Go</name>
+		</Empty>
 
-	<Property>
-		<name>Mediterranean Ave.</name>
-		<price>60</price>
-		<colour>-8567285</colour>
-	</Property>
+		<Property>
+			<name>Mediterranean Ave.</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
 
-	<Property>
-		<name>Baltic Avenue</name>
-		<price>60</price>
-		<colour>-8567285</colour>
-	</Property>
+		<Property>
+			<name>Baltic Avenue</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
 
-	<Utility>
-		<name>Reading Railroad</name>
-		<price>150</price>
-		<type>RAILROAD</type>
-	</Utility>
+		<Utility>
+			<name>Reading Railroad</name>
+			<price>150</price>
+			<type>RAILROAD</type>
+		</Utility>
 
-	<Property>
-		<name>Oriental Avenue</name>
-		<price>100</price>
-		<colour>-16744320</colour>
-	</Property>
+		<Property>
+			<name>Oriental Avenue</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
 
-	<Property>
-		<name>Vermont Avenue</name>
-		<price>100</price>
-		<colour>-16744320</colour>
-	</Property>
+		<Property>
+			<name>Vermont Avenue</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
 
-	<Property>
-		<name>Connecticut Ave.</name>
-		<price>120</price>
-		<colour>-16744320</colour>
-	</Property>
+		<Property>
+			<name>Connecticut Ave.</name>
+			<price>120</price>
+			<colour>-16744320</colour>
+		</Property>
 
-	<Empty>
-		<name>Jail</name>
-	</Empty>
+		<Empty>
+			<name>Jail</name>
+		</Empty>
 
-	<Property>
-		<name>St. Charles Place</name>
-		<price>140</price>
-		<colour>-16181</colour>
-	</Property>
+		<Property>
+			<name>St. Charles Place</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
 
-	<Property>
-		<name>States Avenue</name>
-		<price>140</price>
-		<colour>-16181</colour>
-	</Property>
+		<Property>
+			<name>States Avenue</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
 
-	<Property>
-		<name>Virginia Avenue</name>
-		<price>160</price>
-		<colour>-16181</colour>
-	</Property>
+		<Property>
+			<name>Virginia Avenue</name>
+			<price>160</price>
+			<colour>-16181</colour>
+		</Property>
 
-	<Utility>
-		<name>Electric Company</name>
-		<price>150</price>
-		<type>UTILITY</type>
-	</Utility>
+		<Utility>
+			<name>Electric Company</name>
+			<price>150</price>
+			<type>UTILITY</type>
+		</Utility>
 
 
-	<Property>
-		<name>Tennessee Avenue</name>
-		<price>180</price>
-		<colour>-23296</colour>
-	</Property>
+		<Property>
+			<name>Tennessee Avenue</name>
+			<price>180</price>
+			<colour>-23296</colour>
+		</Property>
 
-	<Property>
-		<name>New York Avenue</name>
-		<price>200</price>
-		<colour>-23296</colour>
-	</Property>
+		<Property>
+			<name>New York Avenue</name>
+			<price>200</price>
+			<colour>-23296</colour>
+		</Property>
 
-	<Empty>
-		<name>FREE PARKING</name>
-	</Empty>
+		<Empty>
+			<name>FREE PARKING</name>
+		</Empty>
 
-	<Property>
-		<name>Kentucky Avenue</name>
-		<price>220</price>
-		<colour>-65536</colour>
-	</Property>
+		<Property>
+			<name>Kentucky Avenue</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
 
-	<Property>
-		<name>Indiana Avenue</name>
-		<price>220</price>
-		<colour>-65536</colour>
-	</Property>
+		<Property>
+			<name>Indiana Avenue</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
 
-	<Utility>
-		<name>B. &amp; O. Railroad</name>
-		<price>150</price>
-		<type>RAILROAD</type>
-	</Utility>
+		<Utility>
+			<name>B. &amp; O. Railroad</name>
+			<price>150</price>
+			<type>RAILROAD</type>
+		</Utility>
 
-	<Property>
-		<name>Atlantic Avenue</name>
-		<price>260</price>
-		<colour>-256</colour>
-	</Property>
+		<Property>
+			<name>Atlantic Avenue</name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
 
-	<Property>
-		<name>Ventnor Avenue</name>
-		<price>260</price>
-		<colour>-256</colour>
-	</Property>
+		<Property>
+			<name>Ventnor Avenue</name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
 
-	<Property>
-		<name>Marvin Gardens</name>
-		<price>280</price>
-		<colour>-256</colour>
-	</Property>
+		<Property>
+			<name>Marvin Gardens</name>
+			<price>280</price>
+			<colour>-256</colour>
+		</Property>
 
-	<GoToJail>
-	</GoToJail>
+		<GoToJail>
+		</GoToJail>
 
-	<Property>
-		<name>Pacific Avenue</name>
-		<price>300</price>
-		<colour>-14513374</colour>
-	</Property>
+		<Property>
+			<name>Pacific Avenue</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
 
-	<Property>
-		<name>North Carolina Ave.</name>
-		<price>300</price>
-		<colour>-14513374</colour>
-	</Property>
+		<Property>
+			<name>North Carolina Ave.</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
 
-	<Property>
-		<name>Pennsylvania Ave.</name>
-		<price>320</price>
-		<colour>-14513374</colour>
-	</Property>
+		<Property>
+			<name>Pennsylvania Ave.</name>
+			<price>320</price>
+			<colour>-14513374</colour>
+		</Property>
 
-	<Utility>
-		<name>Water Works</name>
-		<price>150</price>
-		<type>UTILITY</type>
-	</Utility>
+		<Utility>
+			<name>Water Works</name>
+			<price>150</price>
+			<type>UTILITY</type>
+		</Utility>
 
-	<Property>
-		<name>Park Place</name>
-		<price>350</price>
-		<colour>-16776961</colour>
-	</Property>
+		<Property>
+			<name>Park Place</name>
+			<price>350</price>
+			<colour>-16776961</colour>
+		</Property>
 
-	<Property>
-		<name>Boardwalk</name>
-		<price>400</price>
-		<colour>-16776961</colour>
-	</Property>
+		<Property>
+			<name>Boardwalk</name>
+			<price>400</price>
+			<colour>-16776961</colour>
+		</Property>
+	</American>
 
-</American>
+
+	<Canadian>
+		<Empty>
+			<name>Go</name>
+		</Empty>
+
+		<Property>
+			<name>Water Street</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
+
+		<Property>
+			<name>Signal Hill Road</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
+
+		<Utility>
+			<name>CN Rail</name>
+			<price>200</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>University Avenue</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Property>
+			<name>Barrington Street</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Property>
+			<name>Spring Garden Rd.</name>
+			<price>120</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Empty>
+			<name>Jail</name>
+		</Empty>
+
+		<Property>
+			<name>Waterloo Row</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Property>
+			<name>King Street</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Property>
+			<name>Queen Street</name>
+			<price>160</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Utility>
+			<name>Esso</name>
+			<price>150</price>
+			<type>UTILITY</type>
+		</Utility>
+
+
+		<Property>
+			<name>Grand Allée</name>
+			<price>180</price>
+			<colour>-23296</colour>
+		</Property>
+
+		<Property>
+			<name>Rue Ste-Catherine</name>
+			<price>200</price>
+			<colour>-23296</colour>
+		</Property>
+
+		<Empty>
+			<name>FREE PARKING</name>
+		</Empty>
+
+		<Property>
+			<name>Sussex Drive</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
+
+		<Property>
+			<name>Bay Street</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
+
+		<Utility>
+			<name>CPR</name>
+			<price>200</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>Portage and Main </name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
+
+		<Property>
+			<name>Victoria Avenue</name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
+
+		<Property>
+			<name>Albert Street</name>
+			<price>280</price>
+			<colour>-256</colour>
+		</Property>
+
+		<GoToJail>
+		</GoToJail>
+
+		<Property>
+			<name>Jasper Avenue</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Property>
+			<name>St. Albert Trail</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Property>
+			<name>Macleod Trail</name>
+			<price>320</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Utility>
+			<name>Canada Post</name>
+			<price>150</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>Granville Street</name>
+			<price>350</price>
+			<colour>-16776961</colour>
+		</Property>
+
+		<Property>
+			<name>Robson Street</name>
+			<price>400</price>
+			<colour>-16776961</colour>
+		</Property>
+	</Canadian>
+</Versions>

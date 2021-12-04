@@ -49,7 +49,7 @@ public class MonopolyFrame extends JFrame {
 
         if(returnValue == null) System.exit(0);
 
-
+        model.setGameBoard(returnValue);
 
     }
 

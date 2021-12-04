@@ -2,6 +2,7 @@ package Monopoly;
 
 import javax.swing.*;
 import java.io.*;
+import java.util.Arrays;
 
 /**
  * Monopoly.Game class for Monopoly
@@ -21,7 +22,7 @@ public class Game implements Serializable {
      */
     public Game() {
         turnNumber = -1;
-        gameBoard = new GameBoard();
+        gameBoard = new GameBoard(GameBoard.VERSIONS[0]); //defaults to american version
     }
 
     public int getNumberPlayers() {
@@ -74,6 +75,10 @@ public class Game implements Serializable {
         return gameBoard.getSquare(i);
     }
 
+    public void setGameBoard(String version) {
+        gameBoard = new GameBoard(version);
+    }
+
 
     //SAVE LOGIC//
 
@@ -105,9 +110,15 @@ public class Game implements Serializable {
 
         players = new Player[loadedGame.players.length];
         System.arraycopy(loadedGame.players, 0, players, 0, loadedGame.players.length);
+        //clear player views
+        Arrays.asList(players).forEach(Player::clearViews);
 
         //rebuild board
         gameBoard = loadedGame.gameBoard;
+        //clear square views
+        for(int i = 0; i < GameBoard.BOARD_SIZE; i++) {
+            getSquare(i).clearViews();
+        }
         turnNumber = loadedGame.turnNumber - 1;
 
     }

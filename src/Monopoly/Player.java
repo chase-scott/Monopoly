@@ -87,6 +87,8 @@ public abstract class Player implements Serializable {
         propertyList.add(square);
     }
 
+    public void clearViews() {views.clear();}
+
     public Game getGame() {return monopolyGame;}
 
     /**
@@ -235,7 +237,7 @@ public abstract class Player implements Serializable {
         monopolyGame.getSquare(position).addPlayer(this);
         monopolyGame.getSquare(position).updateViews();
         this.inJail = true;
-        showMessage(name + "is being sent to jail!", "Jail", JOptionPane.WARNING_MESSAGE);
+        showMessage(name + " is being sent to jail!", "Jail", JOptionPane.WARNING_MESSAGE);
         passTurn();
     }
 
@@ -243,15 +245,13 @@ public abstract class Player implements Serializable {
         if(turnsInJail == 3) {
             inJail = false;
             turnsInJail = 0;
-            showMessage(name + "has server their time and been let out of jail", "Jail", JOptionPane.INFORMATION_MESSAGE);
+            showMessage(name + " has server their time and been let out of jail", "Jail", JOptionPane.INFORMATION_MESSAGE);
         }
 
         if(inJail) {
             int answer = 0;
             if(money < 50) { answer = 1; }
-            else if(this instanceof HumanPlayer) answer = JOptionPane.showOptionDialog(null,
-                    "Pay $50 or roll?", "Jail", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"PAY", "ROLL"}, 0);
-
+            else if(this instanceof HumanPlayer) answer = showOptionDialog("Pay $50 or roll?", "Jail", JOptionPane.INFORMATION_MESSAGE, new String[]{"Pay", "Roll"});
             if(answer == 0) {
                 money -= 50;
                 inJail = false;
@@ -281,5 +281,19 @@ public abstract class Player implements Serializable {
     public void showMessage(String message, String title, int type) {
         views.forEach(e -> e.showMessage(message, title, type));
     }
+
+    /**
+     * Displays an option dialog to the first view
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     * @param options   String[], the options for the user to choose from
+     * @return          int, the choice
+     */
+    public int showOptionDialog(String message, String title, int type, String[] options) {
+        return views.get(0).showOptionDialog(message, title, type, options);
+    }
+
 
 }
