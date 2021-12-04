@@ -54,7 +54,7 @@ public class Game implements Serializable {
 
                 for(Player p : players){
                     if (!p.getBankruptcyStatus()) {
-                        JOptionPane.showMessageDialog(null, p.getName() + " has won the game!!!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
+                        p.showMessage(p.getName() + " has won the game!!!", "Game Over", JOptionPane.INFORMATION_MESSAGE);
                     }
                 }
                 System.exit(0);

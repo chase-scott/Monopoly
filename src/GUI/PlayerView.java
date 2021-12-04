@@ -135,6 +135,11 @@ public class PlayerView extends JPanel implements MonopolyView {
         } else {buyProperty.setEnabled(false);}
     }
 
+
+    public void showMessage(String message, String title, int type) {
+        JOptionPane.showMessageDialog(null, message, title, type);
+    }
+
     /**
      * passTurnController class
      */
