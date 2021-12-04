@@ -1,11 +1,13 @@
 package Monopoly;
 
+import java.io.Serializable;
+
 /**
  * Roll and return value of the two dice
  * @author Amith Kumar Das Orko 101126245
  * @author Chase Scott 101092194
  */
-public class Dice {
+public class Dice implements Serializable {
 
     private int[] dice;     //the game dice
     private boolean rolled; //whether the dice has been rolled this turn

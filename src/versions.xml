@@ -1,0 +1,162 @@
+<American>
+	<Empty>
+		<name>Go</name>
+	</Empty>
+
+	<Property>
+		<name>Mediterranean Ave.</name>
+		<price>60</price>
+		<colour>-8567285</colour>
+	</Property>
+
+	<Property>
+		<name>Baltic Avenue</name>
+		<price>60</price>
+		<colour>-8567285</colour>
+	</Property>
+
+	<Utility>
+		<name>Reading Railroad</name>
+		<price>150</price>
+		<type>RAILROAD</type>
+	</Utility>
+
+	<Property>
+		<name>Oriental Avenue</name>
+		<price>100</price>
+		<colour>-16744320</colour>
+	</Property>
+
+	<Property>
+		<name>Vermont Avenue</name>
+		<price>100</price>
+		<colour>-16744320</colour>
+	</Property>
+
+	<Property>
+		<name>Connecticut Ave.</name>
+		<price>120</price>
+		<colour>-16744320</colour>
+	</Property>
+
+	<Empty>
+		<name>Jail</name>
+	</Empty>
+
+	<Property>
+		<name>St. Charles Place</name>
+		<price>140</price>
+		<colour>-16181</colour>
+	</Property>
+
+	<Property>
+		<name>States Avenue</name>
+		<price>140</price>
+		<colour>-16181</colour>
+	</Property>
+
+	<Property>
+		<name>Virginia Avenue</name>
+		<price>160</price>
+		<colour>-16181</colour>
+	</Property>
+
+	<Utility>
+		<name>Electric Company</name>
+		<price>150</price>
+		<type>UTILITY</type>
+	</Utility>
+
+
+	<Property>
+		<name>Tennessee Avenue</name>
+		<price>180</price>
+		<colour>-23296</colour>
+	</Property>
+
+	<Property>
+		<name>New York Avenue</name>
+		<price>200</price>
+		<colour>-23296</colour>
+	</Property>
+
+	<Empty>
+		<name>FREE PARKING</name>
+	</Empty>
+
+	<Property>
+		<name>Kentucky Avenue</name>
+		<price>220</price>
+		<colour>-65536</colour>
+	</Property>
+
+	<Property>
+		<name>Indiana Avenue</name>
+		<price>220</price>
+		<colour>-65536</colour>
+	</Property>
+
+	<Utility>
+		<name>B. &amp; O. Railroad</name>
+		<price>150</price>
+		<type>RAILROAD</type>
+	</Utility>
+
+	<Property>
+		<name>Atlantic Avenue</name>
+		<price>260</price>
+		<colour>-256</colour>
+	</Property>
+
+	<Property>
+		<name>Ventnor Avenue</name>
+		<price>260</price>
+		<colour>-256</colour>
+	</Property>
+
+	<Property>
+		<name>Marvin Gardens</name>
+		<price>280</price>
+		<colour>-256</colour>
+	</Property>
+
+	<GoToJail>
+	</GoToJail>
+
+	<Property>
+		<name>Pacific Avenue</name>
+		<price>300</price>
+		<colour>-14513374</colour>
+	</Property>
+
+	<Property>
+		<name>North Carolina Ave.</name>
+		<price>300</price>
+		<colour>-14513374</colour>
+	</Property>
+
+	<Property>
+		<name>Pennsylvania Ave.</name>
+		<price>320</price>
+		<colour>-14513374</colour>
+	</Property>
+
+	<Utility>
+		<name>Water Works</name>
+		<price>150</price>
+		<type>UTILITY</type>
+	</Utility>
+
+	<Property>
+		<name>Park Place</name>
+		<price>350</price>
+		<colour>-16776961</colour>
+	</Property>
+
+	<Property>
+		<name>Boardwalk</name>
+		<price>400</price>
+		<colour>-16776961</colour>
+	</Property>
+
+</American>

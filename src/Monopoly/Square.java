@@ -2,6 +2,7 @@ package Monopoly;
 
 import GUI.SquareView;
 import java.awt.*;
+import java.io.Serializable;
 import java.util.*;
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  *
  * @author Chase Scott 101092194
  */
-public abstract class Square {
+public abstract class Square implements Serializable {
 
     private List<SquareView> views;
     private final String name;

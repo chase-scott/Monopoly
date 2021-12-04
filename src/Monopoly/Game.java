@@ -1,6 +1,7 @@
 package Monopoly;
 
 import javax.swing.*;
+import java.io.*;
 
 /**
  * Monopoly.Game class for Monopoly
@@ -9,24 +10,28 @@ import javax.swing.*;
  * @author Mohammad Gaffori 101082318
  * @author Amith Kumar Das Orko 101126245
  */
-public class Game {
+public class Game implements Serializable {
 
     private Player[] players;           //array of players in the game
-    private int turnNumber = -1;         //the current turn, start at turn -1
-    private static final GameBoard gameBoard = new GameBoard();  //the game's board
+    private int turnNumber;         //the current turn, start at turn -1
+    private GameBoard gameBoard;  //the game's board
 
     /**
      * Default constructor
      */
     public Game() {
+        turnNumber = -1;
+        gameBoard = new GameBoard();
     }
 
-    public int getNumberPlayers() {return players.length;}
+    public int getNumberPlayers() {
+        try { return players.length;
+        } catch (NullPointerException e) { return 0; }
+    }
 
     public Player getPlayer(int i) {return players[i];}
 
     public void setPlayers(Player[] players){this.players = players;}
-
 
     /**
      * Begins the game loop. Once a player has passed their turn, increment turn number.
@@ -65,8 +70,46 @@ public class Game {
      * @param i int, location on the board
      * @return  Square, the square
      */
-    public static Square getSquare(int i) {
+    public Square getSquare(int i) {
         return gameBoard.getSquare(i);
+    }
+
+
+    //SAVE LOGIC//
+
+    public void writeToFile(String fileName) {
+        try {
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(new FileOutputStream(fileName));
+
+            objectOutputStream.writeObject(this);
+
+            objectOutputStream.close();
+
+        } catch (IOException ignored){}
+
+    }
+
+    public void readFile(String fileName) {
+
+        Game loadedGame = null;
+
+        try {
+            ObjectInputStream objectInputStream = new ObjectInputStream(new FileInputStream(fileName));
+            loadedGame = (Game) objectInputStream.readObject();
+
+        } catch (IOException | ClassNotFoundException e){
+            e.printStackTrace();
+        }
+
+        assert loadedGame != null;
+
+        players = new Player[loadedGame.players.length];
+        System.arraycopy(loadedGame.players, 0, players, 0, loadedGame.players.length);
+
+        //rebuild board
+        gameBoard = loadedGame.gameBoard;
+        turnNumber = loadedGame.turnNumber - 1;
+
     }
 
 }
