@@ -110,12 +110,6 @@ public class Game implements Serializable {
         gameBoard = loadedGame.gameBoard;
         turnNumber = loadedGame.turnNumber - 1;
 
-        for(Player p : players) {
-            System.out.println(p.isTakingTurn());
-        }
-
-
-
     }
 
 }
