@@ -120,7 +120,7 @@ public class PlayerView extends JPanel implements MonopolyView {
      */
     @Override
     public void updateView() {
-        this.money.setText("$" + this.model.getMoney());
+        this.money.setText(GameBoard.CURRENCY_SIGN + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
         passTurn.setEnabled(model.getDice().isRolled() && model.isTakingTurn());

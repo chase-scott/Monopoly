@@ -1,7 +1,7 @@
 <Versions>
 	<American>
 
-		<currencySign>$</currencySign>
+		<currency>$</currency>
 
 		<Empty>
 			<name>Go</name>
@@ -161,10 +161,14 @@
 			<price>400</price>
 			<colour>-16776961</colour>
 		</Property>
+
 	</American>
 
 
 	<Canadian>
+
+		<currency>£</currency>
+
 		<Empty>
 			<name>Go</name>
 		</Empty>
@@ -324,5 +328,6 @@
 			<price>400</price>
 			<colour>-16776961</colour>
 		</Property>
+
 	</Canadian>
 </Versions>

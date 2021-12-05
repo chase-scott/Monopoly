@@ -251,7 +251,7 @@ public abstract class Player implements Serializable {
         if(inJail) {
             int answer = 0;
             if(money < 50) { answer = 1; }
-            else if(this instanceof HumanPlayer) answer = showOptionDialog("Pay $50 or roll?", "Jail", JOptionPane.INFORMATION_MESSAGE, new String[]{"Pay", "Roll"});
+            else if(this instanceof HumanPlayer) answer = showOptionDialog("Pay " + GameBoard.CURRENCY_SIGN + "50 or roll?", "Jail", JOptionPane.INFORMATION_MESSAGE, new String[]{"Pay", "Roll"});
             if(answer == 0) {
                 money -= 50;
                 inJail = false;

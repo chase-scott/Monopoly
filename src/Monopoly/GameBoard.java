@@ -1,6 +1,8 @@
 package Monopoly;
 
 import org.xml.sax.Attributes;
+import org.xml.sax.SAXException;
+import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
@@ -8,6 +10,7 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -21,6 +24,7 @@ public class GameBoard implements Serializable {
     private Square[] squares; //Array of squares that comprise the board
     public final static int BOARD_SIZE = 28;    //Size of the board
     public final static String[] VERSIONS= {"American", "Canadian"};
+    public static String CURRENCY_SIGN = null;
 
     /**
      * Default constructor
@@ -47,11 +51,11 @@ public class GameBoard implements Serializable {
         DefaultHandler dh = new DefaultHandler() {
 
             private boolean correctVersion = false;
+            private boolean done = false;
             private String name = "";
             private String type = "";
             private double price = 0.0;
             private int colour = 0;
-
 
             StringBuilder elementValue = new StringBuilder();
 
@@ -66,7 +70,7 @@ public class GameBoard implements Serializable {
 
           public void endElement(String url, String localName, String qName) {
 
-              if(correctVersion) {
+              if(correctVersion && !done) {
                   switch (qName) {
                       case "name":
                           this.name = elementValue.toString();
@@ -92,7 +96,11 @@ public class GameBoard implements Serializable {
                       case "GoToJail":
                           board.add(new GoToJail());
                           break;
+                      case "currency":
+                          CURRENCY_SIGN = elementValue.toString();
+                          break;
                   }
+                  if(qName.equals(version)) done = true;
               }
           }
 

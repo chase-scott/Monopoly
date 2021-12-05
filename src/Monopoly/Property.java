@@ -78,7 +78,7 @@ public class Property extends Square {
 
             double amountOwed = rentRate * price * (builtHouses/2.0 + 1);
 
-            showMessage(player.getName() + " pays $" + amountOwed + " to " + ownedBy.getName(), "Paid Rent", JOptionPane.INFORMATION_MESSAGE);
+            showMessage(player.getName() + " pays " + GameBoard.CURRENCY_SIGN + amountOwed + " to " + ownedBy.getName(), "Paid Rent", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
@@ -108,7 +108,7 @@ public class Property extends Square {
             int result;
             if(player instanceof HumanPlayer) {
                 result = showConfirmDialog("Place a house on " + getName() +
-                        " for $" + housePrice + "?", "Building House", JOptionPane.YES_NO_OPTION);
+                        " for " + GameBoard.CURRENCY_SIGN + housePrice + "?", "Building House", JOptionPane.YES_NO_OPTION);
             } else {
                 result = JOptionPane.YES_OPTION;
             }
@@ -133,7 +133,8 @@ public class Property extends Square {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price).append("\nRent: $").append(rentRate * price * (builtHouses/2.0 + 1)).append("\nOwned by: ");
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: ").append(GameBoard.CURRENCY_SIGN)
+                .append(price).append("\nRent: ").append(GameBoard.CURRENCY_SIGN).append(rentRate * price * (builtHouses/2.0 + 1)).append("\nOwned by: ");
         if(ownedBy == null) {
             sb.append("Nobody");
         } else{
