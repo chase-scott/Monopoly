@@ -28,8 +28,8 @@ public abstract class Player implements Serializable {
     private int doublesRolledThisTurn;      //keeps track of amount of doubles rolled this turn
     private boolean inJail;                 //if the player is in jail
     private int turnsInJail;                //keeps track of how many turns the player has been in jail
-    //reference to the game the player is a part of
-    private Game monopolyGame;
+
+    private Game monopolyGame;              //reference to the game the player is a part of
 
     /**
      * Constructor for a player

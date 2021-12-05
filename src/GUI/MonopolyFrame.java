@@ -102,7 +102,6 @@ public class MonopolyFrame extends JFrame {
                 } else {
                     players[i] = new HumanPlayer(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i], model);
                 }
-
             }
         }
 

@@ -1,5 +1,8 @@
 <Versions>
 	<American>
+
+		<currencySign>$</currencySign>
+
 		<Empty>
 			<name>Go</name>
 		</Empty>
@@ -67,7 +70,6 @@
 			<price>150</price>
 			<type>UTILITY</type>
 		</Utility>
-
 
 		<Property>
 			<name>Tennessee Avenue</name>
