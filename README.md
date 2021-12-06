@@ -22,6 +22,7 @@ Amith Kumar Das Orko 101126245
 
 - Save/load features using java serialization. 
 - International versions with custom street names, values and currencies in XML format. 
+- XML document is parsed using an API called SAX.
 
 ### Changes since last deliverable:
 
@@ -58,6 +59,8 @@ None
 - When you control each property in a colour set, click on a property in the property list to build a house/hotel on it
 
 - Press "pass" to pass the turn
+
+- Press "File" menu bar and select "Save" to save a game or "Load" to load a previously saved game  
 
 - Relevant events will be shown in a screen pop-up
 
