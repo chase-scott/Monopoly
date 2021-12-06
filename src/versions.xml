@@ -167,7 +167,7 @@
 
 	<Canadian>
 
-		<currency>£</currency>
+		<currency>$</currency>
 
 		<Empty>
 			<name>Go</name>
@@ -330,4 +330,176 @@
 		</Property>
 
 	</Canadian>
+
+	<British>
+
+		<currency>£</currency>
+
+		<Empty>
+			<name>Go</name>
+		</Empty>
+
+		<Property>
+			<name>Old Kent Road</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
+
+		<Property>
+			<name>Whitechapel Road</name>
+			<price>60</price>
+			<colour>-8567285</colour>
+		</Property>
+
+		<Utility>
+			<name>King's Cross</name>
+			<price>200</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>The Angel, Islington</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Property>
+			<name>Euston Road</name>
+			<price>100</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Property>
+			<name>Pentonville Road</name>
+			<price>120</price>
+			<colour>-16744320</colour>
+		</Property>
+
+		<Empty>
+			<name>Jail</name>
+		</Empty>
+
+		<Property>
+			<name>Pall Mall</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Property>
+			<name>Whitehall</name>
+			<price>140</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Property>
+			<name>Northumberland</name>
+			<price>160</price>
+			<colour>-16181</colour>
+		</Property>
+
+		<Utility>
+			<name>Electric Company</name>
+			<price>150</price>
+			<type>UTILITY</type>
+		</Utility>
+
+		<Property>
+			<name>Bow Street</name>
+			<price>180</price>
+			<colour>-23296</colour>
+		</Property>
+
+		<Property>
+			<name>Vine Street</name>
+			<price>200</price>
+			<colour>-23296</colour>
+		</Property>
+
+		<Empty>
+			<name>FREE PARKING</name>
+		</Empty>
+
+		<Property>
+			<name>Strand</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
+
+		<Property>
+			<name>Fleet Street</name>
+			<price>220</price>
+			<colour>-65536</colour>
+		</Property>
+
+		<Utility>
+			<name>Marylebone</name>
+			<price>200</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>Leicester Square</name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
+
+		<Property>
+			<name>Coventry Street</name>
+			<price>260</price>
+			<colour>-256</colour>
+		</Property>
+
+		<Property>
+			<name>Piccadilly</name>
+			<price>280</price>
+			<colour>-256</colour>
+		</Property>
+
+		<GoToJail>
+		</GoToJail>
+
+		<Property>
+			<name>Regent Street</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Property>
+			<name>Oxford Street</name>
+			<price>300</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Property>
+			<name>Bond Street</name>
+			<price>320</price>
+			<colour>-14513374</colour>
+		</Property>
+
+		<Utility>
+			<name>Water Works</name>
+			<price>150</price>
+			<type>RAILROAD</type>
+		</Utility>
+
+		<Property>
+			<name>Park Lane</name>
+			<price>350</price>
+			<colour>-16776961</colour>
+		</Property>
+
+		<Property>
+			<name>Mayfair</name>
+			<price>400</price>
+			<colour>-16776961</colour>
+		</Property>
+
+	</British>
+
+
+
+
+
+
+
 </Versions>

@@ -23,7 +23,7 @@ public class GameBoard implements Serializable {
 
     private Square[] squares; //Array of squares that comprise the board
     public final static int BOARD_SIZE = 28;    //Size of the board
-    public final static String[] VERSIONS= {"American", "Canadian"};
+    public final static String[] VERSIONS= {"American", "Canadian", "British"};
     public static String CURRENCY_SIGN = null;
 
     /**

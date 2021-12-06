@@ -22,7 +22,7 @@ public class Game implements Serializable {
      */
     public Game() {
         turnNumber = -1;
-        gameBoard = new GameBoard(GameBoard.VERSIONS[0]); //defaults to american version
+        gameBoard = null;
     }
 
     public int getNumberPlayers() {
@@ -104,6 +104,7 @@ public class Game implements Serializable {
 
         } catch (IOException | ClassNotFoundException e){
             e.printStackTrace();
+            System.exit(0);
         }
 
         assert loadedGame != null;

@@ -119,9 +119,6 @@ public class MonopolyFrame extends JFrame {
         item = new JMenuItem("Save");
         item.addActionListener(e -> saveGame());
         fileMenu.add(item);
-        item = new JMenuItem("Load");
-        item.addActionListener(e -> loadGame());
-        fileMenu.add(item);
 
     }
 
