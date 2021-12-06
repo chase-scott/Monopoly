@@ -63,8 +63,8 @@ public class Utility extends Square {
                 }
             } else {return;}
 
-            JOptionPane.showMessageDialog(null, player.getName() + " pays $" + amountOwed +
-                    " to " + ownedBy.getName(), "Paid Utility!", JOptionPane.INFORMATION_MESSAGE);
+            showMessage(player.getName() + " pays " + GameBoard.CURRENCY_SIGN + amountOwed +
+                    " to " + ownedBy.getName(), "Paid Utility", JOptionPane.INFORMATION_MESSAGE);
 
             if (player.getMoney() - amountOwed < 0) {
                 ownedBy.setMoney(ownedBy.getMoney() + player.getMoney());
@@ -97,7 +97,7 @@ public class Utility extends Square {
     public String toString() {
         StringBuilder sb = new StringBuilder();
 
-        sb.append("\n\nName: ").append(super.getName()).append("\nCost: $").append(price);
+        sb.append("\n\nName: ").append(super.getName()).append("\nCost: ").append(GameBoard.CURRENCY_SIGN).append(price);
         sb.append("\nOwned by: ");
         if(ownedBy == null) {
             sb.append("Nobody");

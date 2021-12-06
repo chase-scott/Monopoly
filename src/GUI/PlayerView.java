@@ -120,19 +120,43 @@ public class PlayerView extends JPanel implements MonopolyView {
      */
     @Override
     public void updateView() {
-        this.money.setText("$" + this.model.getMoney());
+        this.money.setText(GameBoard.CURRENCY_SIGN + this.model.getMoney());
         this.ownedProperties.setListData(this.model.getPropertyList());
 
         passTurn.setEnabled(model.getDice().isRolled() && model.isTakingTurn());
         rollDice.setEnabled(!model.getDice().isRolled() && model.isTakingTurn());
         ownedProperties.setEnabled(model.isTakingTurn());
 
-
         if(model.getGame().getSquare(model.getPosition()) instanceof Property) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Property) model.getGame().getSquare(model.getPosition())).checkIfAvailable());
         } else if (model.getGame().getSquare(model.getPosition()) instanceof Utility) {
             buyProperty.setEnabled(model.isTakingTurn() && ((Utility) model.getGame().getSquare(model.getPosition())).checkIfAvailable());
         } else {buyProperty.setEnabled(false);}
+    }
+
+    /**
+     * Displays a message to the user
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     */
+    public void showMessage(String message, String title, int type) {
+        JOptionPane.showMessageDialog(null, message, title, type);
+    }
+
+    /**
+     * Displays an option dialog to the first view
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     * @param options   String[], the options for the user to choose from
+     * @return          int, the choice
+     */
+    public int showOptionDialog(String message, String title, int type, String[] options) {
+        return JOptionPane.showOptionDialog(null,
+                message, title, JOptionPane.DEFAULT_OPTION, type, null, options, 0);
     }
 
     /**

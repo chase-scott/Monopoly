@@ -55,6 +55,21 @@ public class SquareView extends JPanel implements MonopolyView {
     }
 
     /**
+     * Displays a message to the user
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     */
+    public void showMessage(String message, String title, int type) {
+        JOptionPane.showMessageDialog(null, message, title, type);
+    }
+
+    public int showConfirmDialog(String message, String title, int type) {
+        return JOptionPane.showConfirmDialog(null, message, title, type);
+    }
+
+    /**
      * Paints the colour and tokens on this view
      * @param g Graphics, the graphics
      */
@@ -102,4 +117,6 @@ public class SquareView extends JPanel implements MonopolyView {
         }
 
     }
+
+
 }

@@ -28,8 +28,8 @@ public abstract class Player implements Serializable {
     private int doublesRolledThisTurn;      //keeps track of amount of doubles rolled this turn
     private boolean inJail;                 //if the player is in jail
     private int turnsInJail;                //keeps track of how many turns the player has been in jail
-    //reference to the game the player is a part of
-    private Game monopolyGame;
+
+    private final Game monopolyGame;              //reference to the game the player is a part of
 
     /**
      * Constructor for a player
@@ -87,6 +87,8 @@ public abstract class Player implements Serializable {
         propertyList.add(square);
     }
 
+    public void clearViews() {views.clear();}
+
     public Game getGame() {return monopolyGame;}
 
     /**
@@ -104,7 +106,7 @@ public abstract class Player implements Serializable {
         for (Square p : propertyList) {
             p.clear();
         }
-        JOptionPane.showMessageDialog(null, name + " has gone bankrupt! :(", "Bankrupt", JOptionPane.INFORMATION_MESSAGE);
+        showMessage(name + " has gone bankrupt! :(", "Bankruptcy", JOptionPane.INFORMATION_MESSAGE);
         this.isBankrupt = true;
         propertyList.clear();
         passTurn();
@@ -133,8 +135,7 @@ public abstract class Player implements Serializable {
     public void rollDice() {
 
         int[] roll = dice.roll();
-        JOptionPane.showMessageDialog(null, "Rolled a " + roll[0] + " and " + roll[1],
-                "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
+        showMessage("Rolled a " + roll[0] + " and " + roll[1], "Dice Roll Result", JOptionPane.INFORMATION_MESSAGE);
 
         monopolyGame.getSquare(position).removePlayer(this);
         monopolyGame.getSquare(position).updateViews();
@@ -163,9 +164,7 @@ public abstract class Player implements Serializable {
         Square squareToBuy = monopolyGame.getSquare(getPosition());
 
         if (money < squareToBuy.getPrice()) {
-            if(this instanceof HumanPlayer)
-            JOptionPane.showMessageDialog(null, "You can not afford this property!", "Warning",
-                    JOptionPane.WARNING_MESSAGE);
+            if(this instanceof HumanPlayer) showMessage("You can not afford this property!", "Buying Property", JOptionPane.WARNING_MESSAGE);
             return;
         }
         money -= squareToBuy.getPrice();
@@ -188,18 +187,14 @@ public abstract class Player implements Serializable {
 
                 //check if player has enough money
                 if (money < propertyToBuildOn.getHousePrice()) {
-                    if (this instanceof HumanPlayer)
-                        JOptionPane.showMessageDialog(null, "You can not afford to build here!", "Warning",
-                                JOptionPane.WARNING_MESSAGE);
+                    if (this instanceof HumanPlayer) showMessage("You can not afford to build here!", "Building House", JOptionPane.WARNING_MESSAGE);
                     return;
                 }
                 //make sure player is building houses symmetrically
                 for (Square p : propertyList) {
                     if(p instanceof Property) {
                         if (propertyToBuildOn.getNumHouses() > ((Property)p).getNumHouses() && propertyToBuildOn.getColour() == p.getColour()) {
-                            if (this instanceof HumanPlayer)
-                                JOptionPane.showMessageDialog(null, "You must build houses symmetrically!", "Warning",
-                                        JOptionPane.WARNING_MESSAGE);
+                            if (this instanceof HumanPlayer) showMessage("You must build houses symmetrically!", "Building House", JOptionPane.WARNING_MESSAGE);
                             return;
                         }
                     }
@@ -242,7 +237,7 @@ public abstract class Player implements Serializable {
         monopolyGame.getSquare(position).addPlayer(this);
         monopolyGame.getSquare(position).updateViews();
         this.inJail = true;
-        JOptionPane.showMessageDialog(null, name + " is being sent to jail!");
+        showMessage(name + " is being sent to jail!", "Jail", JOptionPane.WARNING_MESSAGE);
         passTurn();
     }
 
@@ -250,15 +245,13 @@ public abstract class Player implements Serializable {
         if(turnsInJail == 3) {
             inJail = false;
             turnsInJail = 0;
-            JOptionPane.showMessageDialog(null, name + " has served their time and been let out of jail");
+            showMessage(name + " has server their time and been let out of jail", "Jail", JOptionPane.INFORMATION_MESSAGE);
         }
 
         if(inJail) {
             int answer = 0;
             if(money < 50) { answer = 1; }
-            else if(this instanceof HumanPlayer) answer = JOptionPane.showOptionDialog(null,
-                    "Pay $50 or roll?", "Jail", JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, new String[]{"PAY", "ROLL"}, 0);
-
+            else if(this instanceof HumanPlayer) answer = showOptionDialog("Pay " + GameBoard.CURRENCY_SIGN + "50 or roll?", "Jail", JOptionPane.INFORMATION_MESSAGE, new String[]{"Pay", "Roll"});
             if(answer == 0) {
                 money -= 50;
                 inJail = false;
@@ -266,11 +259,11 @@ public abstract class Player implements Serializable {
                 updateViews();
             } else {
                 if((int)(Math.random() * 6 + 1) == (int)(Math.random() * 6 + 1)) {
-                    JOptionPane.showMessageDialog(null, "You rolled double! OUT OF JAIL!!!");
+                    showMessage("You rolled double! OUT OF JAIL!!!", "Jail", JOptionPane.INFORMATION_MESSAGE);
                     turnsInJail = 0;
                     inJail = false;
                 } else {
-                    JOptionPane.showMessageDialog(null, "You did NOT roll double...");
+                    showMessage("You did NOT roll double...", "Jail", JOptionPane.INFORMATION_MESSAGE);
                     turnsInJail++;
                 }
             }
@@ -278,7 +271,29 @@ public abstract class Player implements Serializable {
 
     }
 
+    /**
+     * Displays a message to the user
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     */
+    public void showMessage(String message, String title, int type) {
+        views.forEach(e -> e.showMessage(message, title, type));
+    }
 
+    /**
+     * Displays an option dialog to the first view
+     *
+     * @param message   String, the message
+     * @param title     String, the title
+     * @param type      int, the type of message
+     * @param options   String[], the options for the user to choose from
+     * @return          int, the choice
+     */
+    public int showOptionDialog(String message, String title, int type, String[] options) {
+        return views.get(0).showOptionDialog(message, title, type, options);
+    }
 
 
 }

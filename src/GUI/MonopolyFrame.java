@@ -49,7 +49,7 @@ public class MonopolyFrame extends JFrame {
 
         if(returnValue == null) System.exit(0);
 
-
+        model.setGameBoard(returnValue);
 
     }
 
@@ -102,7 +102,6 @@ public class MonopolyFrame extends JFrame {
                 } else {
                     players[i] = new HumanPlayer(((JTextField) inputs[j]).getText(), PLAYER_COLOURS[i], model);
                 }
-
             }
         }
 
@@ -119,9 +118,6 @@ public class MonopolyFrame extends JFrame {
         JMenuItem item;
         item = new JMenuItem("Save");
         item.addActionListener(e -> saveGame());
-        fileMenu.add(item);
-        item = new JMenuItem("Load");
-        item.addActionListener(e -> loadGame());
         fileMenu.add(item);
 
     }
