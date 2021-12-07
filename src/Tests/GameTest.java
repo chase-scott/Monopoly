@@ -27,10 +27,10 @@ public class GameTest {
         assertEquals(0,game.getNumberPlayers(),0.2);
     }
 
-    @Test
     /**
      * Also used to test setPlayers()
      */
+    @Test
     public void getPlayer() {
         Game game = new Game();
         game.setGameBoard("American");
@@ -51,23 +51,17 @@ public class GameTest {
         game.getPlayer(1);
     }
 
-    @Test
-    public void getSquare() {
 
-    }
-
-
-
-    @Test
     /**
      * Also used to test getSquare()
      */
+    @Test
     public void setGameBoard() {
         Game game = new Game();
         game.setGameBoard("American");
 
         GameBoard gameBoard = new GameBoard("American");
-        gameBoard.getSquare(2).equals(game.getSquare(2));
+        assertEquals(gameBoard.getSquare(2).getName(), game.getSquare(2).getName());
     }
 
 
@@ -84,10 +78,6 @@ public class GameTest {
 
     @Override  //used to Override Equals() Method
     public boolean equals(Object o) {
-        if (getClass() == o.getClass()) {
-            return true;
-        } else {
-            return false;
-        }
+        return getClass() == o.getClass();
     }
 }

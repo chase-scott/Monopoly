@@ -1,14 +1,13 @@
 package Tests;
+
+import Monopoly.Colours;
+import java.awt.*;
+import static org.junit.Assert.*;
+
 /**
  * Used to test the Colours Eum
  * @author Mohammad Gaffori 101082318
  */
-import Monopoly.Colours;
-
-import java.awt.*;
-
-import static org.junit.Assert.*;
-
 public class ColoursTest {
 
     private static final double Delta = 0.2; // Constant used for the assertEquals() Method
@@ -34,13 +33,11 @@ public class ColoursTest {
 
     @org.junit.Test
     public void matchColourNull() {
-        Colours color= Colours.RED;
-        assertNull(color.matchColour((255)));
+        assertNull(Colours.matchColour((255)));
     }
 
     @org.junit.Test
     public void matchColour() {
-        Colours color= Colours.RED;
-        assertEquals(Colours.RED,color.matchColour(-65536));
+        assertEquals(Colours.RED, Colours.matchColour(-65536));
     }
 }

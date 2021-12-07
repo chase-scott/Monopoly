@@ -69,10 +69,10 @@ public class PlayerTest {
         assertFalse(player.isTakingTurn());
     }
 
-    @Test
     /**
      * Also used to test BecomeBankrupt()
      */
+    @Test
     public void getBankruptcyStatus() {
         game.setGameBoard("American");
         Player player = new HumanPlayer("Sethy", Color.RED, game);
@@ -82,10 +82,10 @@ public class PlayerTest {
         assertTrue(player.getBankruptcyStatus());
     }
 
-    @Test
     /**
      * Also used to test getPropertyList()
      */
+    @Test
     public void addProperty() {
         game.setGameBoard("American");
         Player player = new HumanPlayer("Sethy", Color.RED, game);
@@ -111,10 +111,10 @@ public class PlayerTest {
 
     }
 
-    @Test
     /**
      * Also used to test getDice()
      */
+    @Test
     public void rollDice() {
         game.setGameBoard("American");
         Player player = new HumanPlayer("Sethy", Color.RED, game);
@@ -173,28 +173,4 @@ public class PlayerTest {
         assertEquals(7,player1.getPosition(),0.2);
     }
 
-    @Test
-    public void jailLogicWhileBroke() {
-        game.setGameBoard("American");
-        Player player1 = new HumanPlayer("Sethy", Color.BLUE, game);
-        player1.goToJail();
-        player1.setMoney(2);
-        player1.rollDice();
-
-        if(player1.getDice().isDouble()){
-            player1.makeMove();
-            player1.makeMove();
-            assertFalse(player1.isInJail());
-
-        }else{
-            assertTrue(player1.isInJail());
-        }
-    }
-    @Test
-    public void zmakeMove(){
-        game.setGameBoard("American");
-        Player player1 = new HumanPlayer("Sethy", Color.BLUE, game);
-        player1.goToJail();
-        assertFalse(player1.isTakingTurn());
-    }
 }

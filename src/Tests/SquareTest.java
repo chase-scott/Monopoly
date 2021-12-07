@@ -1,12 +1,10 @@
 package Tests;
 
-import GUI.SquareView;
 import Monopoly.*;
 import org.junit.Test;
 
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.*;
 /**
@@ -18,7 +16,6 @@ public class SquareTest {
     Property property = new Property("Mediterranean Avenue", 60, Colours.ORANGE);
     Square square = new Property("Mediterranean Avenue", 60, Colours.ORANGE);
     ArrayList<Player> playersList = new ArrayList<>();
-    //private List<SquareView> views; Not needed
 
     @Test
     public void getName() {
@@ -51,6 +48,6 @@ public class SquareTest {
 
     }
 
-    // All of the other methods were tested in the class PropertyTest & Utility test, since most were overriden 
-    
+    // All the other methods were tested in the class PropertyTest & Utility test, since most were overridden
+
 }

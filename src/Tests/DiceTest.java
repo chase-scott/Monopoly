@@ -39,8 +39,8 @@ public class DiceTest {
     @Test
     public void isDouble() {
         Dice dice = new Dice();
-        dice.roll();
-        if (dice.getDice1() == dice.getDice2()){
+        int[] rollResult = dice.roll();
+        if (rollResult[0] == rollResult[1]){
             assertTrue(dice.isDouble());
         }else{assertFalse(dice.isDouble());
         }

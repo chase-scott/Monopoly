@@ -28,7 +28,7 @@ public class MonopolyFrame extends JFrame {
         startMenu();
 
         if(model.getNumberPlayers() == 0) {
-            chooseVersion();
+            this.chooseVersion();
             model.setPlayers(generateWelcome());
         }
         this.generateMenuBar();

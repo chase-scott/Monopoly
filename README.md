@@ -60,7 +60,8 @@ None
 
 - Press "pass" to pass the turn
 
-- Press "File" menu bar and select "Save" to save a game or "Load" to load a previously saved game  
+- Press "File" menu bar and select "Save" to save a game
 
 - Relevant events will be shown in a screen pop-up
+
 
