@@ -6,7 +6,10 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the Property Class
+ * @author Mohammad Gaffori 101082318
+ */
 public class PropertyTest {
 
     Property property = new Property("Mediterranean Avenue", 60, Colours.ORANGE);

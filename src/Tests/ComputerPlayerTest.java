@@ -8,7 +8,10 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the ComputerPlayer Class
+ * @author Mohammad Gaffori 101082318
+ */
 public class ComputerPlayerTest {
     private final Game game = new Game();
 
@@ -20,7 +23,6 @@ public class ComputerPlayerTest {
         if (!player1.isInJail()) {
             player1.buySquare();
             assertNotNull(player1.getPropertyList());   //Tests that the Property List is not empty
-            assertTrue(1 <= player1.getPropertyList().size() );
         }else{
             assertTrue(player1.isInJail());
         }

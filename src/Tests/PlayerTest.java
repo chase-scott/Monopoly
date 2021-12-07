@@ -10,7 +10,10 @@ import java.awt.*;
 import java.util.Vector;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the Players Class
+ * @author Mohammad Gaffori 101082318
+ */
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class PlayerTest {
     private final Game game = new Game();
@@ -179,6 +182,7 @@ public class PlayerTest {
         player1.rollDice();
 
         if(player1.getDice().isDouble()){
+            player1.makeMove();
             player1.makeMove();
             assertFalse(player1.isInJail());
 

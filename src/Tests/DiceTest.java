@@ -4,7 +4,10 @@ import Monopoly.Dice;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the Dice Class
+ * @author Mohammad Gaffori 101082318
+ */
 public class DiceTest {
 
     @Test

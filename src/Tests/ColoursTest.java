@@ -1,10 +1,8 @@
 package Tests;
-
 /**
  * Used to test the Colours Eum
  * @author Mohammad Gaffori 101082318
  */
-
 import Monopoly.Colours;
 
 import java.awt.*;

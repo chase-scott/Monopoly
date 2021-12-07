@@ -6,7 +6,11 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the used to test the Empty Class, which is used
+ * for squares that have no effect when the player lands on them
+ * @author Mohammad Gaffori 101082318
+ */
 public class EmptyTest {
 
     @Test

@@ -8,7 +8,10 @@ import org.junit.Test;
 import java.awt.*;
 
 import static org.junit.Assert.*;
-
+/**
+ * Used to test the GameBoard class
+ * @author Mohammad Gaffori 101082318
+ */
 public class GameBoardTest {
 
     @Test
