@@ -1,13 +1,14 @@
 # Monopoly Group 7
 
-## Project Milestone 1 for SYSC 3110
+## Project Milestone 4 for SYSC 3110
 
 ### Deliverables made in this milestone:
 
 1. UML sequence diagrams and UML class diagram
-2. code (source + executable in  a jar file)
+2. code (source + executable in  a jar file + GUI iteration)
 3. Documentation (javadocs, user manual, design decisions)
-4. README file
+4. JUnit Tests
+5. README file
 
 ### Group Members:
 
@@ -17,13 +18,16 @@ Mohammad Gaffori 101082318
 
 Amith Kumar Das Orko 101126245
 
-### Changes since last deliverable:
-
-This is the 1st deliverable
-
 ### Description:
 
-A text-based playable version of the classic Monopoly game, forming the Model part of the MVC pattern.
+- Save/load features using java serialization.
+- International versions with custom street names, values and currencies in XML format.
+- XML document is parsed using an API called SAX.
+
+### Changes since last deliverable:
+
+- Added the abillity to save and load game files.
+- Added the ability to choose differing international versions of Monopoly.
 
 ### Known issues:
 
@@ -31,30 +35,33 @@ None
 
 ### Roadmap ahead:
 
-Implementing a GUI-based version of the game, this includes the view and controller. Update UML and data structures corresponding to the source code. and provide unit tests. Improve code based on the TA's feedback.
+- This is the last milestone.
 
 ### Decisions Made:
 
-- We decided to add 23 squares in the board instead of the classic game's 40 since we are not allowed to use all the utilities and houses yet.
-
-- Properties are color coded and the taxes vary depending on the color. However owning all the same colored properties will not have any advantages for the player
-
-- Once the player is unable to pay rent, he is eliminated since we have decided not to include the concept of mortages
-
-- Monopoly.Square was made an abstract class to allow for custom methods and attributes within each of the specific squares. The abstract method squareAction allows the Monopoly.Game class to call it on each sqaure and have it perform the square specific action.
+- Choosing versions is done upon creating new games.
+- Version information is stored in an XML, this is then parsed for the information
 
 ### User Manual:
 
--  Double click the jar file and select the number of players, along with their names
+-  Double-click the jar file and select if you would like to start a new game or load a game
 
-- Type in "roll" to roll the dice and start the game
+-  If you click new game, first choose your version, then the number of players. Inpit eacha player's names.
 
-- Type in "buy" to buy the property you are currently on
+-  If you exclude a name for a player, they will become AI controlled.
 
-- Type in "state" to view your name, money, list of properties, and current position
+- Press "roll" to roll the dice and start the game
 
-- Type in "pass" to pass the turn
+- Press "buy" to buy the property you are currently on
 
-- Type in "help" for the list of commands
+- Properties will appear in list that can be scrolled through
 
-- Type in "quit" to quit the game
+- When you control each property in a colour set, click on a property in the property list to build a house/hotel on it
+
+- Press "pass" to pass the turn
+
+- Press "File" menu bar and select "Save" to save a game or "Load" to load a previously saved game
+
+- Relevant events will be shown in a screen pop-up
+
+****
