@@ -20,9 +20,8 @@ Amith Kumar Das Orko 101126245
 
 ### Description:
 
-- Save/load features using java serialization.
-- International versions with custom street names, values and currencies in XML format.
-- XML document is parsed using an API called SAX.
+- Save/load features using java serialization. 
+- International versions with custom street names, values and currencies in XML format. 
 
 ### Changes since last deliverable:
 
@@ -41,14 +40,15 @@ None
 
 - Choosing versions is done upon creating new games.
 - Version information is stored in an XML, this is then parsed for the information
+- XML document is parsed using a SAX Parser.
 
 ### User Manual:
 
--  Double-click the jar file and select if you would like to start a new game or load a game
+- Double click the jar file and select if you would like to start a new game or load a game.
 
--  If you click new game, first choose your version, then the number of players. Inpit eacha player's names.
+- If you click new game, first choose your version, then the number of players. 
 
--  If you exclude a name for a player, they will become AI controlled.
+- Input each player's name. If you exclude a name for a player, they will become AI controlled.
 
 - Press "roll" to roll the dice and start the game
 
@@ -60,8 +60,8 @@ None
 
 - Press "pass" to pass the turn
 
-- Press "File" menu bar and select "Save" to save a game or "Load" to load a previously saved game
+- Press "File" menu bar and select "Save" to save a game
 
 - Relevant events will be shown in a screen pop-up
 
-****
+

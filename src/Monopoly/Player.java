@@ -72,7 +72,7 @@ public abstract class Player implements Serializable {
     public int getPosition() {
         return position;
     }
-
+  
     public void setPosition(int position) {this.position = position;}
 
     public boolean isInJail() {return inJail;}
