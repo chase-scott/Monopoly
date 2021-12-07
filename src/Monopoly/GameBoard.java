@@ -1,16 +1,14 @@
 package Monopoly;
 
 import org.xml.sax.Attributes;
-import org.xml.sax.SAXException;
-import org.xml.sax.SAXParseException;
 import org.xml.sax.helpers.DefaultHandler;
 
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 import java.io.File;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -32,7 +30,9 @@ public class GameBoard implements Serializable {
     public GameBoard(String version) {
         try {
             createBoard(version);
-        } catch (Exception e) {System.out.println("ERROR");}
+        } catch (Exception e) {
+            System.out.println("failed to load versions.xml");
+        }
     }
 
     /**
@@ -41,8 +41,7 @@ public class GameBoard implements Serializable {
     private void createBoard(String version) throws Exception {
 
         //this will be function input
-
-        File f = new File("src/versions.xml");
+        InputStream f = GameBoard.class.getResourceAsStream("versions.xml");
         ArrayList<Square> board = new ArrayList<>();
 
         SAXParserFactory spf = SAXParserFactory.newInstance();
