@@ -73,6 +73,8 @@ public abstract class Player implements Serializable {
         return position;
     }
 
+    public void setPosition(int p) {position = p; }  //Used exclusively for testing purposes
+
     public boolean isInJail() {return inJail;}
 
     public Dice getDice() {return dice;}
