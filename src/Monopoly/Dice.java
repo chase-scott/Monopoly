@@ -39,36 +39,8 @@ public class Dice implements Serializable {
     public int rollResult() {return dice[0] + dice[1];}
 
     public boolean isDouble() {return dice[0] == dice[1];
-    
-
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-    
-    
-    
-    
-    
-
-    
-
-
-
-
-
-
-
-
-
-
-
     }
+
+    public int getDice1(){return dice[0];}     //used for Testing ONLY
+    public int getDice2(){return dice[1];}
 }
