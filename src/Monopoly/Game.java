@@ -66,7 +66,7 @@ public class Game implements Serializable {
     }
 
     /**
-     * Get the square at location i in the gameboard
+     * Get the square at location i in the GameBoard
      *
      * @param i int, location on the board
      * @return  Square, the square
